@@ -11,6 +11,8 @@ program DefAcc
 	local first_woman = `man_count' +1
 	di "`first_woman'"
 	
+	gen match = ""
+	gen lfr_rank = 0
 
 	local not_done = 1
 	while `not_done' {
