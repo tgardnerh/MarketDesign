@@ -53,9 +53,6 @@ program GenRankList
 			replace  utility`j' = . if pref_util == utility`j'
 		}
 		
-		
-		list
-		pause 42
 		drop pref_util
 	}
 
