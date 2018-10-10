@@ -1,4 +1,4 @@
-#Generate preferences
+//Generate preferences
 
 capture program drop GenRankList
 program GenRankList
@@ -9,11 +9,11 @@ program GenRankList
 	generate agentid = ""
 	set obs `agent_count'	
 	
-	#name the men
+	//name the men
 	forvalues i = 1/`size' {
 		replace agentid = "M`i'" if _n == `i'
 	}
-	#name the women
+	//name the women
 	forvalues i = `first_woman'/`agent_count' {
 		local woman_id = `i'-`size'
 		replace agentid = "W`woman_id'" if _n == `i'
@@ -24,7 +24,7 @@ program GenRankList
 		
 	}
 
-	#add in randomness
+	//add in randomness
 
 	gen rvar = 0
 	forvalues i = 1/`size' {
@@ -34,13 +34,13 @@ program GenRankList
 
 	drop rvar
 	
-	#generate ranklist
+	//generate ranklist
 	
 	forvalues i = 1/`size' {
 		generate pref`i' = ""
 		generate pref_util = .
 		
-		#loop over utility values to determine preference for that number
+		//loop over utility values to determine preference for that number
 		forvalues j = 1/`size' {
 			replace pref_util =  utility`j'  if utility`j' < pref_util
 			replace pref`i' = "W`j'" if pref_util == utility`j' & strpos( agentid, "M") 
@@ -48,7 +48,7 @@ program GenRankList
 		}
 		
 		
-		#loop over utility values again to drop out the used utility
+		//loop over utility values again to drop out the used utility
 		forvalues j = 1/`size' {
 			replace  utility`j' = . if pref_util == utility`j'
 		}

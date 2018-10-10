@@ -1,9 +1,9 @@
-#This is the wrapper file that runs and tests DefAcc.ado
+//This is the wrapper file that runs and tests DefAcc.ado
 do GenRankList.ado
 do DefAcc.ado
 
-local size 100
-local stdev 1000
+local size $size
+local stdev $stdev
 
 
 local size_x_2 = `size'*2
@@ -45,7 +45,7 @@ gen agentsex = substr(agentid, 1, 1)
 sort agentsex agentnumber
 drop agentsex agentnumber
 
-#code to fill in the missing match 
+// code to fill in the missing match 
 
 forvalues i = 1/`size' {
 	replace WP_match = "M`i'" if agentid == WP_match[`i']
