@@ -1,6 +1,10 @@
 #Define the classes and functions for the gale-shaply simulation
 #https://jeremykun.com/2014/04/02/stable-marriages-and-designing-markets/
-
+##Bug to fix:
+## This relies on suited 0 being in the 0 position of the suited list, rather than referencing suited by their ID
+##This could create some very odd behavior, because it doesn't neciscarily throw an error if it isn't true
+## one way to fix this is to create a "suiteds" and "suitors" object, perhaps just internally, that is a dictionary 
+## with the id as the key.
 import random
 import numpy as np
 import operator
@@ -159,10 +163,11 @@ def achiev_mat(
     n ,
     sigma_fract,
     force = False,
-    runs = 100
+    runs = 20
     ):
     try:
-        AM_dict = pickle.load(open("AM_dict.pkl", "rb"))
+        with open("/Users/tylerhoppenfeld/Documents/MarketDesign/AM_dict.pkl", "rb") as f:
+            AM_dict = pickle.load(f)
     except FileNotFoundError:
         AM_dict = {}
 
@@ -172,7 +177,9 @@ def achiev_mat(
     
     if np.all(achievability_matrix == None) | force == True:
         simulations = np.array([None]* runs)
-
+        
+        print("simulating achievability matrix for " + str(lookup_str))
+        
         for i in range(0,runs):
 
             men = preflists(n, sigma_fract, list_length = n)[0]
@@ -195,8 +202,8 @@ def achiev_mat(
 
 
         AM_dict.update({lookup_str : achievability_matrix})
-
-        pickle.dump(AM_dict, open(AM_dict, "wb"))
-                    
+        with open("/Users/tylerhoppenfeld/Documents/MarketDesign/AM_dict.pkl", "wb") as f:
+            pickle.dump(AM_dict, f)
+        
     return achievability_matrix
                     
