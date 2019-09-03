@@ -94,7 +94,7 @@ def verifyStable(suitors, suiteds, marriage):
 def preflists(
     n ,
     sigma_fraction ,
-    list_length,
+    list_length = None,
     achievability_matrix = None,
     match_threshold = 0
 ):
