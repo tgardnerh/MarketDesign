@@ -41,9 +41,12 @@ class Suited(object):
           self.currentSuitors.add(self.held)
        unacceptable = set(filter(lambda suitor: suitor.id not in self.prefList, self.currentSuitors))
        self.currentSuitors = self.currentSuitors - unacceptable 
+       #Here we tweak it to loop so that self.held can have more than one element
        if len(self.currentSuitors) > 0 :
-           self.held = min(self.currentSuitors, key=lambda suitor: self.prefList.index(suitor.id))
-       rejected = self.currentSuitors - set([self.held]) 
+           self.held = set()
+           for i in range(1):
+               self.held |= set([min(self.currentSuitors, key=lambda suitor: self.prefList.index(suitor.id))])
+       rejected = self.currentSuitors - set(self.held) 
        rejected |= unacceptable
        self.currentSuitors = set()
 
@@ -66,8 +69,14 @@ def GSDA(suitors, suiteds):
 
       for suitor in unassigned:
         suitor.rejections += 1
- 
-   return dict([(suited.held, suited) for suited in suiteds])
+   returndict = dict()
+   for suitor in suitors:
+        returndict.update({suitor:[]})
+        for suited in suiteds:
+            if suitor in suited.held:
+                returndict.update({suitor:[suited]+returndict.get(suitor)})
+   print(returndict)
+   return returndict
 
 # verifyStable: [Suitor], [Suited], {Suitor -> Suited} -> bool
 # check that the assignment of suitors to suited is a stable marriage
@@ -91,9 +100,9 @@ def verifyStable(suitors, suiteds, marriage):
 
 
 #make preflists for a side of market:
-def preflists(
+def preflists_utility(
     n ,
-    sigma_fraction ,
+    utility,
     list_length = None,
     achievability_matrix = None,
     match_threshold = 0
@@ -109,13 +118,9 @@ def preflists(
 
     #determine padding length
 
-    #scale sigma
-    sigma = sigma_fraction * n /2
 
     for i in range(0, n):
 
-        utility = [(k, random.normalvariate(k,sigma)) for k in range(0,n)]
-        utility.sort(key=operator.itemgetter(1))
         #room for ranked partners, plus a "none" at the end
         ranklist = [None] * (n + 1)
         long_ranklist = [None] * n
@@ -157,6 +162,30 @@ def preflists(
         long_suiteds[i] = Suited(id, long_ranklist)
         agents = [suitors, suiteds, long_suitors, long_suiteds]
     return agents
+
+def preflists(
+    n ,
+    sigma_fraction ,
+    list_length = None,
+    achievability_matrix = None,
+    match_threshold = 0
+):
+    #scale sigma
+    sigma = sigma_fraction * n /2
+
+    utility = [(k, random.normalvariate(k,sigma)) for k in range(0,n)]
+    utility.sort(key=operator.itemgetter(1))
+    
+    agents = preflists_utility(
+        n  = n,
+        utility = utility,
+        list_length = list_length,
+        achievability_matrix = achievability_matrix,
+        match_threshold = match_threshold
+        )
+    return agents
+    
+    
 
 #Return matching probability array:
 def achiev_mat(
