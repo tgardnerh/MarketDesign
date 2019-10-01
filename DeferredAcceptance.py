@@ -15,10 +15,12 @@ class Suitor(object):
    def __init__(self, id, prefList):
       self.prefList = prefList
       self.rejections = 0 # num rejections is also the index of the next option
+      self.proposals = 0
       self.id = id
- 
+      self.assigned_count = 0
    def preference(self):
-      return self.prefList[self.rejections]
+      print(str(self.id)+ "th's assigned_count " + str(self.assigned_count) + ", proposal number " + str(self.proposals))
+      return self.prefList[self.proposals]
  
    def __repr__(self):
       return repr(self.id)
@@ -44,31 +46,45 @@ class Suited(object):
        #Here we tweak it to loop so that self.held can have more than one element
        if len(self.currentSuitors) > 0 :
            self.held = set()
-           for i in range(1):
+           for i in range(5):
                self.held |= set([min(self.currentSuitors, key=lambda suitor: self.prefList.index(suitor.id))])
        rejected = self.currentSuitors - set(self.held) 
        rejected |= unacceptable
        self.currentSuitors = set()
-
+       
+       for reject in rejected:
+          reject.assigned_count += -1
+          reject.rejections += 1
        return rejected
     
 # GSDA: [Suitor], [Suited] -> {Suitor -> Suited}
 # construct a stable (monogamous) marriage between suitors and suiteds
 def GSDA(suitors, suiteds):
-   unassigned = set(suitors)
- 
+   apply_to = 5
+   unassigned = set()
+   for suitor in suitors:
+        if suitor.assigned_count < apply_to:
+            print(type(suitor))
+            print(suitor)
+            unassigned |= set([suitor])
+            
    while len(unassigned) > 0:
       for suitor in unassigned:
             next_proposal = suitor.preference()
             if next_proposal != None:
                 suiteds[suitor.preference()].currentSuitors.add(suitor)
+                suitor.proposals += 1
+                suitor.assigned_count += 1
+                print(str(suitor.id) + "is assigned_count: " + str(suitor.assigned_count))
+                
       unassigned = set()
+      for suitor in suitors:
+          if suitor.assigned_count < apply_to:
+              unassigned |= set([suitor])     
+      
       for suited in suiteds:
          unassigned |= suited.reject()
 
-
-      for suitor in unassigned:
-        suitor.rejections += 1
    returndict = dict()
    for suitor in suitors:
         returndict.update({suitor:[]})
