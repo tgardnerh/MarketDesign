@@ -1,6 +1,7 @@
 import math
 import time
 from collections import deque
+import heapq as hq
 
 def GSDA(m_pref, w_pref, m):
   men = [Person(i, preferences) for i, preferences in enumerate(m_pref)]
@@ -14,31 +15,21 @@ def GSDA(m_pref, w_pref, m):
     # print('man', man.id, "proposes to", 'woman', woman.id)
     if len(woman.held) < m:
       # print('woman', woman.id, 'does not have a fiancee, so they get engaged')
-      woman.held.add(man)
-      man.held.add(woman)
+      hq.heappush(woman.held , (woman.preferences[man.id], man))
+      hq.heappush(man.held , (man.preferences[woman.id], woman))
     else:
       # i feel like this variable should have a different name
-      woman_worst_held = min(woman.held , key = lambda m : woman.preferences[m.id])
-      if woman.preferences[man.id] > woman.preferences[woman_worst_held.id]:
-        # print("woman", woman.id, 'likes man', man.id, ', better than her fiancee, man', woman.fiancee.id)
-        #this add/remove from set business feels kludgy.  Should I be making the breakup process somehow more automated, maybe as a function of the Person object?
-        available_men.append(woman_worst_held.id)
-        woman.held.remove(woman_worst_held)
-        woman_worst_held.held.remove(woman)
-        woman.held.add( man)
-        man.held.add(woman)
-      else:
-        available_men.append(man.id)
-        # print('woman', woman.id, 'likes her fiancee, man', woman.fiancee.id, 'more than man', man.id)
-
+      rejectedMan = hq.heappushpop(woman.held, (woman.preferences[man.id], man))[1]
+      available_men.append(rejectedMan.id)
+    
   # print("No more people to propose")
-  return [(man.id, man.held) for man in men]
+  return [(woman.id, [heldMan[1].id for heldMan in woman.held]) for woman in women]
 
 class Person:
   def __init__(self, id, preferences):
     self.id = id
     self.n = len(preferences)
-    self.held = set()
+    self.held = []
     self.preference_queue = deque(preferences)
     self.preferences = dict([(j, i) for i, j in preferences])
     
