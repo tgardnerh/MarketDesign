@@ -24,7 +24,7 @@ def GSDA(m_pref, w_pref, m):
     try:
         woman = women[man.preference_queue.pop()[1]]
     except IndexError:
-        print('Man ' + str(man.id) + ' is out of options')
+        #print('Man ' + str(man.id) + ' is out of options')
         continue
     #print( " proposes to woman " + str(woman.id) + " who holds " + str([man[1].id for man in woman.held])) 
     if (woman.preferences[man.id], man) in woman.held:
