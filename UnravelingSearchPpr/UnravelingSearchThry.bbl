@@ -1,0 +1,72 @@
+
+
+% Bibstyle aea.bst version 2009.05.20
+
+\begin{thebibliography}{xx}
+
+\harvarditem[Avery et~al.]{Christopher Avery, Christine Jolls, Richard~A Posner
+  \harvardand\ Alvin~E Roth}{2001}{Avery2001}
+{\bf Avery, Christopher, Christine Jolls, Richard~A Posner, and Alvin~E Roth.}
+  2001. ``{The market for federal judicial law clerks}.'' {\em U. Chi. L.
+  Rev.}, 68:~793.
+
+\harvarditem[Damiano, Li \harvardand\ Suen]{Ettore Damiano, Hao Li \harvardand\
+  Wing Suen}{2005}{Damiano2005}
+{\bf Damiano, Ettore, Hao Li, and Wing Suen.} 2005. ``{Unravelling of dynamic
+  sorting}.'' {\em The Review of Economic Studies}, 72(4):~1057--1076.
+
+\harvarditem[Ha{\l}aburda]{Hanna Ha{\l}aburda}{2010}{Halaburda2010}
+{\bf Ha{\l}aburda, Hanna.} 2010. ``{Unravelling in two-sided matching markets
+  and similarity of preferences}.'' {\em Games and Economic Behavior},
+  69(2):~365--393.
+
+\harvarditem[Lee]{Sam~Ho Lee}{2009}{Lee2009}
+{\bf Lee, Sam~Ho.} 2009. ``{Jumping the curse: Early contracting with private
+  information in university admissions}.'' {\em International Economic Review},
+  50(1):~1--38.
+
+\harvarditem[Li \harvardand\ Rosen]{Hao Li \harvardand\ Sherwin
+  Rosen}{1998}{Li1998}
+{\bf Li, Hao, and Sherwin Rosen.} 1998. ``{Unraveling in matching markets}.''
+  {\em American Economic Review}, 371--387.
+
+\harvarditem[Li \harvardand\ Suen]{Hao Li \harvardand\ Wing Suen}{2000}{Li2000}
+{\bf Li, Hao, and Wing Suen.} 2000. ``{Risk Sharing, Sorting, and Early
+  Contracting}.'' {\em Journal of Political Economy}, 108(5):~1058--1091.
+
+\harvarditem[Li \harvardand\ Suen]{Hao Li \harvardand\ Wing Suen}{2004}{Li2004}
+{\bf Li, Hao, and Wing Suen.} 2004. ``{Self-fulfilling early-contracting
+  rush}.'' {\em International Economic Review}, 45(1):~301--324.
+
+\harvarditem[Niederle \harvardand\ Roth]{Muriel Niederle \harvardand\ Alvin~E
+  Roth}{2004}{Niederle2004}
+{\bf Niederle, Muriel, and Alvin~E Roth.} 2004. ``{Market culture: How norms
+  governing exploding offers affect market performance}.'' National Bureau of
+  Economic Research.
+
+\harvarditem[Niederle \harvardand\ Roth]{Muriel Niederle \harvardand\ Alvin~E.
+  Roth}{2005}{Niederle2005}
+{\bf Niederle, Muriel, and Alvin~E. Roth.} 2005. ``{The gastroenterology
+  fellowship market: Should there be a match?}'' {\em American Economic
+  Review}, 95(2):~372--375.
+
+\harvarditem[Niederle \harvardand\ Roth]{Muriel Niederle \harvardand\ Alvin E.
+  Roth}{2003}{Niederle2003}
+{\bf Niederle, Muriel, and Alvin E. Roth.} 2003. ``{Unraveling Reduces
+  Mobility in a Labor Market: Gastroenterology with and without a Centralized
+  Match}.'' {\em Journal of Political Economy}, 111(6):~1342--1352.
+
+\harvarditem[Niederle, Proctor \harvardand\ Roth]{Muriel Niederle, Deborah~D
+  Proctor \harvardand\ Alvin~E Roth}{2008}{Niederle2008}
+{\bf Niederle, Muriel, Deborah~D Proctor, and Alvin~E Roth.} 2008. ``{The
+  gastroenterology fellowship match—the first two years}.'' {\em
+  Gastroenterology}, 135(2):~344----346.
+
+\harvarditem[Roth]{Alvin~E Roth}{2002}{Roth2002}
+{\bf Roth, Alvin~E.} 2002. ``{The Economist as Engineer : Game Theory ,
+  Experimentation , and Computation as Tools for Design Economics Author ( s ):
+  Alvin E . Roth Reviewed work ( s ): Published by : The Econometric Society
+  Stable URL : http://www.jstor.org/stable/3082001 . THE ECONO}.'' {\em
+  Econometrica}, 70(4):~1341--1378.
+
+\end{thebibliography}
