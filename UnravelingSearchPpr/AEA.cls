@@ -45,6 +45,11 @@
   \@twosidetrue  
   \@twocolumnfalse
 }
+\DeclareOption{WP}{
+	\def\@issueName{WORKING PAPER}
+	\@twosidetrue  
+	\@twocolumnfalse
+}
 
 \DeclareOption{PP}{
   \def\@issueName{PAPERS AND PROCEEDINGS}
