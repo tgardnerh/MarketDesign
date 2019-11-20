@@ -65,7 +65,7 @@ The major unanswered question then is how do we understand why some markets are 
 	\item An empirical approach to this literature can be split into two strands: studying markets that are orderly, and those that are disorderly. 
 	\begin{itemize}
 		\item The literature based on orderly markets finds that, with limited exceptions, those that use a mechanism producing a stable allocation are resistant to unraveling.  Most notable in this group is  \cite{Roth2002} which discusses a variety of successful and unsuccessful matching markets, including the region specific medical matching markets for new physicians in the United Kingdom.  There were a variety of mechanisms tried, and the markets that used mechanisms that yielded stable allocations persisted, while those markets that did not use stable allocation generating mechanism unraveled.
-		\item The literature based on disorderly markets is less sanguine. This is predominantly descriptive literature, working on the 
+		\item The literature based on disorderly markets is less sanguine. This is predominantly descriptive literature, and includes at least two major case studies. The first case study is the market for appellate law clerks.  By the early 2000s the market for highly prestigious appellate court clerkships (including supreme court clerkships) had unraveled to the point where offers were extended and accepted in a chaotic manner, when only the first of three years of law school were complete \cite{Avery2001}.  Further work suggests that the situation had improved by the mid 2000s \cite{Avery2007}, but it appears that the situation is still not resolved (a Cornel law school website references the `the breakdown of the last federal clerkship hiring plan in 2014' https://www.lawschool.cornell.edu/New-Federal-Clerk-Hiring-Plan.cfm). The other major case study is that of Gastrointestiinal fellowships.  In this market, there was a breakdown of the match process, and a reintroduction of the match process \cite{Niederle2008,Niederle2003}.  
 	\end{itemize}
 	 
 	\item  A second major thread is models where early contracting is a form of welfare improving insurance. In these models, the ``unraveling" is not a race to go first, but a choice to make early contracts that hedge against uncertian market outcomes in later periods.  Perhaps the clearest of these models is in \cite{Li1998}.
@@ -82,7 +82,7 @@ In this model agents face two kinds of risk—the first kind is that they are un
 The setup is that there are two types of agents, workers and firms, who each are revealed in the second period to be either productive or unproductive. A unit of the good is produced jointly by one productive firm and one productive worker (but by no other arrangement). The timing of the model goes as follows: in the first period, firms and workers have the opportunity to contract early and exit the market. In the second period, each firm and worker is revealed  to be productive or unproductive, and workers and firms contract in a competitive market.  In the pairings with workers and firms from the first period, if both agents are revealed to be of the productive type, the good produced is split as they agreed in period one. In the competitive market, productive agents that turn out to be on the short side of the market get a payout of 1, and those that turn out to be on the long side of the market get a payout of zero.
 
 
-In this model, an early contract (“unraveling”)  is a choice to take on the risk that your counter party might be unproductive to mitigate the risk that you might be on the long side of the market.  Notice that while this system reduces the overall productivity of the market (since ex-post inefficient matches are stuck), unraveling may be welfare improving, if participants are sufficiently risk averse.
+In this model, an early contract (``unraveling”)  is a choice to take on the risk that your counter party might be unproductive to mitigate the risk that you might be on the long side of the market.  Notice that while this system reduces the overall productivity of the market (since ex-post inefficient matches are stuck), unraveling may be welfare improving, if participants are sufficiently risk averse.
 
 These same authors have an additional set of papers \cite{Li2000,Li2004}  that extend the idea of unraveling as insurance.  Throughout the trade-off is between efficiency and ex-post equality—unraveling here serves as a mechanism to reduce variance in payoff for agents.  If both parties are risk-neutral, or insurance is available, then the unraveling does not happen, and does not offer any gain in aggregate or individually.
 
@@ -117,9 +117,12 @@ The research as it currently exists also fails to explain why a centralized mark
 
 
 The goals for this modeling exercise are:
-1. existence of an unraveled equilibrium
-2. even when there is access to a frictionless stable matching available
-3. that is pareto preferred to the unraveled state
+\begin{enumerate}
+	\item  existence of an unraveled equilibrium
+	\item  even when there is access to a frictionless stable matching available
+	\item  that is pareto preferred to the unraveled state
+\end{enumerate}
+
 
 I accomplish this with a two period model, in which there are two types of agents, buyers and sellers.
 
@@ -134,11 +137,83 @@ In period 2, the remaining participants are matched in a deferred acceptance mat
 To analyze the model, let us first examine the outcome in the outcomes in the centralized market if all participants wait. 
 Because there are an infinite number of buyers and sellers, all realized productivity shocks will be 1. 
 
-In the second market, each seller gets a payoff of $(1-\eta)( i + \alpha)$, and each buyer gets $\eta(i+\alpha)$,
+In the second period market, each seller gets a payoff of $(1-\eta)( i + \alpha)$, and each buyer gets $\eta(i+\alpha)$,
 
-**Insert here all the math from my slides.
+First we define the density of sellers matching in period 2 as function
+$\omega(i) \in [0,1]$
+
+Since $\epsilon_{ij}$ is iid between all buyer/seller pairs, and the likelihood of a buyer and seller re-matching in period 2 approaches zero, this is a sufficient statistic to describe the market in period 2.  
+
+We begin our search for equilibrium by charachtarizing the outcomes of period 2 faced by buyers and sellers that choose to continue, conditional on the function $\omega(i) $.    The first important observation is that, since there are an infinite number of buyers and sellers, the deferred acceptance market will only match buyers and sellers such that $\epsilon_{ij} = 1$. As of yet, the proof for this is left as an exercise for the reader.
+
+In this market, each seller $i$ expects a payoff of $(1-\eta) (i+\alpha)$, and each buyer expects the payof of 
+
+$$E[i|2nd period] =  \frac{\int_0^1 i \omega(i) di}{\int_0^1  \omega(i) di} $$
+or
+\begin{equation} \label{eq:E_buyer}
+ \eta (\frac{\int_0^1 i \omega(i) di}{\int_0^1  \omega(i) di} + \alpha) 
+\end{equation}
+
+In period 1, agents will trade with their initial match if they can make a deal such that each is better off than they expect in the second period, or:
+
+\begin{equation} \label{eq:ec_condition_raw}
+ i+\alpha \epsilon_{ij} >(1-\eta)(i+\alpha ) + \eta (\frac{\int_0^1 i \omega(i) di}{\int_0^1  \omega(i) di} + \alpha) 
+ \end{equation}
+
+Notice that for each value of $i$, there is some value $\epsilon^* (i)$ such that trade happens iff $\epsilon_{ij} > \epsilon^* (i)$.  Importantly, notice also that $\epsilon^* (i)$ is decreasing in $i$.
+
+Since $\epsilon_{ij}$ is iid (ie, unrelated to the value of $i$), this means that those sellers who choose to advance to the second period have, on average, a low $i$, and this feeds back into $E[i|2nd period] $, lowering  $\epsilon^* (i)$. 
+
+As we have specified that $\epsilon_{ij} ~ U[0,1]$, we also can note that $\omega(i) = \epsilon^* (i)$, and so 
 
 
+\begin{equation}
+ i+\alpha \epsilon^*(i) = (1-\eta)(i+\alpha ) + \eta ( \frac{\int_0^1 i \epsilon^*(i) di}{\int_0^1  \epsilon^*(i) di} + \alpha) 
+\end{equation}
+or
+\begin{equation} \label{eq:e_star_unsolved}
+ \epsilon^*(i) = (1-\eta) + \frac{   \eta [ \frac{\int_0^1 i \epsilon^*(i) di}{\int_0^1  \epsilon^*(i) di} + \alpha -  i]}{\alpha} 
+\end{equation}
+
+To solve for $  \epsilon^*(i)$ in closed form, we guess that it has the functional form:
+ \begin{equation} \label{eq:e_star_guess}
+ \epsilon^*(i) = a-\frac{\eta }{\alpha}i
+ \end{equation}
+ 
+ with some  $a \in [0,1+\frac{\eta }{\alpha}]$
+
+Now we substitute \ref{eq:e_star_guess} into equation \ref{eq:e_star_unsolved} and with some algebra:
+
+$$a-\frac{\eta }{\alpha}i= (1-\eta) + \frac{   \eta ( \frac{\int_0^1 i \epsilon^*(i) di}{\int_0^1  \epsilon^*(i) di} + 
+	\alpha -  i)}{\alpha}  $$
+
+$$a= (1-\eta) + \frac{   \eta ( \frac{\int_0^1 i \epsilon^*(i) di}{\int_0^1  \epsilon^*(i) di} + 
+	\alpha )}{\alpha}  $$
+
+To demonstrate existance of equlibrium, we consider a $G(\cdot)$ function such that if $G(a) = 0$ then $a$ is the required value to make equation \ref{eq:e_star_guess} a solution to \ref{eq:e_star_unsolved}
+
+\begin{equation} \label{eq:G_fxn}
+G(a) = (1-\eta) + \frac{   \eta }{\alpha}( \frac{\int_0^1 i \epsilon^*(i) di}{\int_0^1  \epsilon^*(i) di} + \alpha ) - a
+\end{equation}
+
+Now note that $G(0) > 0$ (Strictly, this is a limit, since the expectation is undefined at $a = 0$). 
+
+Next, consider 
+$$G(1+\frac{\eta }{\alpha}) = (1-\eta) + \frac{   \eta }{\alpha}( \frac{\int_0^1 i \epsilon^*(i) di}{\int_0^1  \epsilon^*(i) di} + \alpha ) -1 -\frac{\eta }{\alpha}$$
+
+Observe that if $1+\frac{\eta }{\alpha}$ then all agents will continue to the second round, so
+$$\frac{\int_0^1 i \epsilon^*(i) di}{\int_0^1  \epsilon^*(i) di} = \frac{1}{2} $$
+
+and thus 
+
+$$G(1+\frac{\eta }{\alpha}) = (1-\eta) + \frac{1}{2} \frac{   \eta }{\alpha } + \eta -1 -\frac{\eta }{\alpha} $$
+which simplifies to:
+\begin{equation} \label{eq:G_g_0}
+G(1+\frac{\eta }{\alpha}) =-\frac{\eta}{ 2 \alpha } < 0 
+\end{equation}
+
+
+ Finally, we note that $\frac{\int_0^1 i \epsilon^*(i) di}{\int_0^1  \epsilon^*(i) di} $ is continuous in $a$, and so $G(\cdot)$ is also continuious in $a$, and thus, some agents always choose to contract in the first period.
 
 \section{Under the Hood}
 The key component that makes this model work is the fact that $\eta$ is fixed, so the outcome of the 2nd round market is not what you would get from a competitive equlitbrium.  In a CE, we would see each seller get payoff i, and each buyer to get payoff alpha, and so there would be no potential for private gains by contracting in the first period.  
