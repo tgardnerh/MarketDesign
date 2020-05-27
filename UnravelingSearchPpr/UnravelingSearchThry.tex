@@ -220,11 +220,11 @@ As we have specified that $\epsilon_{ij} ~ U[0,1]$, we also can note that
 Thus, where $ \epsilon^* (i) \in [0,1]$,
 
 \begin{equation}
- i+\alpha \epsilon^*(i) = (1-\eta)(i+\alpha ) + \eta  \left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha \right] 
+ i+\alpha \epsilon^*(i) = (1-\eta)(i+\alpha ) + \eta  \left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) d\hat{i}}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha \right] 
 \end{equation}
 or
 \begin{equation} \label{eq:e_star_unsolved}
- \epsilon^*(i) = (1-\eta) + \frac{   \eta \left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha -i \right] }{\alpha} 
+ \epsilon^*(i) = (1-\eta) + \frac{   \eta \left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) d\hat{i}}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha -i \right] }{\alpha} 
 \end{equation}
 
 To solve for $  \epsilon^*(i)$ in closed form, we guess that it has the functional form:
@@ -236,12 +236,18 @@ To solve for $  \epsilon^*(i)$ in closed form, we guess that it has the function
 
 Now we substitute \ref{eq:e_star_guess} into equation \ref{eq:e_star_unsolved} and with some algebra:
 
-$$a-\frac{\eta }{\alpha}i= (1-\eta) + \frac{   \eta \left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha -i \right] }{\alpha } $$
+$$a-\frac{\eta }{\alpha}i= (1-\eta) + \frac{   \eta \left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) d\hat{i}}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha -i \right] }{\alpha } $$
+
+$$
+a= (1-\eta) + \frac{   \eta\left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) d\hat{i}}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha  \right] }{\alpha} 
+$$
+
+
 
 \begin{equation} \label{eq:a_solved}
-a= (1-\eta) + \frac{   \eta\left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha  \right] }{\alpha} 
+a= 1 + \frac{   \eta}{\alpha} \left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) d\hat{i}}{\int_0^1  \omega(\hat{i}) d\hat{i}}   \right] 
 \end{equation}
-
+%As of 5/11/2020 I trust up to here.
 We are now ready to prove that an equilbirium exists:
 \begin{prop} \label{prop:existence}  
 	For any values of $\eta$ and $\alpha$, there exists a value of $a$ such that equation \ref{eq:e_star_guess} is an equilibrium for this market.
@@ -250,13 +256,13 @@ We are now ready to prove that an equilbirium exists:
 To demonstrate existance of equlibrium, we consider a $G(\cdot)$ function such that if $G(a) = 0$ then $a$ is the required value to make equation \ref{eq:e_star_guess} a solution to \ref{eq:e_star_unsolved}
 
 \begin{equation} \label{eq:G_fxn}
-G(a) = (1-\eta) + \frac{   \eta\left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha  \right] }{\alpha} - a
+G(a) = (1-\eta) + \frac{   \eta\left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) d\hat{i}}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha  \right] }{\alpha} - a
 \end{equation}
 
 Now consider $\lim\limits_{a \to 0}G(a)$.
 
 \begin{equation}
-\lim\limits_{a \to 0}G(a) = 1+ \frac{   \eta \lim\limits_{a \to 0}\left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}}   \right] }{\alpha} - a = 1+ \frac{\eta}{\alpha} > 0
+\lim\limits_{a \to 0}G(a) = 1+ \frac{   \eta \lim\limits_{a \to 0}\left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) d\hat{i}}{\int_0^1  \omega(\hat{i}) d\hat{i}}   \right] }{\alpha} - a = 1+ \frac{\eta}{\alpha} > 0
 \end{equation} 
 
 
@@ -265,11 +271,11 @@ Now consider $\lim\limits_{a \to 0}G(a)$.
 
 Next, consider 
 \begin{equation*}
-G(1+\frac{\eta }{\alpha}) = (1-\eta) + \frac{   \eta }{\alpha}\left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}}   \right] -1 -\frac{\eta }{\alpha}
+G(1+\frac{\eta }{\alpha}) = (1-\eta) + \frac{   \eta }{\alpha}\left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) d\hat{i}}{\int_0^1  \omega(\hat{i}) d\hat{i}}   \right] -1 -\frac{\eta }{\alpha}
 \end{equation*}
 
 Observe that if $1+\frac{\eta }{\alpha}$ then all agents will continue to the second round, so
-$$\frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}}  = \frac{1}{2} $$
+$$\frac{\int_0^1 \hat{i} \omega(\hat{i}) d\hat{i}}{\int_0^1  \omega(\hat{i}) d\hat{i}}  = \frac{1}{2} $$
 
 and thus 
 
@@ -283,7 +289,7 @@ G(1+\frac{\eta }{\alpha}) =-\frac{\eta}{ 2 \alpha } < 0
 \end{equation}
 
 
-The final step of proving existance is to show that $G(\cdot)$ is continuous on the relevant interval. Since  $ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} $ is continuous in $a$, $G(\cdot)$ is as well, and so by the intermediate value theorem we have existence of equilibrium.
+The final step of proving existance is to show that $G(\cdot)$ is continuous on the relevant interval. Since  $ \frac{\int_0^1 \hat{i} \omega(\hat{i}) d\hat{i}}{\int_0^1  \omega(\hat{i}) d\hat{i}} $ is continuous in $a$, $G(\cdot)$ is as well, and so by the intermediate value theorem we have existence of equilibrium.
 
 Q.E.D.
 \end{proof}
@@ -293,6 +299,21 @@ This solution is not unique.  At minimum, the fully unraveled state where $a= 0$
 
 However, there is still hope for a uniqueness claim--I believe I can prove that these are the only two equilibria.
 
+\begin{lemma}
+	$ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}}$ is well behaved as a function of $a$
+\end{lemma}	
+
+\begin{proof}
+	First consider equation \ref{eq:E_solved_small_a}, when $a$ is small. (Yes, this is later in the paper. Deal with it.)
+	
+\begin{equation*}
+\frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} 
+=  \frac{\int_0^{(a-1)\frac{\alpha}{\eta}}  \hat{i} d\hat{i} + 
+	\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}}  \hat{i} (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} }{\int_0^{(a-1)\frac{\alpha}{\eta}} 1 d\hat{i} + 
+	\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}}  (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} } 
+\end{equation*}	 
+	
+\end{proof}
 \begin{prop}
 		For any values of $\eta$ and $\alpha$, there are at most three equilibria, both described by \ref{eq:e_star_guess}, one with $a = 0$, and the other with $a > 0$
 \end{prop}
@@ -331,24 +352,40 @@ or
 
 \section{Closed Form???}
 
-First let us find  $\frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}}$ as a function of $a$.  If it is not too nasty, we should be able to find a closed form solution.
+First let us find  $E(i')=\frac{\int_0^1 \hat{i} \omega(\hat{i})d\hat{i}}{\int_0^1  \omega(\hat{i}) d\hat{i}}$ as a function of $a$.  If it is not too nasty, we should be able to find a closed form solution.
 	
-To do this we find the threshold values $i^{*-}$ and  $i^{*+} $ such that they are the critical points of equation \ref{eq:omega_epsilon}.
+To do this we find the threshold values $i_L$ and  $i_H $ such that they are the deliniations between the piece-wise components of equation \ref{eq:omega_epsilon}.
 
-$i^{*-} = \frac{(a-1)\alpha}{\eta}$ and 
-$i^{*+} = \frac{(a)\alpha}{\eta}$
-\begin{equation*}
- \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} =  \frac{
- 	\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}} \hat{i} (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} + 	\int_{\frac{a\alpha}{\eta}}^1 \hat{i} d\hat{i}}
- 	{	\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}} (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} + 	\int_{\frac{a\alpha}{\eta}}^1 1d\hat{i}} 
-\end{equation*}
+$i_L = (a-1)\frac{\alpha}{\eta}$ and 
+$i_H = a\frac{\alpha}{\eta}$
 
-\begin{equation*}
-  \frac{
-	\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}} \hat{i} (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} + 	\int_{\frac{a\alpha}{\eta}}^1 \hat{i} d\hat{i}}
-{ ({\frac{(a-1)\alpha}{\eta}} - \frac{a\alpha}{\eta})a -	\frac{\eta}{\alpha}\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}}  \hat{i} d\hat{i} + 	1-\frac{a\alpha}{\eta} } 
-\end{equation*}
+Note however our conjecture that $a = 1+\frac{\eta}{\alpha}E(i')$, along with the fact that $E(i') \in [0,1]$, means that $a \in[1,1+\frac{\eta}{\alpha}]$.
 
+We can thus bound $i_L \in [0,1]$, $i_H \in [\frac{\alpha}{\eta}, \frac{\alpha}{\eta} +1]$.
+
+And so, when $a<\frac{\eta}{\alpha}$, we have:
+\begin{equation} \label{eq:E_solved_small_a}
+ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} 
+ =  \frac{\int_0^{(a-1)\frac{\alpha}{\eta}}  \hat{i} d\hat{i} + 
+\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}}  \hat{i} (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} }{\int_0^{(a-1)\frac{\alpha}{\eta}} 1 d\hat{i} + 
+\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}}  (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} } 
+\end{equation}
+
+And when $a \geq \frac{\eta}{\alpha}$, we have:
+\begin{equation}\label{eq:E_solved_big_a}
+\frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} 
+=  \frac{\int_0^{(a-1)\frac{\alpha}{\eta}}  \hat{i} d\hat{i} + 
+	\int_{\frac{(a-1)\alpha}{\eta}}^1  \hat{i} (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} }{\int_0^{(a-1)\frac{\alpha}{\eta}} 1 d\hat{i} + 
+	\int_{\frac{(a-1)\alpha}{\eta}}^1  (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} } 
+\end{equation}
+
+
+In the former case, a symbolic evaluator tells us that $a = 1+\frac{\sqrt{3}}{3}$.  Thus, in the case where $ \frac{\eta}{\alpha} \geq 1+\frac{\sqrt{3}}{3}$, we have the closed form solution that:
+
+$\epsilon^*(i) = 1+\frac{\sqrt{3}}{3} - i \frac{\eta}{\alpha}$
+
+
+As of May 12 2020, I do not trust anything below this line
 
 A symbolic evaluator tells me that this shakes out to be
 
