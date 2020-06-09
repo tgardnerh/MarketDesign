@@ -41,6 +41,8 @@
 \JEL{}
 \Keywords{}
 
+
+
 \begin{abstract}
 Your abstract here.
 \end{abstract}
@@ -52,19 +54,18 @@ Your abstract here.
 	An abstract goes here
 \end{abstract}
 
-\section{Introduction}
+\section{Motivation and Background}
 
 
 This is a paper about the concept of unraveling.  The basic idea of unraveling is that sometimes markets are neat and orderly, while others are chaotic.
 
-
+\subsection{Motivation}
 Perhaps the best example of a disorganized market is the market for law students who would like to be hired as appellate court clerks.  As of 2007, all most important positions are (effectively) filled after the end of the first summer, before the majority of law school performance is realized, despite the fact that many of the best students at the end of law school were not the best at the end of first year, and vise-versa. Approximately half of the top 10 students stay in the top ten over this time span, so there is significant amount of efficiency lost, or at least it a appears to be so.
 
 Perhaps more importantly, for the very top tier of judge clerkships, the expectation is that students accept any offer they receive, so they generally only schedule interviews with judges whose offers they would accept, and then accept them sight unseen, and as a consequence the interview often does not enter into the law student's decision making function. \cite{Avery2001}
 
 On the contrary, with very limited exceptions, this is not how all elite entry-level job markets function.  The very best medical students are matched to the very best residencies in an orderly fashion through the NRMP process.  Even at the Fellowship level, where the market is very thin (eg, 16 people per program at the very top programs), participants generally adhere to the rules of the match process, and the assignment of the deferred acceptance algorithm are taken as binding \cite{Niederle2008,Niederle2003,Niederle2005}.
-
-
+\subsection{Prior Work}
 One major unanswered question then is how do we understand why some markets are orderly, and others become unraveled.  The past research on this takes three major approaches:
 
 \begin{itemize}
@@ -107,7 +108,7 @@ These same authors have an additional set of papers \cite{Li2000,Li2004}  that e
 
 \section{The Gap}
 
-The descriptive literature on unraveling is reasonably robust, and covers many cases characterized by chaos and a rush to go first, because participants are afraid that they will be unable to match with a desiered counter party if they wait. This is the central part of my understanding of unraveling: that it is a process where there is defection from a centralized market (or resistance to forming one), in a way that creates a thin market with welfare losses.  
+The descriptive literature on unraveling is reasonably robust, and covers many cases characterized by chaos and a rush to go first, because participants are afraid that they will be unable to match with a desired counter party if they wait. This is the central part of my understanding of unraveling: that it is a process where there is defection from a centralized market (or resistance to forming one), in a way that creates a thin market with welfare losses.  
 
 The theory literature however does not provide very much in the way of modeling this behavior.  The closet to my goal is \cite{Halaburda2010}, which due to a series of productivity shocks resulting from the interaction of a small child and a virus, I haven ot yet read closely enough.  At the time when I developed the model I present here, I had read the paper, and still thought this model was novel enough to present, so I will bank on that until I have more time to investigate.
 
@@ -123,9 +124,9 @@ The goals for this modeling exercise are:
 
 I accomplish this with a two period model, in which there are two types of agents, buyers and sellers.
 %these are written so no seller is the lowest ranked, because that person has weird unraveling constraints.  in the proofs, i've written it both ways, and commented out the more complicated version
-Sellers are indexed $s_i$, $i \in (0,1]$ , and an equal measure of buyers indexed $b_j$, $j \in (0,1]$
+Sellers are indexed $i \in (0,1]$ , and an equal measure of buyers indexed $j \in (0,1]$
 
-Each seller is endowed with one unit of good that is worthless to the seller, and worth $i+\alpha  \epsilon_{ij}$ to buyer $b_j$, where epsilon is drawn from a uniform distribution on $[0,1]$, iid.
+Each seller is endowed with one unit of good that is worthless to the seller, and worth $i+\alpha  \epsilon_{ij}$ to buyer $j$, where epsilon is drawn from a uniform distribution on $[0,1]$, iid.
 
 In period 1, buyers and sellers are matched randomly, and may either agree to transfer the good for some payment and exit the market, or continue on to period 2.
 
@@ -135,30 +136,35 @@ To analyze the model, let us first examine the outcome in the outcomes in the ce
 
 
 \begin{lemma} \label{lemma:e_1}
-%For any buyer and seller ${s_i, b_j}$ matched in period 2 such that $i \neq 0$ , $\epsilon_{ij} = 1$
-For any buyer and seller ${s_i, b_j}$ matched in period 2  $\epsilon_{ij} = 1$
+
+For any buyer and seller ${i, j}$ matched in period 2  $\epsilon_{ij} = 1$
 \end{lemma}
 \begin{proof}
-	To prove it by contradiction, suppose $\epsilon_{ij} < 1$.
+	To prove it by contradiction, suppose there exists a match where $\epsilon_{ij} < 1$.
+
+	I will now show that there must exist another pairing $ \{i^{'}, j^{'} \} $ such that 	$\{i,j^{'} \}$ forms a blocking pair. 
+
+	To do this, we first call	
+	Call $\delta = \min{\{i, \alpha(1-  \epsilon_{ij})\}}$
 	
-	Call $\delta = \min{\{i, \epsilon_{ij}- 1\}}$
+	Define set of sellers $I'$ such that $i' \in (i-\delta, i-\delta / 2)$.
 	
-	Call the set of sellers $s_{I'}$ such that $i' \in (i-\delta, i-\delta / 2)$.
+	Because set $I'$ has a positive measure, there then exists some seller $i' \in I'$ matched to $j'$ such that $  \epsilon_{ij'} > 1-(1- \epsilon_{ij}) / 2$
 	
-	There then exists some seller $s_{i'} \in s_{I'}$ matched to $b_{j'}$ such that $\epsilon_{ij'} > 1-\delta / 2$ 
+	As a consequence $i+ \alpha \epsilon_{ij'} > i' + \alpha \epsilon_{i'j'}$ for any value of $\epsilon_{i'j'}$, and $i+ \alpha \epsilon_{ij'} > i + \alpha \epsilon_{ij}$, so both $i$ and $j'$ have a better payoff as a pair together than with their prior matches.
 	
-	Thus, seller $s_i$ and $b_j'$ form a blocking pair.
+	Thus, seller $i$ and $j'$ form a blocking pair.
 	
 	Q.E.D.
 \end{proof}
 
 \begin{deff}
-	$\omega(i) $ is the probability that seller $s_i$ has chosen to proceed to period 2
+	$\omega(i) $ is the probability that seller $i$ has chosen to proceed to period 2
 
 \end{deff}
 
 \begin{lemma}
-%	Each seller $s_i, i>0$ who proceeds to period 2 expects a payoff of $\eta (i+\alpha)$
+
 	Each seller $s_i$ who proceeds to period 2 expects a payoff of $\eta (i+\alpha)$ with certainty
 
 \end{lemma}
@@ -293,6 +299,7 @@ The final step of proving existance is to show that $G(\cdot)$ is continuous on 
 
 Q.E.D.
 \end{proof}
+
 \subsection{Uniqueness}
 
 This solution is not unique.  At minimum, the fully unraveled state where $a= 0$ is also an equilibrium.  To see this, consider that any agent choosing to proceed to the second period will re-match with their first period partner (since they are the only ones to proceed), and there is no surplus to be gained by this choice.
@@ -300,32 +307,38 @@ This solution is not unique.  At minimum, the fully unraveled state where $a= 0$
 However, there is still hope for a uniqueness claim--I believe I can prove that these are the only two equilibria.
 
 \begin{lemma}
-	$ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}}$ is well behaved as a function of $a$
+	$ E(i') = \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}}$ is a strictly increasing function in $a$, with a second derivative that is weakly less than zero everywhere.
+	
 \end{lemma}	
 
 \begin{proof}
-	First consider equation \ref{eq:E_solved_small_a}, when $a$ is small. (Yes, this is later in the paper. Deal with it.)
+	First consider equation \ref{eq:e_star_guess}, in combination with \ref{eq:omega_epsilon}. A simple graphical analysis shows that $E(i')$ is strictly increasing in $a$, except when zero or all agents move on to the second stage.
 	
-\begin{equation*}
-\frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} 
-=  \frac{\int_0^{(a-1)\frac{\alpha}{\eta}}  \hat{i} d\hat{i} + 
-	\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}}  \hat{i} (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} }{\int_0^{(a-1)\frac{\alpha}{\eta}} 1 d\hat{i} + 
-	\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}}  (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} } 
-\end{equation*}	 
+	The derivative claim is also made by a graphical argument, which I will have to figure out how to present in a concise way.
+	
+	Basically though, the idea is to draw out the $\epsilon$ by $i$ space, and show that as a increases, the centroid of the pre-contracting area moves to the right at a decreasing rate. 
 	
 \end{proof}
-\begin{prop}
-		For any values of $\eta$ and $\alpha$, there are at most three equilibria, both described by \ref{eq:e_star_guess}, one with $a = 0$, and the other with $a > 0$
+\begin{lemma} \label{lemma:zero_crossing}
+	the $G(\cdot)$ function (equation \ref{eq:G_fxn}) crosses zero exactly once.
+\end{lemma}
+
+\begin{proof}
+	By the prior lemma, we can see that the second derivative of \ref{eq:G_fxn} is thus weakly negative everywhere, meaning it can only cross zero at most twice.  By the existance proof, we see that eq \ref{eq:G_fxn} crosses zero an odd number of times. Thus, it crosses zero exactly once
+	
+\end{proof}
+\begin{prop}\label{prop:three_eq}
+	For any values of $\eta$ and $\alpha$, there are at most three equilibria, both described by \ref{eq:e_star_guess}, one with $a = 0$, and the other with $a > 0$
 \end{prop}
 \begin{proof}
 	First, we note by proposition \ref{prop:existence} that there exists an equilibrium such that $a > 0$
 	
 	Second, we see by the logic above that $a = 0$ is also an equilbrium.
 	
-	I should be able to prove that the $G(\cdot)$ function (equation \ref{eq:G_fxn}) crosses zero at most twice because $ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}}$ should be well behaved.
+	By lemma \ref{lemma:zero_crossing} we know the $G(\cdot)$ function (equation \ref{eq:G_fxn}) crosses zero at most twice.
 	
 	The last piece to prove this propostion is to prove that any strategy not described by equation \ref{eq:e_star_guess} is not an equilbirium.  This requires first proving that the $\epsilon^*(i)$ strategy is the only equilbrium strategy (this should be easy), and then proving that there's no  other  $\epsilon^*(i)$ stragegy that is also an equilbirum. Not sure how to do this last bit.
-	 
+	
 \end{proof}	
 
 \begin{prop}
@@ -333,16 +346,16 @@ However, there is still hope for a uniqueness claim--I believe I can prove that 
 \end{prop}
 
 \begin{proof}
-	Suppose there is an equilbrium where all agents proceed to the second period. There is at least one buyer/seller pairing such that $i = 1$ and $\epsilon = 1$ (up to some limit).
+	Suppose there is an equilibrium where all agents proceed to the second period. There is at least one buyer/seller pairing such that $i = 1$ and $\epsilon = 1$ (up to some limit).
 	
 	Substituting into the early-contracting condition (eq \ref{eq:ec_condition_raw}) and noting that we have:
 	
 	\begin{equation*}
-	 1+\alpha >(1-\eta)(1+\alpha ) + \eta  \left[ \frac{1}{2} + \alpha \right] 
+		1+\alpha >(1-\eta)(1+\alpha ) + \eta  \left[ \frac{1}{2} + \alpha \right] 
 	\end{equation*}
-or	
+	or	
 	\begin{equation*}
-	1+\alpha > 1+\alpha   -  \frac{1}{2}\eta   
+		1+\alpha > 1+\alpha   -  \frac{1}{2}\eta   
 	\end{equation*}
 	
 	As this is true for any positive $\eta$, it is not an equilibrium for all agents to proceed to the second period.
@@ -350,11 +363,12 @@ or
 	Q.E.D.
 \end{proof}	
 
-\section{Closed Form???}
 
-First let us find  $E(i')=\frac{\int_0^1 \hat{i} \omega(\hat{i})d\hat{i}}{\int_0^1  \omega(\hat{i}) d\hat{i}}$ as a function of $a$.  If it is not too nasty, we should be able to find a closed form solution.
-	
-To do this we find the threshold values $i_L$ and  $i_H $ such that they are the deliniations between the piece-wise components of equation \ref{eq:omega_epsilon}.
+\section{Closed Form}
+
+The first step towards closed form is to find  $E(i')=\frac{\int_0^1 \hat{i} \omega(\hat{i})d\hat{i}}{\int_0^1  \omega(\hat{i}) d\hat{i}}$ as a function of $a$. 
+
+To do this we find the threshold values $i_L$ and  $i_H $ such that they are the delineations between the piece-wise components of equation \ref{eq:omega_epsilon}.
 
 $i_L = (a-1)\frac{\alpha}{\eta}$ and 
 $i_H = a\frac{\alpha}{\eta}$
@@ -365,10 +379,10 @@ We can thus bound $i_L \in [0,1]$, $i_H \in [\frac{\alpha}{\eta}, \frac{\alpha}{
 
 And so, when $a<\frac{\eta}{\alpha}$, we have:
 \begin{equation} \label{eq:E_solved_small_a}
- \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} 
- =  \frac{\int_0^{(a-1)\frac{\alpha}{\eta}}  \hat{i} d\hat{i} + 
-\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}}  \hat{i} (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} }{\int_0^{(a-1)\frac{\alpha}{\eta}} 1 d\hat{i} + 
-\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}}  (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} } 
+\frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} 
+=  \frac{\int_0^{(a-1)\frac{\alpha}{\eta}}  \hat{i} d\hat{i} + 
+	\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}}  \hat{i} (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} }{\int_0^{(a-1)\frac{\alpha}{\eta}} 1 d\hat{i} + 
+	\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}}  (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} } 
 \end{equation}
 
 And when $a \geq \frac{\eta}{\alpha}$, we have:
@@ -385,38 +399,15 @@ In the former case, a symbolic evaluator tells us that $a = 1+\frac{\sqrt{3}}{3}
 $\epsilon^*(i) = 1+\frac{\sqrt{3}}{3} - i \frac{\eta}{\alpha}$
 
 
-As of May 12 2020, I do not trust anything below this line
-
-A symbolic evaluator tells me that this shakes out to be
-
-\begin{equation}
- \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} = \frac{\frac{a^{3} \alpha^{2}}{6 \eta^{2}} - \frac{a^{2} \alpha^{2}}{2 \eta^{2}} - \frac{a \alpha^{2} \left(a - 1\right)^{2}}{2 \eta^{2}} + \frac{\alpha^{2} \left(a - 1\right)^{3}}{3 \eta^{2}} + \frac{1}{2}}{\frac{a^{2} \alpha}{2 \eta} - \frac{a \alpha \left(a - 1\right)}{\eta} - \frac{a \alpha}{\eta} + \frac{\alpha \left(a - 1\right)^{2}}{2 \eta} + 1}
-\end{equation}
-
-This looks a bit nasty, but when you plug this back into the $G(a)$ function and solve, you get two solutions:
-
-\begin{equation*}
-a = \left\{ \frac{\eta}{\alpha} +1 - \frac{\sqrt{6}}{3} , \   \frac{\eta}{\alpha} + 1 + \frac{\sqrt{6}}{3} \right\}
-\end{equation*}
-
-Only one of these falls within the constraint that  $a \in [0,1+\frac{\eta }{\alpha}]$, so we are left with 
-\begin{equation} \label{eq:G_Solved}
-a =  \frac{\eta}{\alpha} +1 - \frac{\sqrt{6}}{3} 
-\end{equation}
-
-Now, to get a better handle on comparative statics--lets substitute equation \ref{eq:G_Solved} into our equation for $\epsilon^*$ (eq \ref{eq:e_star_guess}).  We find:
-
-\begin{equation}
-\epsilon^* = 1 - \frac{\sqrt{6}}{3} + \frac{\eta}{\alpha} (1-i)
-\end{equation}
-
-Now we can draw some solid conclusions:
-
+While I don't yet have a solution in closed form, we can see a few things clearly:
 \begin{enumerate}
-	\item No draw for $\epsilon_{ij} <  1 - \frac{\sqrt{6}}{3} $ will result in an early contract, for any values of $\eta, \ \alpha, \text{ or } i$
-	\item For $ i = 1$,  $\epsilon_{ij} =  1 - \frac{\sqrt{6}}{3} $ regardless of market parameters
+	\item From equations \ref{eq:E_solved_big_a} and \ref{eq:E_solved_small_a} we can see that $\frac{\alpha}{\eta}$ is a sufficient statistic to describe this model
+	\item  In the subset of cases where $ \frac{\eta}{\alpha} \geq 1+\frac{\sqrt{3}}{3}$, 
+	$\epsilon^*(i) = 1+\frac{\sqrt{3}}{3} - i \frac{\eta}{\alpha}$. From this we can derive comparative statics for a significant fraction of the parameter space
 	\item For any given agent, $\epsilon^* $ is strictly increasing in $\eta$ and decreasing in $\alpha$
 \end{enumerate}
+
+
 
 %Now lets substitute equation \ref{eq:G_Solved} into our critical points: we now see
 %
@@ -427,55 +418,44 @@ Now we can draw some solid conclusions:
 
 
 
-\section{Under the Hood}
-The key component that makes this model work is the fact that $\eta$ is fixed, so the outcome of the 2nd round market is not what you would get from a competitive equlitbrium.  In a CE, we would see each seller get payoff i, and each buyer to get payoff alpha, and so there would be no potential for private gains by contracting in the first period.  
-
-It also leverages the freedom to split the gains however they might like in the first period, but not in the second period.  if you fix the surplus split in the first period at $\eta$, then the market stays raveled
-
-These facts are somewhat consistent with the world we are trying to model.  In centralized markets there are rules about what the transaction looks like, but when participants preemptively match, they are free to do as they please.
-
-I also wonder what happens if i introduce heterogeneity of the buyers.  
+%\section{Under the Hood}
+%The key component that makes this model work is the fact that $\eta$ is fixed, so the outcome of the 2nd round market is not what you would get from a competitive equlitbrium.  In a CE, we would see each seller get payoff i, and each buyer to get payoff alpha, and so there would be no potential for private gains by contracting in the first period.  
+%
+%It also leverages the freedom to split the gains however they might like in the first period, but not in the second period.  if you fix the surplus split in the first period at $\eta$, then the market stays raveled
+%
+%These facts are somewhat consistent with the world we are trying to model.  In centralized markets there are rules about what the transaction looks like, but when participants preemptively match, they are free to do as they please.
+%
+%I also wonder what happens if i introduce heterogeneity of the buyers.  
 
 \section{Comparative Statics}
 
-Recall equation \ref{eq:a_solved}:
-\begin{equation*}
- 	a= (1-\eta) + \frac{   \eta\left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha  \right] }{\alpha} 
-\end{equation*}
+For the parameter space where I have solved this in closed form, I believe CS should be straightforward.  
 
-Taking the derivitive of $a$ with respect to $\eta$, we can see that 
-$a$ is decreasing in $\eta$ if
-\begin{equation*}
-	\eta  < \frac{\alpha }{ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha  }
-\end{equation*}
-
-This problem looks messy, however we note that $ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}}$ is neciscarily between 0 and 1/2, which simplifies things somewhat.
-
-
-\section{Taking it to the Anecdote}
-\begin{itemize}
-
-    \item Judges are on short  side of market
-\item Judges will hear cases before new lawyers for years to come
-\item This looks like lots of bargaining power (ie, high $\eta$)
-\end{itemize}
-
-
-\begin{itemize}
-\item American MD graduates on short side of market (~17,000 graduates for 32,000 residency spots)
-\item Doctors will likely never meet the program directors at places they did not match
-\item This looks like low bargaining power (eg, low $\eta$)
-\end{itemize}
-
-
-\begin{itemize}
-\item This model predicts that unraveling will happen among high-type "sellers"
-\item Disorderly clerkship market is just the top sliver of the (somewhat more orderly) market for new lawyers in general
-\item It is not  uncommon for the most promising medical students at the top schools to be promised a position at their home institution, preempting an extensive job search
-\begin{itemize}
-	\item (Per private communication with physicians at several top programs)
-\end{itemize}
-\end{itemize}
+%
+%\section{Taking it to the Anecdote}
+%\begin{itemize}
+%
+%    \item Judges are on short  side of market
+%\item Judges will hear cases before new lawyers for years to come
+%\item This looks like lots of bargaining power (ie, high $\eta$)
+%\end{itemize}
+%
+%
+%\begin{itemize}
+%\item American MD graduates on short side of market (~17,000 graduates for 32,000 residency spots)
+%\item Doctors will likely never meet the program directors at places they did not match
+%\item This looks like low bargaining power (eg, low $\eta$)
+%\end{itemize}
+%
+%
+%\begin{itemize}
+%\item This model predicts that unraveling will happen among high-type "sellers"
+%\item Disorderly clerkship market is just the top sliver of the (somewhat more orderly) market for new lawyers in general
+%\item It is not  uncommon for the most promising medical students at the top schools to be promised a position at their home institution, preempting an extensive job search
+%\begin{itemize}
+%	\item (Per private communication with physicians at several top programs)
+%\end{itemize}
+%\end{itemize}
 
 \bibliographystyle{aea}
 \bibliography{library}
