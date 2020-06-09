@@ -1,0 +1,178 @@
+% AER-Article.tex for AEA last revised 22 June 2011
+\documentclass[WP]{AEA}
+
+% The mathtime package uses a Times font instead of Computer Modern.
+% Uncomment the line below if you wish to use the mathtime package:
+%\usepackage[cmbold]{mathtime}
+% Note that miktex, by default, configures the mathtime package to use commercial fonts
+% which you may not have. If you would like to use mathtime but you are seeing error
+% messages about missing fonts (mtex.pfb, mtsy.pfb, or rmtmi.pfb) then please see
+% the technical support document at http://www.aeaweb.org/templates/technical_support.pdf
+% for instructions on fixing this problem.
+
+% Note: you may use either harvard or natbib (but not both) to provide a wider
+% variety of citation commands than latex supports natively. See below.
+
+% Uncomment the next line to use the natbib package with bibtex 
+%\usepackage{natbib}
+\usepackage{hyperref}
+% Uncomment the next line to use the harvard package with bibtex
+\usepackage[abbr]{harvard}
+
+
+% This command determines the leading (vertical space between lines) in draft mode
+% with 1.5 corresponding to "double" spacing.
+\draftSpacing{1.5}
+
+\newtheorem{thm}{Theorm}
+\newtheorem{prop}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{deff}{Definition}
+
+\begin{document}
+
+\title{A Theory Paper on Rank List Length}
+\shortTitle{List Length}
+\author{Tyler Hoppenfeld}
+\date{\today}
+\pubMonth{Month}
+\pubYear{Year}
+\pubVolume{Vol}
+\pubIssue{Issue}
+\JEL{}
+\Keywords{}
+
+\begin{abstract}
+Your abstract here.
+\end{abstract}
+
+
+\maketitle
+
+\begin{abstract}
+	An abstract goes here
+\end{abstract}
+
+\section{Introduction}
+
+%%Matching markets without transfers are a very small part of the measured economy (comprising almost exclusively kidneys and marriage), however they are isomorphic to matching markets with fixed transfers (eg, the market for resident physicians), and close to isomorphic to the broader labor market, where cash transfers are nearly secondary to the identity of the firm, employee, and job description {Citation Needed}.  Centralized matching markets themselves encompass only a small fraction of the labor market, however the study of centralized matching markets plausibly sheds light on the broader matching of employees to jobs. Furthermore, there are a variety of markets, including nearly every academic job market and most entry-level job markets for new college graduates, where there is no obvious reason why a centralized once-a-year clearing house could not work, and yet do not have this structure. A better understanding of the strengths and limits of centralized markets could help us understand what inefficiencies exist in these markets, whether more efficient solutions are possible, and possibly allow for the design of more efficient markets. 
+%To begin studying matching markets, we first want to define the structure. We generally study a market with two distinct types of agents, which we colloquially call “Men” and “Women” in the one-to-one setting, or “Doctors” and “Hospitals” in the one-to-many setting. Since paper will model the one-to-one market with  participants of each type, , each of whom has complete and transitive preferences over being matched to each participant of the other type, or being left unmatched (which we will denote as being matched to oneself). Define a matching  such that  iff , , and .  This is to say, a matching is an outcome of the market that is mechanically possible. 
+%The equilibrium concept generally used in the literature is that of stability, which, in the absence of transfers, is identical to the core in the one-to-one setting, and a stricter version of equilibrium than the core in the many-to-one setting {citation needed}.  We say a matching  is stable if:
+%For each agent matched to another agent of the other type, they prefer to be matched with that agent rather than being unmatched
+%There does not exist a “blocking pair ” such that   prefers  to , and  prefers  to 
+
+Theory tells us that there is no matching market that produces a stable outcome wherein both sides have the incentive to report their preferences honestly (Roth 1985), however in practice many matching markets persist with both sides (apparently) reporting their preferences honestly  (Roth and Peranson 1999).  This is likely related to the fact that in many of these markets the set of stable matchings is actually quite small.  In the NRMP matching, all but approximately 10 of 20,000 participants have a unique partner in the set of all stable matchings (Roth and Peranson 1999).  Roth and Peranson posit that the small core of these markets is likely driven by the correlated nature of preferences, and by the fact that for highly correlated preferences, the core is very small.  In a parallel argument,  they note that finite preference lists, as is the case with the NRMP, lead to a very small core as well.  
+
+The concept of stable matchings is intuitively appealing in the same way the concept of the core is, but it also has empirical support as an equilibrium. In a review of systems that assign trainee physicians to hospitals in Great Brittan, the markets that produced stable matchings persisted with broad participation, while the markets that did not produce stable matchings failed, with large numbers of applicants and hospitals preempting the market and contracting before the market (Roth 2003).
+(Roth and Peranson 1999) use simulation to demonstrate these results, and (Immorlica and Mahdian 2005) and then (Kojima and Pathak 2009) build on this with the theoretical result that as the number of market participants grows, the core becomes arbitrarily small as a fraction of market size.  
+
+However, this work uses a construction of short rank lists that I consider implausible.  I propose an alternate model of rank list construction that more accurately mirrors reality, and analyze the effect of short rank lists on core size in my model, using theoretical and simulation methods.
+
+In practice, medical students applying to residency submit a rank list that is their true preferences among the plausibly achievable subset of residency programs. The residency application process begins with a round of interviews, where programs extend interview invitations only to their most promising applicants, and applicants only attend interviews at the most promising subset of programs that extended invitations. Since the marginal cost of applying to a program is zero (http://www.nrmp.org/match-fees/) medical students applying to residency apply broadly, and so as a result of the interview process, students and programs rank a subset of mutually plausible matches, but their rank lists may omit an arbitrarily large number of potential suitors by whom they have already been rejected.
+
+
+Immorlica Preferences
+I now will describe the rank list construction method used by (Immorlica and Mahdian 2005) (which i will henceforth refer to as Immorlica preferences). 
+•	A distribution of hospitals is fixed (Uniform distribution for (Immorlica and Mahdian 2005), arbitrary distribution for (Kojima and Pathak 2009))
+Each doctor draws a hospitals from the distribution (iid) until k hospitals have been chosen
+these k hospitals form the rank list, in order of their draw
+
+These preferences have no basis in utility theory, and I conjecture some non-intuitive properties which I intend to prove.	
+In the case of the large-market limit, the distribution of preferences will be roughly uniform (ie, no generalized preferences between hospitals), or the nearly all rank lists will be dominated by a small number of hospitals.
+•	To understand this, first note that, for all but a finite and fixed number of hospitals, the likelihood of any one student ranking that hospital goes to zero as the market grows without bound. (This is an application of the pidgin-hole theorem, I believe).
+•	Next note that ranking hospital i but not j implies that i is preferred to j.  
+•	This means that, for almost any hospital i and j, the student is almost certain to prefer i to j, conditional on their ranking i, and vise-versa
+•	This is conceptually very close to saying that there are no generalized preferences between almost any hospitals.
+•	If, however, a finite number of institutions occupy a finite portion of the distribution as the market grows without bound, then those hospitals will become massively oversubscribed, and the likelihood of any one applicant matching there is zero, conditional on that applicant ranking the hospital.
+Almost all hospitals are unacceptable to almost every medical student.  This is, of course, practically true for every short rank list, however we aim to understand whether the allocation is stable under the true preferences, not just the reported preferences.  Most medical students do not rank any of the top ten hospitals, however this is presumably not because they find all of the top hospitals unacceptable, but instead simply that they find them unobtainable.  In the case of Immorlica preferences, many applicants who do not rank the “top” hospitals would be able to match there, if only they had ranked those programs (this is a conjecture, but I strongly believe it to be true).
+
+\section{Goals of this paper}
+In this paper I intend to do two things:
+\begin{enumerate}
+	\item Propose an alternate construction of large market preferences that is tractable but more realistic 
+	\item Show that Immorlica's argument fails in this context
+	\item Show that requiring market participants to report a shorter rank list than their actual preferences cannot improve the incentive compatibility of the market
+
+\end{enumerate}
+
+
+Alternate construction of large market preferences
+
+\begin{enumerate}
+	\item There are $n$ women, and we will call the level of randomness $k$ level disturbance.
+	\item each man $i$ ranks all women $i$ in order (woman $i=1$ first, $i=2$ second, etc). 
+	\item $k \cdot n$ times, a random women in the list is chosen, and moved down the rank list by one position.
+\end{enumerate}
+
+in the large market approximation, the number of times a woman is moved on the rank list is a Poisson distribution with expectation $2k$.  The probability of a woman moving $m$ positions on the list is $e^{-2k}I_m(2k)$, where $I$ is the Bessel function.  see \href{https://www.wolframalpha.com/input/?i=e%5E-10*BesselI%286%2C+10%29}{wolfram alpha}
+	
+Python notebook work goes here, showing that in any given rank list, woman j's expected position is j, with a varience of k (2k?).
+
+So, we can now see that a rejection chain is a random walk where each step has a positive expected lenght, and a finite standard deviation.  Thus, it will quickly achive effectively zero chance of looping back to the starting position, making it so that a finite length rank list is, in practice, the same as a complete rank list.
+
+Further, I intend to put a floor under the chance of having a differnet option even with a short rank list, which I should be able to do by tracing the random walk.
+
+This section is designed to be a direct answer to immorlica 2005.
+
+
+
+
+The next piece I want to prove is that short rank lists are inherently beside the point.  The logic is this: 
+
+
+
+
+
+
+
+
+
+Research Plan
+Theory
+Approximate Stability
+The most important theoretical result I hope to prove is a novel definition of approximate stability.  This is motivated by the idea that an allocation works only if, ex-post, participants do not find a preferable match, for whom they are also preferable.  That is to say, if participants can easily identify blocking pairs, then those blocking pairs will defect from the allocation, disrupting the allocation as a whole.
+While true stability (the absence of any blocking pairs) is one way to achieve this outcome, I propose a relaxing of this condition to the following:
+A matching is search-cost-approximately stable if, for each matched agent, the cost of searching for a blocking pair to defect with is greater than the benefit they could expect to gain from finding that blocking pair.
+
+In this model, I will model the search process as sequentially contacting programs that could possibly be part of a blocking pair.  I hope to show that as the market grows without bound, the likelihood of any one hospital being part of a blocking pair goes to zero, so as long as there is a finite cost to contacting any one hospital, the match becomes approximately stable.
+
+Irrelevance of short rank lists:
+I intend to show that with utility based preferences, a short rank list produces almost exactly the same number of blocking pairs as a long rank list.  The logic goes as follows:
+•	Under a doctor-proposing algorithm, if a hospital has more than one potential stable match, then that means that they could improve their match by falsely declaring that an applicant is unacceptable to them. (This is an established result, i will cite and explain)
+The way this works is the newly rejected doctor applies to her next favored hospital.  If the doctor is rejected by that hospital, they again apply to their next favored hospital.  eventually they are accepted by a new hospital, and that hospital rejects a new doctor who then applies at their own next favored hospital, and so on.  Eventually this chain of rejections terminates with a new doctor, who is preferred over the initially rejected doctor, and whose next preferred hospital is the hospital that started the rejection chain.  
+Notice that in this chain of doctors, each doctor and hospital involved is on average of lower quality than the one before. So, if the chain gets two long, there is almost zero probability that the the chain will loop back to the starting hospital, and almost zero probability that the doctor involved will be preferable to the initial doctor.
+Thus, the chain of rejections must be reasonably short, and so it will be contained by short rank lists.
+
+Simulation work
+Intro
+I have simulated these preferences in two sections.  In the first simulation, I look at the variance of utility (sigma in the model above), and the size of the core, at various market sizes.  Notably, I found a non-monotonicity of core size with respect to sigma.  I don’t know what to make of it, and don’t have a good theoretical intuition about why that might happen, but it’s pretty cool.
+
+The second piece is the simulation of short rank lists.  For this simulation, I proceed as in the core-size work, but additionally restrict agents to ranking only 15 potential matches, using the method of short list construction described above in the theory portion.  From these simulations I plan to estimate the impact of short rank lists on the core size, and several measures of the degree to which agents are harmed by, and stability is impaired by, short rank lists.  This is a computational bear, and still running after a week or two.
+
+Correlated Preferences
+For this section, I construct an economy with two types of participants, which I refer to as “men” and “women.”  There are N agents of each type, and each agent constructs complete and transitive preferences in the utility model as described above.  For a variety of values of N and levels of preference dispersion (sigma), I calculate the man-optimal (ie, man-proposing) matching and the woman-optimal matching, and calculate the fraction of agents who are matched to a different partner in the man-optimal as in the woman-optimal matching. 
+
+
+
+Note that, as intuition predicts, the size of the core is increasing in sigma for most cases  (ie, the fraction of matches that are the same in a man and woman optimal match). However, for the largest market simulated, there is a clear non-monotonicity at very low sigmas, and I am unaware of any theoretical or empirical work discussing this phenomenon.
+
+
+
+
+
+
+
+
+
+
+
+\bibliographystyle{aea}
+\bibliography{library}
+
+% The appendix command is issued once, prior to all appendices, if any.
+\appendix
+
+\section{Mathematical Appendix}
+
+\end{document}
+
