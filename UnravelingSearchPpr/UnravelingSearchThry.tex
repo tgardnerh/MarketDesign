@@ -113,7 +113,7 @@ The descriptive literature on unraveling is reasonably robust, and covers many c
 The theory literature however does not provide very much in the way of modeling this behavior.  The closet to my goal is \cite{Halaburda2010}, which due to a series of productivity shocks resulting from the interaction of a small child and a virus, I haven ot yet read closely enough.  At the time when I developed the model I present here, I had read the paper, and still thought this model was novel enough to present, so I will bank on that until I have more time to investigate.
 
 
-\section{The Model}
+\section{The Models}
 The goals for this modeling exercise are:
 \begin{enumerate}
 	\item  existence of an unraveled equilibrium
@@ -121,7 +121,10 @@ The goals for this modeling exercise are:
 	\item  that is pareto preferred to the unraveled state
 \end{enumerate}
 
+I capture this dynamic with two flavors of model. The first is a two-period model that more explicitly models an inefficient rush to match early, but is a bit unconventional. The second model is a minor variation on a standard DMP model with random productivity of matches and increasing returns to scale in the matching technology.  
 
+
+\subsection{Two Period Model}
 I accomplish this with a two period model, in which there are two types of agents, buyers and sellers.
 %these are written so no seller is the lowest ranked, because that person has weird unraveling constraints.  in the proofs, i've written it both ways, and commented out the more complicated version
 Sellers are indexed $i \in (0,1]$ , and an equal measure of buyers indexed $j \in (0,1]$
@@ -430,6 +433,58 @@ While I don't yet have a solution in closed form, we can see a few things clearl
 \section{Comparative Statics}
 
 For the parameter space where I have solved this in closed form, I believe CS should be straightforward.  
+
+\section{DMP Model}
+another modeling approach is to consider a version of the DMP model in which productivity of a match is a random value, and the matching process exhibits increasing returns to scale.
+
+in this version, I use a matching function $m(u,v)=uv$, and each match has a productivity $p$ drawn from a distribution $f(p)=e^{-p}$
+
+cost to post a vacancy is  $cv$, and the value functions are set up as is standard for a DMP model.
+
+analyzing the workers' problem, we see that they set their reservation wage $R$ according to
+
+\begin{equation} \label{DMP:workers}
+R e^R = \frac{\beta v}{r+ \lambda}
+\end{equation}
+
+
+Next we turn to the firm's problem. Free entry requires that the value of a vacancy be zero, which is the case if:
+\begin{equation} \label{DMP:firms}
+v = e^{-R} u \frac{1-\beta}{r+ \lambda}
+\end{equation}
+
+Finally, steady state implies:
+\begin{equation} \label{DMP:steadystate}
+e^{-R}=\frac{\lambda(1-u)}{uv}
+\end{equation}
+
+To make sense of this, we first combine firms with workers and find that $R$ is monotonicaly increasing in $u$ according to:
+\begin{equation} \label{DMP:firms_workers}
+Re^{2R}=u\frac{\beta (1-\beta)}{c(\lambda+r)^2}
+\end{equation}
+
+Likewise I combine the steady state requirement with the workers and find:
+
+\begin{equation} \label{DMP:stst_workers}
+R=\frac{\beta \lambda (1-u)}{(\lambda+r)u}
+\end{equation}
+
+These define a unique equilibrium.
+
+Now we consider welfare. Free entry requires firms to have zero profits, so we can calculate welfare from workers alone as:
+\begin{equation} \label{DMP:welfare_workers}
+	(R+ \beta)(1-u)
+\end{equation}
+
+A careful analysis shows that there is an interior optimum--that is to say workers' welfare is optimized when they do not hold all of the bargaining power.
+
+We can calculate the social planner's solution by maximizing
+\begin{equation} \label{DMP:welfare_planner}
+(R+ 1)(1-u) -vcv
+\end{equation}
+subject to steady state. 
+
+This yields a much higher reservation wage, job posting rate, and overall welfare in a wide parameter space, which i take as evidence that endogenous market thinness imposes a high social cost.
 
 %
 %\section{Taking it to the Anecdote}
