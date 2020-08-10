@@ -61,16 +61,16 @@ Your abstract here.
 %For each agent matched to another agent of the other type, they prefer to be matched with that agent rather than being unmatched
 %There does not exist a “blocking pair ” such that   prefers  to , and  prefers  to 
 
-Theory tells us that there is no matching market that produces a stable outcome wherein both sides have the incentive to report their preferences honestly (Roth 1985), however in practice many matching markets persist with both sides (apparently) reporting their preferences honestly  (Roth and Peranson 1999).  This is likely related to the fact that in many of these markets the set of stable matchings is actually quite small.  In the NRMP matching, all but approximately 10 of 20,000 participants have a unique partner in the set of all stable matchings (Roth and Peranson 1999).  Roth and Peranson posit that the small core of these markets is likely driven by the correlated nature of preferences, and by the fact that for highly correlated preferences, the core is very small.  In a parallel argument,  they note that finite preference lists, as is the case with the NRMP, lead to a very small core as well.  
+Theory tells us that there is no matching mechanism that reliably produces a stable outcome wherein both sides have the incentive to report their preferences accurately (Roth 1985), however in practice many matching markets persist with both sides (apparently) reporting their preferences honestly  (Roth and Peranson 1999).  This result can be explained by the fact that in many of these markets the set of stable matchings is actually quite small.  For example, in the National Resident Matching Program (NRMP) matching of recently graduated physicians to resident positions, all but approximately 10 of 20,000 participants have a unique partner in the set of all stable matchings (Roth and Peranson 1999), and so in all but a very small number of cases any misrepresentation of preferences would lead to a less-prefered outcome. Roth and Peranson posit that the small set of stable matchings (SSM) of these markets is likely driven by the correlated nature of preferences, and by the fact that for highly correlated preferences, the SSM is very small.  In a parallel argument,  they note that finite preference lists, as is the case with the NRMP, lead to a very small SSM as well.  
 
 The concept of stable matchings is intuitively appealing in the same way the concept of the core is, but it also has empirical support as an equilibrium. In a review of systems that assign trainee physicians to hospitals in Great Brittan, the markets that produced stable matchings persisted with broad participation, while the markets that did not produce stable matchings failed, with large numbers of applicants and hospitals preempting the market and contracting before the market (Roth 2003).
-(Roth and Peranson 1999) use simulation to demonstrate these results, and (Immorlica and Mahdian 2005) and then (Kojima and Pathak 2009) build on this with the theoretical result that as the number of market participants grows, the core becomes arbitrarily small as a fraction of market size.  
+(Roth and Peranson 1999) use simulation to demonstrate these results, and (Immorlica and Mahdian 2005) and then (Kojima and Pathak 2009) build on this with the theoretical result that as the number of market participants grows, the SSM becomes arbitrarily small as a fraction of market size.  
 
 However, this work uses a construction of short rank lists that I consider implausible.  I propose an alternate model of rank list construction that more accurately mirrors reality, and analyze the effect of short rank lists on core size in my model, using theoretical and simulation methods.
 
-In practice, medical students applying to residency submit a rank list that is their true preferences among the plausibly achievable subset of residency programs. The residency application process begins with a round of interviews, where programs extend interview invitations only to their most promising applicants, and applicants only attend interviews at the most promising subset of programs that extended invitations. Since the marginal cost of applying to a program is zero (http://www.nrmp.org/match-fees/) medical students applying to residency apply broadly, and so as a result of the interview process, students and programs rank a subset of mutually plausible matches, but their rank lists may omit an arbitrarily large number of potential suitors by whom they have already been rejected.
+In practice, medical students applying to residency submit a rank list that is reports their preferences among the plausibly achievable subset of residency programs. The residency application process begins with a round of interviews, where programs extend interview invitations to a strategically chosen set of applicants, and applicants may choose to attend interviews at a subset of programs that extended invitations. Since the marginal cost of applying to a program is zero (http://www.nrmp.org/match-fees/) medical students applying to residency apply broadly, and so as a result of the interview process, students and programs rank a subset of mutually plausible matches, but their rank lists may omit an arbitrarily large number of potential suitors by whom they have already been rejected.
 
-
+\subsection{Notes to myself--most of this won't make the final cut}
 Immorlica Preferences
 I now will describe the rank list construction method used by (Immorlica and Mahdian 2005) (which i will henceforth refer to as Immorlica preferences). 
 •	A distribution of hospitals is fixed (Uniform distribution for (Immorlica and Mahdian 2005), arbitrary distribution for (Kojima and Pathak 2009))
@@ -86,83 +86,145 @@ In the case of the large-market limit, the distribution of preferences will be r
 •	If, however, a finite number of institutions occupy a finite portion of the distribution as the market grows without bound, then those hospitals will become massively oversubscribed, and the likelihood of any one applicant matching there is zero, conditional on that applicant ranking the hospital.
 Almost all hospitals are unacceptable to almost every medical student.  This is, of course, practically true for every short rank list, however we aim to understand whether the allocation is stable under the true preferences, not just the reported preferences.  Most medical students do not rank any of the top ten hospitals, however this is presumably not because they find all of the top hospitals unacceptable, but instead simply that they find them unobtainable.  In the case of Immorlica preferences, many applicants who do not rank the “top” hospitals would be able to match there, if only they had ranked those programs (this is a conjecture, but I strongly believe it to be true).
 
-\section{Goals of this paper}
-In this paper I intend to do two things:
-\begin{enumerate}
-	\item Propose an alternate construction of large market preferences that is tractable but more realistic 
-	\item Show that Immorlica's argument fails in this context
-	\item Show that requiring market participants to report a shorter rank list than their actual preferences cannot improve the incentive compatibility of the market
 
-\end{enumerate}
+\subsection{Analysis of small perturbations from perfect correlation}
+\begin{deff}
+	Next Preferred Available Woman (NPAW): each man's NPAW is the man's most preferred woman who is neither currently his match, nor is matched to a man she prefers to him. 
+\end{deff}
+
+\begin{deff}
+	Immediately preferred: $m_i$ is immediately preferred to $m_{i'}$ by woman $w_j$ if she prefers  $m_{i}$ to $m_{i'}$ and there is no other man $m_{i''}$ such that she prefers $m_{i''}$ to $m_{i'}$, but not $m_{i}$.
+\end{deff}
 
 
-Alternate construction of large market preferences
 
-\begin{enumerate}
-	\item There are $n$ women, and we will call the level of randomness $k$ level disturbance.
-	\item each man $i$ ranks all women $i$ in order (woman $i=1$ first, $i=2$ second, etc). 
-	\item $k \cdot n$ times, a random women in the list is chosen, and moved down the rank list by one position.
-\end{enumerate}
+\begin{lemma}
+	Consider the stable matching $\phi$. This algorithm will find a stable matching that all women weakly prefer to $\phi$, if one exists.
+	\begin{enumerate}
+		\item Each man points to the current partner of his NPAW
+		\item Each woman points to the woman she currently holds
+		\item In each cycle, each man re-matches with the woman he is pointed to
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\begin{enumerate}
+		\item 	First we show that this cycle identifies additional stable matches:
+		\begin{itemize}
+			\item Suppose there exists a blocking pair. As there were no blocking pairs prior to the rearrangement and all women weakly prefer their new match, the man in this blocking pair must be one of the men from the cycle.
+			\item As all women weakly prefer their new match, the man must rank his blocking partner below his old match, and above his new match. However, all such women prefer their current match to the man, and thus the blocking pair cannot exist. 
+		\end{itemize}	
+		\item Now, we must show that if there is an alternate stable match, it must be found by such a cycle. 
+		\begin{itemize}
+			\item Consider an alternate stable matching. Note first that, by the rural hospital therom, it the set of matched men and women is unchanged
+			\item This implies that there is the men and women in the new stable matching form at least one cycle, in which each individual points to their new partner
+			\item Now consider the woman each man points to. This woman is disprefered to his old match, and since women are weakly better in the new match, he is acceptable to his new mate. That is to say, the participants in the new match form a cycle (in the man-optimal match) in which each man points to a woman available to him, and each woman points to the man she currently hold.
+			\item Now it only remains to be shown that the woman is the *next* availalbe woman for each man. Suppose she is not. Then in the new match, the man and his bypassed available woman form a blocking pair
+			\item note that there might be a way that this this woman is *also* in a new matching, so I have to consider that in the proof
+		\end{itemize}
+	\end{enumerate}
+\end{proof}
 
-in the large market approximation, the number of times a woman is moved on the rank list is a Poisson distribution with expectation $2k$.  The probability of a woman moving $m$ positions on the list is $e^{-2k}I_m(2k)$, where $I$ is the Bessel function.  see \href{https://www.wolframalpha.com/input/?i=e%5E-10*BesselI%286%2C+10%29}{wolfram alpha}
+\subsection{Example }
+The following is an example in which the two sides of the market are nearly perfectly correlated, rank lists can be short, but a constant non-zero fraction of the market has more than one stable matching.
+\begin{itemize}
+	\item To construct this market, first consider countable men indexed $\{ m_0, m_1, ...\}$ and women indexed $\{ w_0, w_1, ...\}$
 	
-Python notebook work goes here, showing that in any given rank list, woman j's expected position is j, with a varience of k (2k?).
+	\item Now, to begin, assign preferences such that, for each man $m_i$, woman $w_j$ is preferred to woman $w_{j'}$ iff $j' > j$, and for each woman $w_j$, man $m_i$ is preferred to woman $m_{i'}$ iff $i' > i$.  In other words, all women agree that man $m_0$ is most preferred, and so on. 
+	
+	\item Note that, at this stage, if we run man-optimal DA, each man $m_i$'s NPAW is $m_{i+1}$, so there are no cycles, and there is exactly one stable matching
+	
+	\item Next, we perturb the preferences of men by the following process.  Each woman on each man's preference list is exposed to a Poisson process with an expected success count of $\epsilon$ in which a success causes the woman to be switched with the woman she is immediately preferred to.
+	
+	\begin{itemize}
+		\item If the immediate preference relation immediately above woman $w_{i-1}$  and $w_i$ are reversed in man $m_i$'s preference list, Call this an "upward" perturbation
+		
+		\item If the immediate preference relation below woman $w_i$ is perturbed, call this a "downward" perturbation
+		
+	\end{itemize}
 
-So, we can now see that a rejection chain is a random walk where each step has a positive expected lenght, and a finite standard deviation.  Thus, it will quickly achive effectively zero chance of looping back to the starting position, making it so that a finite length rank list is, in practice, the same as a complete rank list.
+	Now we repeat the perturbation process for the women. 
+	
+	\begin{itemize}
+		\item First consider if man $m_i$ has had an upwards perturbation.  His next preferred woman is now $w_{i-1}$, while his next preferred achievable woman is still $w_{i+1}$. If woman $w_{i-1}$ adjusts her preferences such that $m_i$ is immediately preferred to $m_{i-1}$, a cycle is induced. Otherwise, no no other preference change will induce a cycle for man $m_i$
+		\item Now consider if man $m_i$ has had a downwards perturbation. $m_i$ is now matched with $w_{i+1}$ and $m_i$'s next preferred woman is now his next preferred achievable woman, is $w_i$. $m_{i+1}$ is now matched to $w_i$,  $m_{i+1}$'s next preferred woman is $w_i$, and his next preferred achievable woman is $w_{i+2}$.   In this case, a cycle is induced if $m_i$ and $m_{i+1}$ are reversed in the preference list of $w_{i+1} $. 
+	\end{itemize}
 
-Further, I intend to put a floor under the chance of having a differnet option even with a short rank list, which I should be able to do by tracing the random walk.
-
-This section is designed to be a direct answer to immorlica 2005.
-
-
-
-
-The next piece I want to prove is that short rank lists are inherently beside the point.  The logic is this: 
-
-
-
-
-
-
-
-
-
-Research Plan
-Theory
-Approximate Stability
-The most important theoretical result I hope to prove is a novel definition of approximate stability.  This is motivated by the idea that an allocation works only if, ex-post, participants do not find a preferable match, for whom they are also preferable.  That is to say, if participants can easily identify blocking pairs, then those blocking pairs will defect from the allocation, disrupting the allocation as a whole.
-While true stability (the absence of any blocking pairs) is one way to achieve this outcome, I propose a relaxing of this condition to the following:
-A matching is search-cost-approximately stable if, for each matched agent, the cost of searching for a blocking pair to defect with is greater than the benefit they could expect to gain from finding that blocking pair.
-
-In this model, I will model the search process as sequentially contacting programs that could possibly be part of a blocking pair.  I hope to show that as the market grows without bound, the likelihood of any one hospital being part of a blocking pair goes to zero, so as long as there is a finite cost to contacting any one hospital, the match becomes approximately stable.
-
-Irrelevance of short rank lists:
-I intend to show that with utility based preferences, a short rank list produces almost exactly the same number of blocking pairs as a long rank list.  The logic goes as follows:
-•	Under a doctor-proposing algorithm, if a hospital has more than one potential stable match, then that means that they could improve their match by falsely declaring that an applicant is unacceptable to them. (This is an established result, i will cite and explain)
-The way this works is the newly rejected doctor applies to her next favored hospital.  If the doctor is rejected by that hospital, they again apply to their next favored hospital.  eventually they are accepted by a new hospital, and that hospital rejects a new doctor who then applies at their own next favored hospital, and so on.  Eventually this chain of rejections terminates with a new doctor, who is preferred over the initially rejected doctor, and whose next preferred hospital is the hospital that started the rejection chain.  
-Notice that in this chain of doctors, each doctor and hospital involved is on average of lower quality than the one before. So, if the chain gets two long, there is almost zero probability that the the chain will loop back to the starting hospital, and almost zero probability that the doctor involved will be preferable to the initial doctor.
-Thus, the chain of rejections must be reasonably short, and so it will be contained by short rank lists.
-
-Simulation work
-Intro
-I have simulated these preferences in two sections.  In the first simulation, I look at the variance of utility (sigma in the model above), and the size of the core, at various market sizes.  Notably, I found a non-monotonicity of core size with respect to sigma.  I don’t know what to make of it, and don’t have a good theoretical intuition about why that might happen, but it’s pretty cool.
-
-The second piece is the simulation of short rank lists.  For this simulation, I proceed as in the core-size work, but additionally restrict agents to ranking only 15 potential matches, using the method of short list construction described above in the theory portion.  From these simulations I plan to estimate the impact of short rank lists on the core size, and several measures of the degree to which agents are harmed by, and stability is impaired by, short rank lists.  This is a computational bear, and still running after a week or two.
-
-Correlated Preferences
-For this section, I construct an economy with two types of participants, which I refer to as “men” and “women.”  There are N agents of each type, and each agent constructs complete and transitive preferences in the utility model as described above.  For a variety of values of N and levels of preference dispersion (sigma), I calculate the man-optimal (ie, man-proposing) matching and the woman-optimal matching, and calculate the fraction of agents who are matched to a different partner in the man-optimal as in the woman-optimal matching. 
-
-
-
-Note that, as intuition predicts, the size of the core is increasing in sigma for most cases  (ie, the fraction of matches that are the same in a man and woman optimal match). However, for the largest market simulated, there is a clear non-monotonicity at very low sigmas, and I am unaware of any theoretical or empirical work discussing this phenomenon.
+	\item  For small $\epsilon$ values, each man expects $2\epsilon$ perturbations.  As there is exactly one perturbation to the woman's preferences that would complete the cycle, then each man expects to be involved in a cycle  with probability $2 \epsilon^2$, regardless of the size of the market.
+	
+	\item Finally, since perturbations are rare, a 3 element rank list is equivalent to listing complete preferences.
+\end{itemize}
 
 
 
 
+\section{Goals of this paper}
+In this paper I intend to:
+\begin{enumerate}
+	\item \label{goal:Short_is_beside_point} Prove that an arbitrary rank-list construction either:
+	\begin{itemize}
+		\item allows for agents to effectively list their complete preferences with a short rank list, or
+		\item does not produce a stable allocation if agents are required to submit shortened ranklists
+		
+	\end{itemize}
+	\item Show that requiring market participants to report a shorter rank list than their actual preferences cannot improve the incentive compatibility of the market.  This is a corollary of goal \ref*{goal:Short_is_beside_point}
+	
+	\item \label{goal:alternate_pref} Propose an alternate construction of large market preferences that is tractable, more realistic, and has the following properties:
+	\begin{itemize}
+		\item In the limit of large markets correlation of preferences approaches zero
+		\item In the limit of large markets, a short preference list is perfectly adequate (ie, almost no participant will, ex post, wish they had been able to report a longer list)
+		\item In the limit of large markets, a positive fraction of participants have more than one stable match possible, even with short preference lists
+	\end{itemize}
+
+
+\end{enumerate}
+
+
+\section{Alternate construction of large market preferences}
+
+I begin by addressing goal \ref*{goal:alternate_pref} because it illustrates and motivates the other two. 
+
+My preferences are constructed as follows:
+\begin{enumerate}
+	\item There are $n$ participants on each side of the market, and we will parameterize the degree to which preferences are random as $k$.
+	\item Each man $i \in \{1, 2, 3, ... , n\}$ ranks all women $j\in \{1, 2, 3, ... , n\}$ in order (woman $j=1$ first, $j=2$ second, etc). Each woman does the converse 
+	\item In each man's preference list, a random women in the list is chosen, and moved down the rank list by one position if she is not already at the end.  This is repeated  $k$ times
+\end{enumerate}
 
 
 
 
+\section{Simulation Results}
+
+The simulation results anticipate the analytical finding that I hope to attain. 
+
+\begin{itemize}
+	\item In a simulation with market size of  1000, 2000, and 10,000 participants,  a $k$ of 10 consistently means that about 40 men are matched to different women in the man-optimal vs woman-optimal matching. 
+	\item When $k=n$    about 3/4 participants have more than one potential stable match, regardless of market size ($n= \{30, 100, 200, 1000, 2000, 10000\}$).
+	\item If $k$ is not $>>n$, then $|i-j| < 3$ for nearly every match, meaning that a short-rank-list constraint does not bind
+\end{itemize}
+ 
+
+From this, I draw the following conclusions:
+\begin{enumerate}
+	\item If we keep $k=n$, in the large market the correlation of preferences goes to 1 (because the expected number of moves (up or down) on a rank list is $2k$, which becomes an increasingly small fraction of $n$)
+	\item However, the number of participants who have more than one potential stable match grows as approximately $\frac{3}{4} n$ if $k=n$ in the large market
+	\item This is true even if we restrict rank lists to be short
+	\item Thus, we need a different explanation for a small set of stable matches--neither list length nor preference correlation is adequate
+\end{enumerate}
+
+
+\section{Analytical Efforts}
+
+First I look at the movement of woman $j$ in man $i$'s rank list, and by symitry the converse. In the large market approximation, the number of times a woman is moved on the rank list is a Poisson distribution with expectation $2k/n$.  The probability of a woman moving $m$ positions on the list is $e^{-2k}I_m(2k/n)$, where $I$ is the Bessel function.  see \href{https://www.wolframalpha.com/input/?i=e%5E-10*BesselI%286%2C+10%29}{wolfram alpha}
+	
+Some simple work with a symbolic evalutator shows that in any given rank list, woman $j$'s expected position is $j$, with a varience of $2k/n$.
+	
+Now we consider women who have two or more potential stable matches.  Following Immorlica, we note that for each such woman, if she truncates her rank list immediately above her partner in the man-optimal stable match, she will initiate a rejection chain that returns to her with a proposal she prefers to her original match.	
+We can now consider such a rejection chain, and see that a rejection chain is a random walk where each step has a positive expected lenght, and a finite standard deviation.  Thus, after a finite length of rejection chain, there is effectively zero chance of looping back to the starting position.  However, in this market, two things are true:
+\begin{itemize}
+	\item The rejection chain has a finite chance of returning to the initiating woman in the first few steps.  This is the opposite of the key result from Immorlica 2005 and Kojima 2009.
+	\item after a finite number of steps, the liklihood of the chain returning to the initating woman is arbitrarily small, since it is a biased random walk. This means that a short rank list is adequite to entirely describe all the relevant preferences (ie, a short rank list requiremnt does not bind).
+\end{itemize}
 
 
 
@@ -173,6 +235,7 @@ Note that, as intuition predicts, the size of the core is increasing in sigma fo
 \appendix
 
 \section{Mathematical Appendix}
+
 
 \end{document}
 
