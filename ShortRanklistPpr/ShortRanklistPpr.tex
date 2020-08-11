@@ -19,6 +19,8 @@
 % Uncomment the next line to use the harvard package with bibtex
 \usepackage[abbr]{harvard}
 
+\usepackage{ amssymb }
+
 
 % This command determines the leading (vertical space between lines) in draft mode
 % with 1.5 corresponding to "double" spacing.
@@ -99,27 +101,38 @@ Almost all hospitals are unacceptable to almost every medical student.  This is,
 
 
 \begin{lemma}
-	Consider the stable matching $\phi$. This algorithm will find a stable matching that all women weakly prefer to $\phi$, if one exists.
+	Consider the stable matching $\phi$. This algorithm will terminate at  $\phi^w$, the woman optimal stable matching.
 	\begin{enumerate}
 		\item Each man points to the current partner of his NPAW
 		\item Each woman points to the woman she currently holds
-		\item In each cycle, each man re-matches with the woman he is pointed to
+		\item \label{new_match} In each cycle, each man re-matches with the woman he is pointed to
 	\end{enumerate}
 \end{lemma}
 \begin{proof}
 	\begin{enumerate}
-		\item 	First we show that this cycle identifies additional stable matches:
+		\item 	First we show by contradiction that the matching after step \ref{new_match} is stable:
 		\begin{itemize}
-			\item Suppose there exists a blocking pair. As there were no blocking pairs prior to the rearrangement and all women weakly prefer their new match, the man in this blocking pair must be one of the men from the cycle.
-			\item As all women weakly prefer their new match, the man must rank his blocking partner below his old match, and above his new match. However, all such women prefer their current match to the man, and thus the blocking pair cannot exist. 
+			\item Suppose there exists a blocking pair $\{m,w\}$ to the new match $\phi '$. 
+			\item By construction:
+					\begin{itemize}
+						  \item $m \succ_w \phi '^{-1}(w) \succsim_w  \phi ^{-1}(w)$
+						  \item  $w \succ_m \phi'(m)$
+						  \item $\phi(m) \succsim_m \phi'(m)$
+					\end{itemize}
+			\item As $\{m,w\}$ do not block $\phi$, we see that $\phi(m) \succsim_m w \succ_m \phi'(m)$
+			\item this is a contradiction, since $ \phi'(m)$ was $m$'s NPAW
+
 		\end{itemize}	
-		\item Now, we must show that if there is an alternate stable match, it must be found by such a cycle. 
+		\item Now, we show by contradiction that the algorithm terminates on the woman-optimal stable matching
 		\begin{itemize}
-			\item Consider an alternate stable matching. Note first that, by the rural hospital therom, it the set of matched men and women is unchanged
-			\item This implies that there is the men and women in the new stable matching form at least one cycle, in which each individual points to their new partner
-			\item Now consider the woman each man points to. This woman is disprefered to his old match, and since women are weakly better in the new match, he is acceptable to his new mate. That is to say, the participants in the new match form a cycle (in the man-optimal match) in which each man points to a woman available to him, and each woman points to the man she currently hold.
-			\item Now it only remains to be shown that the woman is the *next* availalbe woman for each man. Suppose she is not. Then in the new match, the man and his bypassed available woman form a blocking pair
-			\item note that there might be a way that this this woman is *also* in a new matching, so I have to consider that in the proof
+			\item Suppose the algorythm stops at stable matching $ \phi ' \neq \phi ^w$, and call $M_c$ the set of men for whom $ \phi '(m) \neq \phi ^w(m)$
+			\item Since the algorythm has terminated, there is some man $m \in M_c$ for whom $w = \phi'^{-1} (NPAW_m) \notin  M_c$ 
+			\item By construction:
+			\begin{itemize}
+					\item  $w \succ_m \phi^w(m)$
+					\item  $m \succ_w \phi '^{-1}(w) \succsim_w  \phi^{w^{-1}}(w)$
+			\end{itemize}
+			\item Thus $\{m,w\}$ blocks $\phi^w$ 
 		\end{itemize}
 	\end{enumerate}
 \end{proof}
