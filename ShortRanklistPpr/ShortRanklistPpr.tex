@@ -30,6 +30,7 @@
 \newtheorem{prop}{Proposition}
 \newtheorem{lemma}{Lemma}
 \newtheorem{deff}{Definition}
+\newtheorem{conj}{Conjecture}
 
 \begin{document}
 
@@ -68,9 +69,11 @@ Theory tells us that there is no matching mechanism that reliably produces a sta
 The concept of stable matchings is intuitively appealing in the same way the concept of the core is, but it also has empirical support as an equilibrium. In a review of systems that assign trainee physicians to hospitals in Great Brittan, the markets that produced stable matchings persisted with broad participation, while the markets that did not produce stable matchings failed, with large numbers of applicants and hospitals preempting the market and contracting before the market (Roth 2003).
 (Roth and Peranson 1999) use simulation to demonstrate these results, and (Immorlica and Mahdian 2005) and then (Kojima and Pathak 2009) build on this with the theoretical result that as the number of market participants grows, the SSM becomes arbitrarily small as a fraction of market size.  
 
-However, this work uses a construction of short rank lists that I consider implausible.  I propose an alternate model of rank list construction that more accurately mirrors reality, and analyze the effect of short rank lists on core size in my model, using theoretical and simulation methods.
+I intend to expand on this prior work by proposing a more flexible model of the underlying preference structure.
 
 In practice, medical students applying to residency submit a rank list that is reports their preferences among the plausibly achievable subset of residency programs. The residency application process begins with a round of interviews, where programs extend interview invitations to a strategically chosen set of applicants, and applicants may choose to attend interviews at a subset of programs that extended invitations. Since the marginal cost of applying to a program is zero (http://www.nrmp.org/match-fees/) medical students applying to residency apply broadly, and so as a result of the interview process, students and programs rank a subset of mutually plausible matches, but their rank lists may omit an arbitrarily large number of potential suitors by whom they have already been rejected.
+
+Even if it is generally true that short rank li
 
 \subsection{Notes to myself--most of this won't make the final cut}
 Immorlica Preferences
@@ -240,12 +243,67 @@ We can now consider such a rejection chain, and see that a rejection chain is a 
 \end{itemize}
 
 
+\section{An Algorithm to Partition the Market}
+
+Call the universe of unmatched participants $U$, the first choice of man $m$ among the unmatched women $p_1(m)$, and likewise for women. initialize counter $i = 1$  The algorithm proceeds as follows: 
+
+
+\begin{enumerate}
+	\item \label{seg_alg:start} Call the man with the lowest index number $m^*$, and call the set $C = \{p_1(m^*), p_1(p_1(m^*)), ...\}$ (Note that this will form a cycle, since the set of participenhs is finite)
+	\item \label{seg_alg:DA} Call $\phi_m$ the matching produced by man proposing defered acceptence, and $\phi_w$ likewise for woman proposing defered acceptence.  Call the set of all matched prticipants $\phi$ 
+	\item \label{seg_alg:add_C} For each man $m \in C$, add  to $C$ each woman he prefers to $\phi_w(m)$, and likewise for each woman $w \in C$ and $\phi_m(w)$
+	\item If step \ref{seg_alg:add_C} adds members to $C$, return to step \ref{seg_alg:DA}.  Otherwise proceed
+	\item Terminate if $\phi =  \emptyset$, otherwise remove $\phi$ from $U$, rename $\{\phi_m, \phi_w, C\}$ as $\phi_i = \{\phi_{mi}, \phi_{wi}, C_i\}$ , increment $i$ and return to \ref{seg_alg:start}
+	
+\end{enumerate}
+
+\begin{lemma}
+	$\phi_{mi}$ is a re-arrangement of the matched agents in $\phi_{wi}$
+\end{lemma}
+\begin{proof}
+	This is an application of the rural hospitals theorm
+\end{proof}
+
+\begin{prop}
+	$\phi_m = \{\phi_{m1}, \phi_{m2}, ...\}$ is identical to the man proposing deferred acceptance matching $\Phi_m $
+\end{prop}
+\begin{proof}
+	First we prove this for $\phi_{m1}$
+	\begin{itemize}
+		\item S'pose not. There is some man $m$ such that $\Phi_m(m) \neq \phi_{m1}(m)$
+		\item $w = \Phi_m(m) \in C_1$ because of step \ref{seg_alg:add_C}
+		\item Call $m' =  \phi_{m1}(\phi_{m1}(m)) $ and note that $ \phi_{m1}(m') \neq \Phi_m(m')$ 
+		\item There is thus a finite cycle of men $\{m, m', m'', ... , m^n\}$ such that $ \phi_{m1}(m') $ rejected $m$ in favor of $m'$, $ \phi_{m1}(m'') $ rejected $m'$ in favor of $m''$, and so on until $ \phi_{m1}(m) $ rejected $m^n$ in favor of $m$.  This is impossible
+	\end{itemize}
+We now note that after removing $\phi_{m1}$ from U, the same logic holds, and the proof continues by induction. 
+\end{proof}
+\begin{prop}
+	If there is a man $m \in \{C_i  \setminus \phi_i\}$ then there is no woman $w \in \{C_i  \setminus \phi_i\}$
+\end{prop}
+\begin{proof}
+	This is obvious as all participants rank all other participants
+\end{proof}
+	
+\begin{conj}
+	A non-trivial partition of the market has more than one stable allocation if it is balanced
+\end{conj}
+	
+\begin{conj}
+		A partition of the market has only oneone stable allocation if it is not balanced
+\end{conj}
+	
+
+\section{A Conjecture that makes this all worthwhile}
+
+
 
 \bibliographystyle{aea}
 \bibliography{library}
 
 % The appendix command is issued once, prior to all appendices, if any.
 \appendix
+
+
 
 \section{Mathematical Appendix}
 
