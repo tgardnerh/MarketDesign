@@ -1,0 +1,462 @@
+% AER-Article.tex for AEA last revised 22 June 2011
+\documentclass[WP]{AEA}
+
+% The mathtime package uses a Times font instead of Computer Modern.
+% Uncomment the line below if you wish to use the mathtime package:
+%\usepackage[cmbold]{mathtime}
+% Note that miktex, by default, configures the mathtime package to use commercial fonts
+% which you may not have. If you would like to use mathtime but you are seeing error
+% messages about missing fonts (mtex.pfb, mtsy.pfb, or rmtmi.pfb) then please see
+% the technical support document at http://www.aeaweb.org/templates/technical_support.pdf
+% for instructions on fixing this problem.
+
+% Note: you may use either harvard or natbib (but not both) to provide a wider
+% variety of citation commands than latex supports natively. See below.
+
+% Uncomment the next line to use the natbib package with bibtex 
+%\usepackage{natbib}
+
+% Uncomment the next line to use the harvard package with bibtex
+\usepackage[abbr]{harvard}
+
+% This command determines the leading (vertical space between lines) in draft mode
+% with 1.5 corresponding to "double" spacing.
+\draftSpacing{1.5}
+
+\newtheorem{thm}{Theorm}
+\newtheorem{prop}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{deff}{Definition}
+
+\begin{document}
+
+\title{Equilibrium Truncation}
+\shortTitle{Truncation}
+\author{Tyler Hoppenfeld}
+\date{\today}
+\pubMonth{Month}
+\pubYear{Year}
+\pubVolume{Vol}
+\pubIssue{Issue}
+\JEL{}
+\Keywords{}
+
+\begin{abstract}
+Your abstract here.
+\end{abstract}
+
+
+\maketitle
+
+\begin{abstract}
+	An abstract goes here
+\end{abstract}
+
+\section{Introduction}
+
+This is a theory paper intended to understand the equilbirum truncation strategy in large markets where particiaptns understand the distribution from which preferences are drawn, but not the precise preferences of other market participants
+
+The overall modeling framework is to consider the infinately large limit as markets go to infinity, with a defered acceptance 1:1 allocation mechanism. I will consider the truncation strategy of the ``women,'' or the participants who are proposed to.
+
+First let us consider a case of random preferences where the utility from being matched to one's $i$th choice partner is $-\frac{i}{N}$, and the utility of being unmatched is $R$, which is weakly smaller than -1.
+
+A theorm due to \cite{Coles2014a}, we see that the choice of when to truncate the list is equivilent to having the woman report her full list, and then progressively reject men until she has her optimal match.
+
+Woman $i$'s strategy space is to choose $\tau_i \in [\frac{1}{N}, 1]$, and truncate her list such that she rejects any man ranked lower tan $\tau_i N$ on her list.
+
+Conjecture: Conditional on matching, a woman will be matched randomly among her acceptable matches
+
+Conjecture: A woman's liklihood of matching is a monotonic function of $T$ (the truncation level of other women) and $\tau_i$, and it is decreasing in both.  
+
+I justify this claim as follows:
+\begin{enumerate}
+	\item probabililty of matching is monotonic increasing in $\tau_i$, reaching 1 at $\tau_i = 1$
+	\item if $T=1$, then the probability of matching is if $\tau_i = \frac{1}{N}$ is 1
+	\item if $T =  \frac{1}{N}$ then probability of matching if $\tau_i = \frac{1}{N}$ is $1/e$
+	
+	
+\end{enumerate}
+
+\begin{itemize}
+	\item An empirical approach to this literature can be split into two strands: studying markets that are orderly, and those that are disorderly. 
+	\begin{itemize}
+		\item The literature based on orderly markets finds that, with limited exceptions, those that use a mechanism producing a stable allocation are resistant to unraveling.  Most notable in this group is  \cite{Roth2002} which discusses a variety of successful and unsuccessful matching markets, including the region specific medical matching markets for new physicians in the United Kingdom.  There were a variety of mechanisms tried, and the markets that used mechanisms that yielded stable allocations persisted, while those markets that did not use stable allocation generating mechanism unraveled.
+		\item The literature based on disorderly markets is less sanguine. The best known case study in this primarily descriptive literature is the market for appellate law clerks.  By the early 2000s the market for highly prestigious appellate court clerkships (including supreme court clerkships) had unraveled to the point where offers were extended and accepted in a chaotic manner, when only the first of three years of law school were complete \cite{Avery2001}.  Further work suggests that the situation had improved by the mid 2000s \cite{Avery2007}, but it appears that the situation is still not resolved (a Cornel law school website references the `the breakdown of the last federal clerkship hiring plan in 2014' https://www.lawschool.cornell.edu/New-Federal-Clerk-Hiring-Plan.cfm). Additionally, there is work studying the labor market for Gastrointestinal fellowships.  In this market, there was a breakdown of the match process, and a reintroduction of the match process \cite{Niederle2008,Niederle2003}.  Finally, there is also work studying the college bowl system, claiming that unraveling produces ineffecient outcomes \cite{Frechette2007}.
+	\end{itemize}
+	 
+	\item  A second major thread is models where early contracting is a form of welfare improving insurance. In these models, the ``unraveling" is not a race to go first, but a choice to make early contracts that hedge against uncertian market outcomes in later periods.  Perhaps the clearest of these models is from \cite{Li1998}. This thread of literature is continued in \cite{Li2000,Li2004}.
+	\item The last approach is one where unraveilng is driven by frictions in the market. In this type of work, the market would be efficient and thick in the absence of frictions, but introducing even $\epsilon$ costs to participation (frictions) causes the market to unravel to a less efficient state of early contracting.  This approach is exemplified by \cite{Damiano2005}.
+\end{itemize}
+
+
+
+
+Emblematic of the risk-aversion approach is \cite{Li1998}, using a simple two-period model with two types of agents (buyers and sellers).  
+In this model agents face two kinds of risk—the first kind is that they are unsure whether they will be productive or not, and the second type is that they are unsure whether, conditional on being productive, the chance that they will receive a price of zero for their labor.  The way this outcome is produced is that in the first period agents choose between contracting immediately, and waiting to contract on the open market once agents are revealed to be productive or unproductive.  
+
+The setup is that there are two types of agents, workers and firms, who each are revealed in the second period to be either productive or unproductive. A unit of the good is produced jointly by one productive firm and one productive worker (but by no other arrangement). The timing of the model goes as follows: in the first period, firms and workers have the opportunity to contract early and exit the market. In the second period, each firm and worker is revealed  to be productive or unproductive, and workers and firms contract in a competitive market.  In the pairings with workers and firms from the first period, if both agents are revealed to be of the productive type, the good produced is split as they agreed in period one. In the competitive market, productive agents that turn out to be on the short side of the market get a payout of 1, and those that turn out to be on the long side of the market get a payout of zero.
+
+
+In this model, an early contract (``unraveling'')  is a choice to take on the risk that your counter party might be unproductive to mitigate the risk that you might be on the long side of the market.  Notice that while this system reduces the overall productivity of the market (since ex-post inefficient matches are stuck), unraveling may be welfare improving, if participants are sufficiently risk averse.
+
+These same authors have an additional set of papers \cite{Li2000,Li2004}  that extend the idea of unraveling as insurance.  Throughout the trade-off is between efficiency and ex-post equality—unraveling here serves as a mechanism to reduce variance in payoff for agents.  If both parties are risk-neutral, or insurance is available, then the unraveling does not happen, and does not offer any gain in aggregate or individually.
+
+
+\cite{Damiano2005} (same set of authors, roughly) takes a slightly different tack.  They model the matching process as a series of markets in which agents who are “correctly” matched exit together, and otherwise re-enter the market.  However, if an arbitrarily small cost is imposed, then this falls apart, and the market collapses into everybody taking their match in the first period. 
+
+
+\cite{Kagel2000} run a lab experiment in which agents match prematurely, facing a direct cost of early matching (rather than a risk or uncertainty cost), and in which the availability of a stable matching clearinghouse extinguishes the early matching process (ie, “re-ravels” the market).
+\begin{itemize}
+	\item \cite{Niederle2004} is an experimental/theoretical paper arguing that a key element of early contracting / unraveling is the enforceability of early contracts.  Well done and thorough, it is convincing.
+	\item   \cite{Lee2009}Takes an entirely different approach, and models early contracting in the elite private university sector (ie, early admissions at top schools) as a resolution to the adverse selection problem.  In the regular cycle, each school is afraid that the marginal student it accepts (and who chooses to attend) was rejected by the other top schools because they had particular insight.  That is avoided with early decision type programs (ie, early contracting).
+	\item  \cite{Halaburda2010} claims that similarity of preferences is a critical component of the unraveling process in the face of an ex-post stable mechanism.  I believe this is the paper I consulted when I was designing my toy model for my macro presentation.  
+	\item 
+\end{itemize}
+
+
+
+\section{The Gap}
+
+The descriptive literature on unraveling is reasonably robust, and covers many cases characterized by chaos and a rush to go first, because participants are afraid that they will be unable to match with a desiered counter party if they wait. This is the central part of my understanding of unraveling: that it is a process where there is defection from a centralized market (or resistance to forming one), in a way that creates a thin market with welfare losses.  
+
+The theory literature however does not provide very much in the way of modeling this behavior.  The closet to my goal is \cite{Halaburda2010}, which due to a series of productivity shocks resulting from the interaction of a small child and a virus, I haven ot yet read closely enough.  At the time when I developed the model I present here, I had read the paper, and still thought this model was novel enough to present, so I will bank on that until I have more time to investigate.
+
+
+\section{The Model}
+The goals for this modeling exercise are:
+\begin{enumerate}
+	\item  existence of an unraveled equilibrium
+	\item  even when there is access to a frictionless stable matching available
+	\item  that is pareto preferred to the unraveled state
+\end{enumerate}
+
+
+I accomplish this with a two period model, in which there are two types of agents, buyers and sellers.
+%these are written so no seller is the lowest ranked, because that person has weird unraveling constraints.  in the proofs, i've written it both ways, and commented out the more complicated version
+Sellers are indexed $s_i$, $i \in (0,1]$ , and an equal measure of buyers indexed $b_j$, $j \in (0,1]$
+
+Each seller is endowed with one unit of good that is worthless to the seller, and worth $i+\alpha  \epsilon_{ij}$ to buyer $b_j$, where epsilon is drawn from a uniform distribution on $[0,1]$, iid.
+
+In period 1, buyers and sellers are matched randomly, and may either agree to transfer the good for some payment and exit the market, or continue on to period 2.
+
+In period 2, the remaining participants are matched in a deferred acceptance matching market, and the buyer pays a fixed fraction $(1-\eta)$ of their valuation to the seller, keeping a fraction $\eta$ of the surplus for themselves.
+
+To analyze the model, let us first examine the outcome in the outcomes in the centralized market if all participants wait. 
+
+
+\begin{lemma} \label{lemma:e_1}
+%For any buyer and seller ${s_i, b_j}$ matched in period 2 such that $i \neq 0$ , $\epsilon_{ij} = 1$
+For any buyer and seller ${s_i, b_j}$ matched in period 2  $\epsilon_{ij} = 1$
+\end{lemma}
+\begin{proof}
+	To prove it by contradiction, suppose $\epsilon_{ij} < 1$.
+	
+	Call $\delta = \min{\{i, \epsilon_{ij}- 1\}}$
+	
+	Call the set of sellers $s_{I'}$ such that $i' \in (i-\delta, i-\delta / 2)$.
+	
+	There then exists some seller $s_{i'} \in s_{I'}$ matched to $b_{j'}$ such that $\epsilon_{ij'} > 1-\delta / 2$ 
+	
+	Thus, seller $s_i$ and $b_j'$ form a blocking pair.
+	
+	Q.E.D.
+\end{proof}
+
+\begin{deff}
+	$\omega(i) $ is the probability that seller $s_i$ has chosen to proceed to period 2
+
+\end{deff}
+
+\begin{lemma}
+%	Each seller $s_i, i>0$ who proceeds to period 2 expects a payoff of $\eta (i+\alpha)$
+	Each seller $s_i$ who proceeds to period 2 expects a payoff of $\eta (i+\alpha)$ with certainty
+
+\end{lemma}
+
+\begin{proof}
+	Follows directly from market structure and lemma \ref{lemma:e_1}
+\end{proof}
+
+\begin{lemma}
+	%if any measure of buyers and sellers proceed to period two
+	in expectation, each buyer gets a payoff of 
+	\begin{equation} \label{eq:E_buyer}
+		\eta  \left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i} } + \alpha \right]
+	\end{equation}
+\end{lemma}
+
+\begin{proof}
+	%For all but one seller, the 
+	The surplus generated by each match in period 2 will be $i + \alpha$, and thus 
+	%for at least all but one case 
+	the buyer receives a payoff of $\eta(i+\alpha)$
+	
+	Since this is an afine transformation of $i$, the expected payoff is then $\eta(E[i]+\alpha)$ or 
+
+
+
+$$\eta \left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha \right] $$
+
+
+\end{proof}
+
+
+\subsection{Existence of Equilibrium}
+
+In period 1, agents will trade with their initial match if they can make a deal such that each is better off than they expect in the second period, or:
+
+\begin{equation} \label{eq:ec_condition_raw}
+ i+\alpha \epsilon_{ij} >(1-\eta)(i+\alpha ) + \eta  \left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha \right] 
+ \end{equation}
+
+Notice that for each value of $i$, there is some value $\epsilon^* (i)$ such that trade happens iff $\epsilon_{ij} > \epsilon^* (i)$.  Importantly, notice also that $\epsilon^* (i)$ is decreasing in $i$.
+
+Since $\epsilon_{ij}$ is iid (ie, unrelated to the value of $i$), this means that those sellers who choose to advance to the second period have, on average, a low $i$, and this feeds back into equation \ref{eq:E_buyer}, lowering  $\epsilon^* (i)$. 
+
+
+As we have specified that $\epsilon_{ij} ~ U[0,1]$, we also can note that 
+
+\begin{equation} \label{eq:omega_epsilon}
+\omega(i) =
+	\begin{cases}
+		0 |  \epsilon^* (i) < 0 \\
+		\epsilon^* (i) | \epsilon^* (i) \in [0,1] \\
+		1 |  \epsilon^* (i) > 1
+	\end{cases}
+\end{equation}
+
+
+
+Thus, where $ \epsilon^* (i) \in [0,1]$,
+
+\begin{equation}
+ i+\alpha \epsilon^*(i) = (1-\eta)(i+\alpha ) + \eta  \left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha \right] 
+\end{equation}
+or
+\begin{equation} \label{eq:e_star_unsolved}
+ \epsilon^*(i) = (1-\eta) + \frac{   \eta \left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha -i \right] }{\alpha} 
+\end{equation}
+
+To solve for $  \epsilon^*(i)$ in closed form, we guess that it has the functional form:
+ \begin{equation} \label{eq:e_star_guess}
+ \epsilon^*(i) = a-\frac{\eta }{\alpha}i
+ \end{equation}
+ 
+ with some  $a \in [0,1+\frac{\eta }{\alpha}]$
+
+Now we substitute \ref{eq:e_star_guess} into equation \ref{eq:e_star_unsolved} and with some algebra:
+
+$$a-\frac{\eta }{\alpha}i= (1-\eta) + \frac{   \eta \left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha -i \right] }{\alpha } $$
+
+\begin{equation} \label{eq:a_solved}
+a= (1-\eta) + \frac{   \eta\left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha  \right] }{\alpha} 
+\end{equation}
+
+We are now ready to prove that an equilbirium exists:
+\begin{prop} \label{prop:existence}  
+	For any values of $\eta$ and $\alpha$, there exists a value of $a$ such that equation \ref{eq:e_star_guess} is an equilibrium for this market.
+\end{prop}
+\begin{proof}
+To demonstrate existance of equlibrium, we consider a $G(\cdot)$ function such that if $G(a) = 0$ then $a$ is the required value to make equation \ref{eq:e_star_guess} a solution to \ref{eq:e_star_unsolved}
+
+\begin{equation} \label{eq:G_fxn}
+G(a) = (1-\eta) + \frac{   \eta\left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha  \right] }{\alpha} - a
+\end{equation}
+
+Now consider $\lim\limits_{a \to 0}G(a)$.
+
+\begin{equation}
+\lim\limits_{a \to 0}G(a) = 1+ \frac{   \eta \lim\limits_{a \to 0}\left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}}   \right] }{\alpha} - a = 1+ \frac{\eta}{\alpha} > 0
+\end{equation} 
+
+
+%  \left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}}   \right]
+
+
+Next, consider 
+\begin{equation*}
+G(1+\frac{\eta }{\alpha}) = (1-\eta) + \frac{   \eta }{\alpha}\left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}}   \right] -1 -\frac{\eta }{\alpha}
+\end{equation*}
+
+Observe that if $1+\frac{\eta }{\alpha}$ then all agents will continue to the second round, so
+$$\frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}}  = \frac{1}{2} $$
+
+and thus 
+
+\begin{equation*}
+G(1+\frac{\eta }{\alpha}) = (1-\eta) + \frac{1}{2} \frac{   \eta }{\alpha } + \eta -1 -\frac{\eta }{\alpha} 
+\end{equation*}
+
+which simplifies to:
+\begin{equation} \label{eq:G_g_0}
+G(1+\frac{\eta }{\alpha}) =-\frac{\eta}{ 2 \alpha } < 0 
+\end{equation}
+
+
+The final step of proving existance is to show that $G(\cdot)$ is continuous on the relevant interval. Since  $ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} $ is continuous in $a$, $G(\cdot)$ is as well, and so by the intermediate value theorem we have existence of equilibrium.
+
+Q.E.D.
+\end{proof}
+\subsection{Uniqueness}
+
+This solution is not unique.  At minimum, the fully unraveled state where $a= 0$ is also an equilibrium.  To see this, consider that any agent choosing to proceed to the second period will re-match with their first period partner (since they are the only ones to proceed), and there is no surplus to be gained by this choice.
+
+However, there is still hope for a uniqueness claim--I believe I can prove that these are the only two equilibria.
+
+\begin{prop}
+		For any values of $\eta$ and $\alpha$, there are at most three equilibria, both described by \ref{eq:e_star_guess}, one with $a = 0$, and the other with $a > 0$
+\end{prop}
+\begin{proof}
+	First, we note by proposition \ref{prop:existence} that there exists an equilibrium such that $a > 0$
+	
+	Second, we see by the logic above that $a = 0$ is also an equilbrium.
+	
+	I should be able to prove that the $G(\cdot)$ function (equation \ref{eq:G_fxn}) crosses zero at most twice because $ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}}$ should be well behaved.
+	
+	The last piece to prove this propostion is to prove that any strategy not described by equation \ref{eq:e_star_guess} is not an equilbirium.  This requires first proving that the $\epsilon^*(i)$ strategy is the only equilbrium strategy (this should be easy), and then proving that there's no  other  $\epsilon^*(i)$ stragegy that is also an equilbirum. Not sure how to do this last bit.
+	 
+\end{proof}	
+
+\begin{prop}
+	For any value of $\eta \ in (0, 1]$ it is not an equilibrium for all agents to proceed to the second period. 
+\end{prop}
+
+\begin{proof}
+	Suppose there is an equilbrium where all agents proceed to the second period. There is at least one buyer/seller pairing such that $i = 1$ and $\epsilon = 1$ (up to some limit).
+	
+	Substituting into the early-contracting condition (eq \ref{eq:ec_condition_raw}) and noting that we have:
+	
+	\begin{equation*}
+	 1+\alpha >(1-\eta)(1+\alpha ) + \eta  \left[ \frac{1}{2} + \alpha \right] 
+	\end{equation*}
+or	
+	\begin{equation*}
+	1+\alpha > 1+\alpha   -  \frac{1}{2}\eta   
+	\end{equation*}
+	
+	As this is true for any positive $\eta$, it is not an equilibrium for all agents to proceed to the second period.
+	
+	Q.E.D.
+\end{proof}	
+
+\section{Closed Form???}
+
+First let us find  $\frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}}$ as a function of $a$.  If it is not too nasty, we should be able to find a closed form solution.
+	
+To do this we find the threshold values $i^{*-}$ and  $i^{*+} $ such that they are the critical points of equation \ref{eq:omega_epsilon}.
+
+$i^{*-} = \frac{(a-1)\alpha}{\eta}$ and 
+$i^{*+} = \frac{(a)\alpha}{\eta}$
+\begin{equation*}
+ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} =  \frac{
+ 	\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}} \hat{i} (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} + 	\int_{\frac{a\alpha}{\eta}}^1 \hat{i} d\hat{i}}
+ 	{	\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}} (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} + 	\int_{\frac{a\alpha}{\eta}}^1 1d\hat{i}} 
+\end{equation*}
+
+\begin{equation*}
+  \frac{
+	\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}} \hat{i} (a - \frac{\eta}{\alpha}\hat{i}) d\hat{i} + 	\int_{\frac{a\alpha}{\eta}}^1 \hat{i} d\hat{i}}
+{ ({\frac{(a-1)\alpha}{\eta}} - \frac{a\alpha}{\eta})a -	\frac{\eta}{\alpha}\int_{\frac{(a-1)\alpha}{\eta}}^{\frac{a\alpha}{\eta}}  \hat{i} d\hat{i} + 	1-\frac{a\alpha}{\eta} } 
+\end{equation*}
+
+
+A symbolic evaluator tells me that this shakes out to be
+
+\begin{equation}
+ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} = \frac{\frac{a^{3} \alpha^{2}}{6 \eta^{2}} - \frac{a^{2} \alpha^{2}}{2 \eta^{2}} - \frac{a \alpha^{2} \left(a - 1\right)^{2}}{2 \eta^{2}} + \frac{\alpha^{2} \left(a - 1\right)^{3}}{3 \eta^{2}} + \frac{1}{2}}{\frac{a^{2} \alpha}{2 \eta} - \frac{a \alpha \left(a - 1\right)}{\eta} - \frac{a \alpha}{\eta} + \frac{\alpha \left(a - 1\right)^{2}}{2 \eta} + 1}
+\end{equation}
+
+This looks a bit nasty, but when you plug this back into the $G(a)$ function and solve, you get two solutions:
+
+\begin{equation*}
+a = \left\{ \frac{\eta}{\alpha} +1 - \frac{\sqrt{6}}{3} , \   \frac{\eta}{\alpha} + 1 + \frac{\sqrt{6}}{3} \right\}
+\end{equation*}
+
+Only one of these falls within the constraint that  $a \in [0,1+\frac{\eta }{\alpha}]$, so we are left with 
+\begin{equation} \label{eq:G_Solved}
+a =  \frac{\eta}{\alpha} +1 - \frac{\sqrt{6}}{3} 
+\end{equation}
+
+Now, to get a better handle on comparative statics--lets substitute equation \ref{eq:G_Solved} into our equation for $\epsilon^*$ (eq \ref{eq:e_star_guess}).  We find:
+
+\begin{equation}
+\epsilon^* = 1 - \frac{\sqrt{6}}{3} + \frac{\eta}{\alpha} (1-i)
+\end{equation}
+
+Now we can draw some solid conclusions:
+
+\begin{enumerate}
+	\item No draw for $\epsilon_{ij} <  1 - \frac{\sqrt{6}}{3} $ will result in an early contract, for any values of $\eta, \ \alpha, \text{ or } i$
+	\item For $ i = 1$,  $\epsilon_{ij} =  1 - \frac{\sqrt{6}}{3} $ regardless of market parameters
+	\item For any given agent, $\epsilon^* $ is strictly increasing in $\eta$ and decreasing in $\alpha$
+\end{enumerate}
+
+%Now lets substitute equation \ref{eq:G_Solved} into our critical points: we now see
+%
+%\begin{eqnarray}
+%i^{*-} = 1 - \frac{ \sqrt{6}\alpha}{3 \eta} \\
+%i^{*+} =1 +\frac{\alpha}{\eta} \left(1 - \frac{\sqrt{6}}{3} \right) 
+%\end{eqnarray}
+
+
+
+\section{Under the Hood}
+The key component that makes this model work is the fact that $\eta$ is fixed, so the outcome of the 2nd round market is not what you would get from a competitive equlitbrium.  In a CE, we would see each seller get payoff i, and each buyer to get payoff alpha, and so there would be no potential for private gains by contracting in the first period.  
+
+It also leverages the freedom to split the gains however they might like in the first period, but not in the second period.  if you fix the surplus split in the first period at $\eta$, then the market stays raveled
+
+These facts are somewhat consistent with the world we are trying to model.  In centralized markets there are rules about what the transaction looks like, but when participants preemptively match, they are free to do as they please.
+
+I also wonder what happens if i introduce heterogeneity of the buyers.  
+
+\section{Comparative Statics}
+
+Recall equation \ref{eq:a_solved}:
+\begin{equation*}
+ 	a= (1-\eta) + \frac{   \eta\left[ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha  \right] }{\alpha} 
+\end{equation*}
+
+Taking the derivitive of $a$ with respect to $\eta$, we can see that 
+$a$ is decreasing in $\eta$ if
+\begin{equation*}
+	\eta  < \frac{\alpha }{ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}} + \alpha  }
+\end{equation*}
+
+This problem looks messy, however we note that $ \frac{\int_0^1 \hat{i} \omega(\hat{i}) di}{\int_0^1  \omega(\hat{i}) d\hat{i}}$ is neciscarily between 0 and 1/2, which simplifies things somewhat.
+
+
+\section{Taking it to the Anecdote}
+\begin{itemize}
+
+    \item Judges are on short  side of market
+\item Judges will hear cases before new lawyers for years to come
+\item This looks like lots of bargaining power (ie, high $\eta$)
+\end{itemize}
+
+
+\begin{itemize}
+\item American MD graduates on short side of market (~17,000 graduates for 32,000 residency spots)
+\item Doctors will likely never meet the program directors at places they did not match
+\item This looks like low bargaining power (eg, low $\eta$)
+\end{itemize}
+
+
+\begin{itemize}
+\item This model predicts that unraveling will happen among high-type "sellers"
+\item Disorderly clerkship market is just the top sliver of the (somewhat more orderly) market for new lawyers in general
+\item It is not  uncommon for the most promising medical students at the top schools to be promised a position at their home institution, preempting an extensive job search
+\begin{itemize}
+	\item (Per private communication with physicians at several top programs)
+\end{itemize}
+\end{itemize}
+
+\bibliographystyle{aea}
+\bibliography{library}
+
+% The appendix command is issued once, prior to all appendices, if any.
+\appendix
+
+\section{Mathematical Appendix}
+
+\end{document}
+

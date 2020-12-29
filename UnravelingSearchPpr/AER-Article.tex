@@ -1,0 +1,157 @@
+% AER-Article.tex for AEA last revised 22 June 2011
+\documentclass[AER]{AEA}
+
+% The mathtime package uses a Times font instead of Computer Modern.
+% Uncomment the line below if you wish to use the mathtime package:
+%\usepackage[cmbold]{mathtime}
+% Note that miktex, by default, configures the mathtime package to use commercial fonts
+% which you may not have. If you would like to use mathtime but you are seeing error
+% messages about missing fonts (mtex.pfb, mtsy.pfb, or rmtmi.pfb) then please see
+% the technical support document at http://www.aeaweb.org/templates/technical_support.pdf
+% for instructions on fixing this problem.
+
+% Note: you may use either harvard or natbib (but not both) to provide a wider
+% variety of citation commands than latex supports natively. See below.
+
+% Uncomment the next line to use the natbib package with bibtex 
+%\usepackage{natbib}
+
+% Uncomment the next line to use the harvard package with bibtex
+\usepackage[abbr]{harvard}
+
+% This command determines the leading (vertical space between lines) in draft mode
+% with 1.5 corresponding to "double" spacing.
+\draftSpacing{1.5}
+
+\begin{document}
+
+\title{A Crappy Paper on Unraveling}
+\shortTitle{Unraveling}
+\author{Tyler Hoppenfeld}
+\date{\today}
+\pubMonth{Month}
+\pubYear{Year}
+\pubVolume{Vol}
+\pubIssue{Issue}
+\JEL{}
+\Keywords{}
+
+\begin{abstract}
+Your abstract here.
+\end{abstract}
+
+
+\maketitle
+
+\begin{abstract}
+	An abstract goes here
+\end{abstract}
+
+\section{First Section}
+a section goes here
+
+This is a paper about the concept of unraveling.  The basic idea of unraveling is that sometimes markets are neat and orderly, and others are an utter cluster.  
+
+Perhaps the best example of a disorganized market is the market for law students who would like to be hired as appellate court clerks.  Notibly, all most important positions are (effectively) filled after the end of the first summer, before the majority of law school performance is realized, dispite the fact that many of the best students at the end of law school were not the best at the end of first year, and vise-versa. Approximately half of the top 10 students stay in the top ten over this time span, so there is significant amount of efficiency lost, or at least it a appears to be so.
+
+Perhaps more importantly, for the very top tier of judge clerkships, the expectation is that students accept any offer they receive, so they generally only schedule interviews with judges whose offers they would accept, and then accept them sight unseen, and as a consequence the interview often does not enter into the law student's decision making function. \cite{Avery2001}
+
+On the contrary, with very limited exceptions, this is not how all elite entry-level job markets function.  The very best medical students are matched to the very best residencies in an orderly fashion through the NRMP process.  Even at the Fellowship level, where the market is very thin (eg, 16 people per program at the very top programs), participants generally adhere to the rules of the match process, and the assignment of the defered acceptance algorythm are taken as binding \cite{Niederle2008,Niederle2003,Niederle2005}.
+
+
+The major unanswered question then is how do we understand why some markets are orderly, and others become unraveled.  The past research on this takes three major approaches:
+
+\begin{itemize}
+	\item An empirical approach to this literature can be split into two strands: studying markets that are orderly, and those that are disorderly. 
+	\subitem The literature based on orderly markets finds that, with limited exceptions, those that use a mechanism producing a stable allocation are resistant to unraveling.  Most notable in this group is  \cite{Roth2002} which discusses a variety of successful and unsuccessful matching markets, including the region specific medical matching markets for new physicians in the United Kingdom.  There were a variety of mechanisms tried, and the markets that used mechanisms that yielded stable allocations persisted, while those markets that did not use stable allocation generating mechanism unraveled.
+	\subitem The literature based on disorderly markets is less sanguine. This is predominantly descriptive literature, working on the 
+	\item  A second major thread is models where early contracting is a form of welfare improving insurance. In these models, the ``unraveling" is not a race to go first, but a choice to make early contracts that hedge against uncertian market outcomes in later periods.  Perhaps the clearest of these models is in \cite{Li1998}.
+	\item The last approach is one where unraveilng is driven by frictions in the market. In this type of work, the market would be efficient and thick in the absence of frictions, but introducing even $\epsilon$ costs to participation (frictions) causes the market to unravel to a less efficient state of early contracting.  This approach is exemplified by \cite{Damiano2005}.
+\end{itemize}
+
+
+
+
+Emblematic of the risk-aversion approach is \cite{Li1998}, using a simple two-period model with two types of agents (buyers and sellers).  
+
+In this model agents face two kinds of risk—the first kind is that they are unsure whether they will be productive or not, and the second type is that they are unsure whether, conditional on being productive, the chance that they will receive a price of zero for their labor.  The way this outcome is produced is that in the first period agents choose between contracting immediately, and waiting to contract on the open market once agents are revealed to be productive or unproductive.  
+
+The setup is that there are two types of agents, workers and firms, who each are revealed in the second period to be either productive or unproductive. A unit of the good is produced jointly by one productive firm and one productive worker (but by no other arrangement). The timing of the model goes as follows: in the first period, firms and workers have the opportunity to contract early and exit the market. In the second period, each firm and worker is revealed  to be productive or unproductive, and workers and firms contract in a competitive market.  In the pairings with workers and firms from the first period, if both agents are revealed to be of the productive type, the good produced is split as they agreed in period one. In the competitive market, productive agents that turn out to be on the short side of the market get a payout of 1, and those that turn out to be on the long side of the market get a payout of zero.
+
+
+In this model, an early contract (“unraveling”)  is a choice to take on the risk that your counter party might be unproductive to mitigate the risk that you might be on the long side of the market.  Notice that while this system reduces the overall productivity of the market (since ex-post inefficient matches are stuck), unraveling may be welfare improving, if participants are sufficiently risk averse.
+
+These same authors have an additional set of papers \cite{Li2000,Li2004}  that extend the idea of unraveling as insurance.  Throughout the trade-off is between efficiency and ex-post equality—unraveling here serves as a mechanism to reduce variance in payoff for agents.  If both parties are risk-neutral, or insurance is available, then the unraveling does not happen, and does not offer any gain in aggregate or individually.
+
+
+\cite{Damiano2005} (same set of authors, roughly) takes a slightly different tack.  They model the matching process as a series of markets in which agents who are “correctly” matched exit together, and otherwise re-enter the market.  However, if an arbitrarily small cost is imposed, then this falls apart, and the market collapses into everybody taking their match in the first period. 
+
+\cite{Damiano2005} run a lab experiment in which agents match prematurely, facing a direct cost of early matching (rather than a risk or uncertainty cost), and in which the availability of a stable matching clearinghouse extinguishes the early matching process (ie, “re-ravels” the market).
+\begin{itemize}
+	\item \cite{Niederle2004} is an experimental/theoretical paper arguing that a key element of early contracting / unraveling is the enforceability of early contracts.  Well done and thorough, it is convincing.
+	\item   \cite{Lee2009}Takes an entirely different approach, and models early contracting in the elite private university sector (ie, early admissions at top schools) as a resolution to the adverse selection problem.  In the regular cycle, each school is afraid that the marginal student it accepts (and who chooses to attend) was rejected by the other top schools because they had particular insight.  That is avoided with early decision type programs (ie, early contracting).
+	\item  \cite{Halaburda2010} claims that similarity of preferences is a critical component of the unraveling process in the face of an ex-post stable mechanism.  I believe this is the paper I consulted when I was designing my toy model for my macro presentation.  
+	\item 
+\end{itemize}
+
+
+
+
+There is also a descriptive literature on unraveling markets.  The most important such paper is (Avery et al. 2001), a deep dive into the law clerk market as of 2000 or so.  It was published in a law review rather than economics journal, and Al Roth is an author. key quote:
+The essential problem with how this important market presently functions is that it is difficult to establish the time at which the market will operate. Any time that is set will tend to “unravel” because judges have an incentive to “jump the gun,” hiring slightly earlier than their competitors, to get the pick of the candidates.
+
+
+I summarize further unraveling articles as bullet points:
+* * (Niederle and Roth 2003) is a review of the gastroenterologist (GI) fellowship market, which had a centralized market from 1986 to 1996, and decentralized match before and after (up to publication of this paper, 2003).  The results of the unraveling are described here, in which matches are less assortitave, and with less geographic movement.
+* * (McKinney, Niederle, and Roth 2005) is a more unified look at the GI match and and experimental evidence around unraveling.  their claim is that a surprise shock introduced asymmetric information to the market, causing the unraveling.  
+* * (Niederle and Roth 2005) and then (Niederle, Proctor, and Roth 2008) chronicle the reintroduction of a GI match, which I understand to still be going strong (from personal communication with doctors who have first hand knowledge).
+
+
+
+This fails to capture the important dynamic of unraveling as I see it—my understanding of unraveling is that it is a process where there is defection from a centralized market (or resistance to forming one), in a way that creates a thin market with welfare losses.  
+
+The research as it currently exists also fails to explain why a centralized market, where the frictions are small and the allocation is stable, could fail and become unraveled, a la GI market.
+
+
+The goals for this modeling exercise are:
+1. existence of an unraveled equilibrium
+2. even when there is access to a frictionless stable matching available
+3. that is pareto preferred to the unraveled state
+
+I accomplish this with a two period model, in which there are two types of agents, buyers and sellers.
+
+Sellers are indexed $i \in [0,1]$ , and an equal measure of buyers $j \in [0,1]$
+
+Each seller is endowed with one unit of good that is worthless to the seller, and worth $i+\alpha * \epsilon_{i,j}$, where epsilon is drawn from uniform $[0,1]$, iid
+
+In period 1, buyers and sellers are matched randomly, and may either agree to transfer the good for some payment and exit the market, or continue on to period 2.
+
+In period 2, the remaining participants are matched in a deferred acceptance matching market, and the good produced is divided with fraction $\eta$ going to the buyer.
+
+To analyze the model, let us first examine the outcome in the outcomes in the centralized market if all participants wait. 
+Because there are an infinite number of buyers and sellers, all realized productivity shocks will be 1. 
+
+In the second market, each seller gets a payoff of $(1-\eta)( i + \alpha)$, and each buyer gets $\eta(i+\alpha)$,
+
+**Insert here all the math from my slides.
+
+
+
+\section{Under the Hood}
+The key component that makes this model work is the fact that $\eta$ is fixed, so the outcome of the 2nd round market is not what you would get from a competitive equlitbrium.  In a CE, we would see each seller get payoff i, and each buyer to get payoff alpha, and so there would be no potential for private gains by contracting in the first period.  
+
+It also leverages the freedom to split the gains however they might like in the first period, but not in the second period.  if you fix the surplus split in the first period at $\eta$, then the market stays raveled
+
+These facts are somewhat consistent with the world we are trying to model.  In centralized markets there are rules about what the transaction looks like, but when participants preemptively match, they are free to do as they please.
+
+I also wonder what happens if i introduce heterogeneity of the buyers.  
+\bibliographystyle{aea}
+\bibliography{library}
+
+% The appendix command is issued once, prior to all appendices, if any.
+\appendix
+
+\section{Mathematical Appendix}
+
+\end{document}
+

@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: UnravelingSearchThry.aux
+The style file: aea.bst
+Database file #1: library.bib
+You've used 15 entries,
+            2695 wiz_defined-function locations,
+            694 strings with 6286 characters,
+and the built_in function-call counts, 83374 in all, are:
+= -- 13829
+> -- 1008
+< -- 0
++ -- 6654
+- -- 316
+* -- 7489
+:= -- 16373
+add.period$ -- 105
+call.type$ -- 15
+change.case$ -- 195
+chr.to.int$ -- 15
+cite$ -- 15
+duplicate$ -- 221
+empty$ -- 624
+format.name$ -- 322
+if$ -- 14975
+int.to.chr$ -- 5
+int.to.str$ -- 0
+missing$ -- 0
+newline$ -- 52
+num.names$ -- 165
+pop$ -- 15
+preamble$ -- 1
+purify$ -- 225
+quote$ -- 0
+skip$ -- 181
+stack$ -- 0
+substring$ -- 19759
+swap$ -- 88
+text.length$ -- 210
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 60
+warning$ -- 0
+while$ -- 379
+width$ -- 0
+write$ -- 78

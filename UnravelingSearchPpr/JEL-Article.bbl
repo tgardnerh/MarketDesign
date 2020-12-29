@@ -1,0 +1,14 @@
+
+
+% Bibstyle aea.bst version 2009.05.20
+
+\begin{thebibliography}{xx}
+
+\harvarditem[Roth \harvardand\ Peranson]{Alvin~E Roth \harvardand\ Elliott
+  Peranson}{1991}{Roth1991}
+{\bf Roth, Alvin~E, and Elliott Peranson.} 1991. ``{A natural experiment in the
+  organization of entry-level labor markets: regional markets for new
+  physicians and surgeons in the United Kingdom}.'' {\em The American economic
+  review}, 415----440.
+
+\end{thebibliography}

@@ -1,0 +1,114 @@
+\documentclass{beamer}
+\usetheme{default}
+
+\usepackage{centernot}
+
+
+
+
+
+\title{Ex-Post Aware Games}
+\author{Tyler Hoppenfeld}
+\begin{document}
+\begin{frame}[plain]
+    \maketitle
+\end{frame}
+
+
+ 
+ \begin{frame}{New Category of Games}
+A game is Ex-Post Aware (EPA) if, at the end of the game, it is obvious to each player $i$ whether any other player $j$ has played a strategy that $i$ was unaware of
+ \end{frame}
+
+\begin{frame}{Examples}
+	\begin{itemize}
+		\item English Auction is EPA, because any ``cheating'' leads to an outcome other than ``object goes to highest bidder at the bid price''
+		\item Second Price auction is not EPA, because auctioneer could lie about 2nd bid to extract higher payment
+		
+
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{More Examples}
+	\begin{itemize}
+		\item Many negotiations are EPA--one party makes an offer, the other accepts or rejects
+		\item Most contracts are not. For example, both an employer and employee can behave in ways that are unobservable and impact the other player’s payout 
+
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Corporate Finance}
+	\begin{itemize}
+		\item Bonds are (mostly) EPA--either the company goes bankrupt, or pays back the bond
+		\item Equity is not--It is unclear what an early stake in a small company means as that company grows (and we routinely see this play out in court)
+
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Preceding Work}
+	This idea is most similar to the concept of Obvious Strategy Proofness (OSP) (Shengwu Li 2017, AER)
+	\begin{itemize}
+		\item A rough definition: A game is OSP if there exists a strategy such that, at each decision point, the worst possible outcome playing your strategy is no worse than the best possible outcome playing any other strategy
+		\item This is a strengthening of “Strategy Proofness,” which is roughly the same as having a dominant strategy for some subset of the players
+
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{OSP Example}
+	\begin{itemize}
+		\item Consider English Auction—
+		\begin{itemize}
+			\item At each price called out, you must choose to stay in or leave.  
+			\item Consider strategy “stay in unless price $>$ personal valuation”
+			\item Worst outcome playing strategy is payout of Zero
+			\item At each decision point best possible outcome from exiting is zero payout
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Connection to Obvious Strategy Proofness}
+	\begin{enumerate}
+		\item Claim: OSP $\centernot\implies$ EPA + SP 
+		\item Conjecture: EPA+SP $\implies$ OSP
+	\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Counter Example for Claim 1:}
+	Consider this sequential game:
+	\begin{enumerate}
+		\item Alice chooses Left or Right.
+		\begin{itemize}
+			\item Alice believes that if she chooses Left, both she and Bob get payout of 1 
+			\item If Alice chooses Right, Bob will flip a fair coin, giving payout 2 to one player, and payout 3 to the other, depending on the outcome (but will not show the coin to Alice)
+		\end{itemize}
+
+	\end{enumerate}
+
+Note that this is OSP, because it is ``obvious'' that Alice should choose Right, but it is not EPA because if Bob has an additional strategy available (ie. cheating by just declaring the coin toss in his favor), Alice would never know
+\end{frame}
+
+
+
+
+\begin{frame}{Proof Idea for Conjecture 2}
+	\begin{itemize}
+		\item  OSP $\implies$ SP (trivially)
+		\item The main idea for OSP $\implies$ EPA is that if a mechanism is SP but not OSP, it means the market designer could “cheat” without being detected. 
+
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Next Steps}
+\begin{itemize}
+	\item Better tie this to OSP
+	\item Consider whether this explains behavioral results (eg, ambiguity aversion)
+	\item Intersect this with k-level reasoning, and consider when people might choose higher or lower-reasoning counterparties to contracts?
+\end{itemize}
+\end{frame}
+
+
+\end{document}
