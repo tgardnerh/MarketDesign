@@ -214,20 +214,20 @@ This is a related approach: I conjecture that it will be conceptually valuable t
 
 Call the universe of unmatched participants $U$, the first choice of man $m$ among the unmatched women $p_1(m)$, and likewise for women.
 
-To start, initialize each $m_i$ with the attribute $m_i.R = \emptyset$
 
-
- initialize counter $i = 1$  The algorithm proceeds as follows: 
+To to find the first partition, initialize each $m_i$ with the attribute $m_i.R = \emptyset$. Then choose arbitrary $m$, then select $w = p_1(m)$, $m' = p_1(w)$, and so on, until a cycle is found. Call the members of that cycle $C^*$. Initialize counter $i = 1$  The algorithm proceeds as follows: 
 
 
 \begin{enumerate}
-	\item \label{seg_alg:start} Call the man with the lowest index number $m^*$, and call the set $C = \{p_1(m^*), p_1(p_1(m^*)), ...\}$ (Note that this will form a cycle, since the set of participants is finite)
-	\item \label{seg_alg:DA} Call $\phi_m$ the matching produced by man proposing deferred acceptance within set $C$ and $\phi_w$ likewise for woman proposing deferred acceptance.  Call the set of all matched participants $\phi$ 
-	\item \label{seg_alg:add_C} For each man $m \in C$, add  to $C$ each woman from the universe of agents that he prefers to $\phi_w(m)$, and likewise for each woman $w \in C$ and $\phi_m(w)$
-	\item If step \ref{seg_alg:add_C} adds members to $C$, return to step \ref{seg_alg:DA}.  Otherwise proceed
-	\item Terminate if $\phi =  \emptyset$, otherwise remove $\phi$ from $U$, rename $\{\phi_m, \phi_w, C\}$ as $\phi_i = \{\phi_{mi}, \phi_{wi}, C_i\}$ , increment $i$ and return to \ref{seg_alg:start}
-	
+	\item for each man $m$ in $C^*$, add $p_1(m)$ to $m.R$ (likewise for women)
+	\item  \label{seg_alg:comp} for each man $m$ in $U$, add to $m.R$ as needed so that for any $m$ and $w$, if $m \in w.R$, then $w \in m.R$  (likewise for women)
+	\item  \label{seg_alg:ext} for each man $m$ in $U$ such that $m.R \neq \emptyset$, call  $w_p$ his least preferred woman in $m.R$, and add to $m.R$ such that if $w \succ_{m} w_p$, then $w \in m.R$ (likewise for women)
+	\item if any additions are made to any $m.R$ or $w.R$ in step \ref*{seg_alg:ext}, return to step \ref*{seg_alg:comp}, otherwise proceed
+	\item call $C_0$ the set of all agents for whom $m.R$ or $w.R$ is nonempty
+	\item  call $\phi_{m0}$ the man optimal stable matching on $C_0$
 \end{enumerate}
+
+To find the next partition, remove all men and women matched in $\phi_{m0}$ from $U$, and repeat the entire process to find $C_1$ and $\phi_{m1}$
 
 \begin{lemma}
 	$\phi_{mi}$ is a re-arrangement of the matched agents in $\phi_{wi}$
@@ -237,17 +237,34 @@ To start, initialize each $m_i$ with the attribute $m_i.R = \emptyset$
 \end{proof}
 
 \begin{prop}
-	$\phi_m = \{\phi_{m1}, \phi_{m2}, ...\}$ is identical to the man proposing deferred acceptance matching $\Phi_m $
+	$\phi_m = \{\phi_{m0}, \phi_{m1}, ...\}$ is identical to the man proposing deferred acceptance matching $\Phi_m $
 \end{prop}
 \begin{proof}
-	First we prove this for $\phi_{m1}$
+	First we prove this for $\phi_{m0}$, proceeding by contradiction.  Call $w = \phi_{m0}(m) \neq \Phi_m(m)$
+	
+	Either $m'\succ_w m$ or $m \succ_w m'$. We will handle each case separately.
+	
+	First suppose $m'\succ_w m$
 	\begin{itemize}
-		\item S'pose not. There is some man $m$ such that $\Phi_m(m) \neq \phi_{m1}(m)$
-		\item $w = \Phi_m(m) \in C_1$ because of step \ref{seg_alg:add_C}
-		\item Call $m' =  \phi_{m1}(\phi_{m1}(m)) $ and note that $ \phi_{m1}(m') \neq \Phi_m(m')$ 
-		\item There is thus a finite cycle of men $\{m, m', m'', ... , m^n\}$ such that $ \phi_{m1}(m') $ rejected $m$ in favor of $m'$, $ \phi_{m1}(m'') $ rejected $m'$ in favor of $m''$, and so on until $ \phi_{m1}(m) $ rejected $m^n$ in favor of       $m$.  This is impossible
+		\item $m'$ must never have proposed to $w$, and so must be matched to $w' = \phi_{m0}(m)$ where $w' \succ w$
+		\item call $m'' = \Phi_m (w')$
+		\item as the pair $\{m', w'\}$ do not block $\Phi_m$, $m'' \succ_{w'} m'$
+		\item we now have a sequence $\{m,w,m',w',m'',...\}$ contained within the finite set $C$, and thus we have a cycle such that each man prefers the woman he is matched with in  $\phi_{m0}$, and each women prefers her match in $\Phi_m$
+		\item this cycle represents a pareto improvement over  $\Phi_m$ for men, and thus there must be an interrupter in $U \setminus C$ such that he forms a blocking pair with one of the women in this cycle. 
+		\item the man should have been added to $C$ at step \ref*{seg_alg:ext}, thus a contradiction
 	\end{itemize}
-We now note that after removing $\phi_{m1}$ from U, the same logic holds, and the proof continues by induction. 
+	Now suppose  $m \succ_w m'$
+ 	\begin{itemize}
+ 		\item call $w^a = \Phi_m(m)$
+ 		\item as $\{m,w\}$ do not block $\phi_{m0}$, $w^a \succ_{m} w$
+ 		\item call $m^a = \phi_{m0}(w^a)$
+ 		\item now as $\{m,w^a\}$ do not block $\Phi_m$, $m^a \succ_{w^a} m $
+ 		\item we now have a cycle where $\Phi_m$ is a pareto improvement over $\phi_{m0}$ for men
+ 		\item this implies an interrupter in $C \setminus U$, which is an empty set, a contradiction.
+ 	\end{itemize}
+	Thus $\phi_{m0}$ is a subset of $\Phi_m$
+	
+We now note that after removing $\phi_{m0}$ from U, the same logic holds, and the proof continues by induction. 
 \end{proof}
 \begin{prop}
 	If there is a man $m \in \{C_i  \setminus \phi_i\}$ then there is no woman $w \in \{C_i  \setminus \phi_i\}$
