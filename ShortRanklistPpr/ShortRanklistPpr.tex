@@ -45,13 +45,13 @@
 \JEL{}
 \Keywords{}
 
-\begin{abstract}
-	In its current iteration, this paper advances three avenues of thought on the size of the set of equilibria in matching markets, seeking to expand on the work by Immorlica and others who argue persuasively that rank list length is intimately related to core size. In section
-	 \ref{sect:counterexample}
-	 I develop an example where agents are content with short rank lists, preferences are highly correlated, and yet a large fraction of agents have more than one equilibrium allocation.  This section is well developed.  In section
-	  \ref{sect:partition},
-	  I develop a framework to partition markets in a way that I hope will shed light on why some markets have small equilibria sets, and others large equilibria sets. This section is a work in progress--there are a number op unproven conjectures remaining, and the algorithm may still need modification to generate the desired properties. Finally, I advance the conjecture that in a setting where players may defect from the allocation provided by the mechanism, imposing short rank lists cannot shrink the equilibrium set without giving some players an incentive to defect from the market allocation.
-\end{abstract}
+%\begin{abstract}
+%	In its current iteration, this paper advances three avenues of thought on the size of the set of equilibria in matching markets, seeking to expand on the work by Immorlica and others who argue persuasively that rank list length is intimately related to core size. In section
+%	 \ref{sect:counterexample}
+%	 I develop an example where agents are content with short rank lists, preferences are highly correlated, and yet a large fraction of agents have more than one equilibrium allocation.  This section is well developed.  In section
+%	  \ref{sect:partition},
+%	  I develop a framework to partition markets in a way that I hope will shed light on why some markets have small equilibria sets, and others large equilibria sets. This section is a work in progress--there are a number op unproven conjectures remaining, and the algorithm may still need modification to generate the desired properties. Finally, I advance the conjecture that in a setting where players may defect from the allocation provided by the mechanism, imposing short rank lists cannot shrink the equilibrium set without giving some players an incentive to defect from the market allocation.
+%\end{abstract}
 
 
 \maketitle
@@ -59,12 +59,15 @@
 
 \section{Introduction}
 
-Matching markets without transfers are a very small part of the measured economy (comprising almost exclusively kidneys and marriage), however they are isomorphic to matching markets with fixed transfers (eg, the market for resident physicians), and close to isomorphic to the broader labor market, where cash transfers are nearly secondary to the identity of the firm, employee, and job description {Citation Needed}.  Centralized matching markets themselves encompass only a small fraction of the labor market, however the study of centralized matching markets plausibly sheds light on the broader matching of employees to jobs. Furthermore, there are a variety of markets, including nearly every academic job market and most entry-level job markets for new college graduates, where there is no obvious reason why a centralized once-a-year clearing house could not work, and yet do not have this structure. A better understanding of the strengths and limits of centralized markets could help us understand what inefficiencies exist in these markets, whether more efficient solutions are possible, and possibly allow for the design of more efficient markets. 
+%Matching markets without transfers are a very small part of the measured economy (comprising almost exclusively kidneys and marriage), however they are isomorphic to matching markets with fixed transfers (eg, the market for resident physicians), and close to isomorphic to the broader labor market, where cash transfers are nearly secondary to the identity of the firm, employee, and job description \{Citation Needed\}.  
+Centralized matching markets themselves encompass only a small fraction of the labor market, however the study of centralized matching markets plausibly sheds light on the broader matching of employees to jobs. Furthermore, there are a variety of markets, including nearly every academic job market and most entry-level job markets for new college graduates, where there is no obvious reason why a centralized once-a-year clearing house could not work, and yet do not have this structure. A better understanding of the strengths and limits of centralized markets could help us understand what inefficiencies exist in these markets, whether more efficient solutions are possible, and possibly allow for the design of more efficient markets. 
 
 Theory tells us that there is no matching mechanism that reliably produces a stable outcome wherein both sides have the incentive to report their preferences accurately (Roth 1985), however in practice many matching markets persist with both sides (apparently) reporting their preferences honestly  (Roth and Peranson 1999).  This result can be explained by the fact that in many of these markets the set of stable matchings is actually quite small.  For example, in the National Resident Matching Program (NRMP) matching of recently graduated physicians to resident positions, all but approximately 10 of 20,000 participants have a unique partner in the set of all stable matchings (Roth and Peranson 1999), and so in all but a very small number of cases any misrepresentation of preferences would lead to a less-prefered outcome. Roth and Peranson posit that the small set of stable matchings (SSM) of these markets is likely driven by the correlated nature of preferences, and by the fact that for highly correlated preferences, the SSM is very small.  In a parallel argument,  they note that finite preference lists, as is the case with the NRMP, lead to a very small SSM as well.  
 
 The concept of stable matchings is intuitively appealing in the same way the concept of the core is, but it also has empirical support as an equilibrium. In a review of systems that assign trainee physicians to hospitals in Great Brittan, the markets that produced stable matchings persisted with broad participation, while the markets that did not produce stable matchings failed, with large numbers of applicants and hospitals preempting the market and contracting before the market (Roth 2003).
-(Roth and Peranson 1999) use simulation to demonstrate these results, and (Immorlica and Mahdian 2005) and then (Kojima and Pathak 2009) build on this with the theoretical result that as the number of market participants grows, the SSM becomes arbitrarily small as a fraction of market size.  
+
+
+Roth and Peranson (1999) use simulation to demonstrate these results, and (Immorlica and Mahdian (2005) and then Kojima and Pathak (2009) build on this with the theoretical result that as the number of market participants grows, the SSM becomes arbitrarily small as a fraction of market size. This theoretical work takes short preference lists as a feature of preferences, and does not admit a preference structure where a positive measure of the potential matches can all be highly desirable to a positive measure of the market participants. 
 
 This paper extends these theoretical results to examine short rank lists in a setting that allows for more realistic preference formation and short rank lists. In this setting I show that short rank lists are not sufficient to ensure a small SSM.  Further, I characterize a partition over the universe of agents, and explore how that partition can be used to understand the size of the SSM and the magnitude of the difference in utility between the best and worst stable matchings an agent can receive.
 
@@ -72,223 +75,235 @@ This paper extends these theoretical results to examine short rank lists in a se
 \section{Model}
 \subsection{Preliminary Definitions}
 
-Let there be $M$ men and $W$ women, who together form the univgerse of participants $U = W \cup M$.  Each man has a strict preference relation over the set of women $\succ_{m}$, and women have likewise have preferences $\succ_w$ over men. A market is tuple $\Gamma \ (M,W, \succ_{M}, \succ_W)$ where $\succ_{M} = (\succ_{m})_{m \in M}$ and $\succ_W = (\succ_w)_{w \in W}$.
+Let there be $M$ men and $W$ women, who together form the universe of participants $U = W \cup M$.  Each man has a strict preference relation over the set of women he could be matched with and being unmatched, which we denote as being matched with himself. Therefore we say that he has preferences $\succ_{m}$ over the set $W \cup \{m\}$. Women have likewise have preferences $\succ_w$ over $M \cup \{w\}$. A market is tuple $\Gamma \ (M,W, \succ_{M}, \succ_W)$ where $\succ_{M} = (\succ_{m})_{m \in M}$ and $\succ_W = (\succ_w)_{w \in W}$.
 
-A matching $\phi$ is a mapping from $U$ onto itself such that (i) for every $m$, $|\phi(m)| = 1$, $\phi(m) \in W$ and for every  $w$, $|\phi(w)| = 1$, $\phi(w) \in M$, (ii) $\phi(m) = w$ iff $\phi(w) = m$.  That is, a matching is simply a one-to-one assignment of men to women.
+A matching $\phi$ is a mapping from $U$ onto itself such that (i) for every $m$, $|\phi(m)| = 1$, $\phi(m) \in W \cup \{m\} $ and for every  $w$, $|\phi(w)| = 1$, $\phi(w) \in M \cup \{w\}$, (ii) $\phi(m) = w$ iff $\phi(w) = m$.  That is, a matching is simply a one-to-one assignment of men to women. We also denote the set of all people matched in $\phi$ as $\{\phi\}$.
 
-We say a matching $\phi$ is blocked by a pair $\{m,w\}$ if $w \succ_m \phi(m)$ and $m \succ_w \phi(w)$.  A matching is stable if it is not blocked.
+We say a matching $\phi$ is blocked by a pair $\{m,w\}$ if $w \succ_m \phi(m)$ and $m \succ_w \phi(w)$. It is individually rational if $\forall a \in U ,\phi(a) \succeq a$. A matching is stable if it is individually rational and not blocked.
 
-The deferred acceptance mechanism is a mainstay of this paper. In the man-proposing version of this mechanism, the algorithm iteritavely selects a man $m$ who proposes to his most preferred woman who has not yet rejected him.  If she prefers him to her current tenative assignment, she holds his proposal and rejects her current assignment (if one exists). Otherwise, she rejects $m$.  This process repeats until all men are matched, and arrives at a stable matching that is weakly preferred by all men to any other stable matching.  We call this the man-optimal stable match.  A paralell result exists for the woman-proposing algorithm.
+\subsection{Deferred Acceptance}
+The deferred acceptance mechanism is a mainstay of this paper. In the man-proposing version of this mechanism, the algorithm iteritavely selects a man $m$ who proposes to his most preferred woman who has not yet rejected him, unless he has been rejected by all women who he prefers to being unmatched.  If she prefers him to her current tenative assignment (and prefers him to being unmatched), she holds his proposal and rejects her current assignment (if one exists). Otherwise, she rejects $m$.  This process repeats until all men are either tentatively matched or have run out of proposals to make, and arrives at a stable matching that is weakly preferred by all men to any other stable matching.  We call this the man-optimal stable match, because it is weakly preferred by all men to any other stable match.  A parallel result exists for the woman-proposing algorithm.
 
-\section{Analysis of small perturbations from perfect correlation}  \label{sect:counterexample}
-This section develops a proof technique to build a plausible example of a large market where preferences are highly correlated, rank lists can be short, and the market has multiple stable equilibria in the large market limit. 
+\subsection{Market Participants}
 
-\subsection{Example }
-The following is an example in which the two sides of the market are nearly perfectly correlated, rank lists can be short, but a constant non-zero fraction of the market has more than one stable matching.
-\begin{itemize}
-	\item To construct this market, first consider countable men indexed $\{ m_0, m_1, ...\}$ and women indexed $\{ w_0, w_1, ...\}$
+The market consists of $n$ men and $n$ women,  indexed $\{ m_1, m_2, ... ,m_n\}$ and women indexed $\{ w_1, w_2, ... ,w_n\}$
 	
-	\item Now, to begin, assign preferences such that, for each man $m_i$, woman $w_j$ is preferred to woman $w_{j'}$ iff $j' > j$, and for each woman $w_j$, man $m_i$ is preferred to woman $m_{i'}$ iff $i' > i$.  In other words, all women agree that man $m_0$ is most preferred, and so on. 
-	
+Each man's preference list by first ranking all women according to their index number, so $w_1$ is his favorite, $w_n$ his least favorite, and so on.  
+With probability $\epsilon$ he transposes the rankings of his first and second favorite woman, then with probability $\epsilon$ he transposes the rankings of his second and third favorite women, and so on through his list.
+%He then simultaneously exposes all entries on his list to a Poisson process with an expected success rate of $\epsilon$, for one unit of time. If the entry for woman $w_i$ experiences a Poisson success, he promotes her by one position on his rank list. 
+The women form their preferences in the same way.
 
-	
-	\item Next, we perturb the preferences of men by the following process.  All entries on each man's preference list are simultaneously exposed to a Poisson process, with an expected success rate of $\epsilon$, for one unit of time. If the entry for woman $w_i$ on the preference list of man $m_j$ experiences a Poisson success, he switches her with the woman she is immediately preferred to on his preference list, unless she is already his first choice. (I.e. he promotes her by one position on his rank list).
-	
-	
-	For a given matching $\phi$ we categorize perturbations to a man $m_j$'s rank list as follows:
-	\begin{itemize}
-		\item Upward: The Poisson process hits the entry for $\phi(m_j)$
-
-		
-		\item Downward: The Poisson process hits the entry in $m_j$'s list immediately dis-preferred to $\phi(w_j)$
-		\item Irrelevant: The Poisson process hits any other entry 
-		
-	\end{itemize}
-	
-	Now we repeat the perturbation process for the women, applying the same categorizations.
+In this way, we arrive at a preference structure where agents all broadly agree on which matches are desirable, but have idiosyncratic preference variation.
 	
 
-\end{itemize}
-
-
-\subsection{Framework of the math}
-
-Now I develop a framework to analyze the above example
-\begin{deff}
-	Next Preferred Available Woman (NPAW): each man's NPAW is the man's most preferred woman who is neither currently his match, nor is matched to a man she prefers to him. 
-\end{deff}
-
-\begin{deff}
-	Immediately preferred: $m_i$ is immediately preferred to $m_{i'}$ by woman $w_j$ if she prefers  $m_{i}$ to $m_{i'}$ and there is no other man $m_{i''}$ such that she prefers $m_{i''}$ to $m_{i'}$, but not $m_{i}$.
-\end{deff}
-
-
-
-\begin{lemma}
-	Consider the stable matching $\phi$ under complete preferences. This algorithm will terminate at  $\phi^w$, the woman optimal stable matching.
-	\begin{enumerate}
-		\item Each man points to the current partner of his NPAW
-		\item Identify any cycles
-		\item \label{new_match} In each cycle, each man re-matches with his NPAW
-		\item repeat until no more cycles are identified
-	\end{enumerate}
-\end{lemma}
-\begin{proof}
-	\begin{enumerate}
-		\item 	First we show by contradiction that the matching after step \ref{new_match} is stable (call this matching $\phi$):
-		\begin{enumerate}
-			\item \label{proof_w_pref_m_to_phi} $ m \succ_w \phi(w)$ 
-			\begin{itemize}
-				\item Suppose there exists a blocking pair $\{m,w\}$ to the new match $\phi '$.
-				\item  $ m \succ_w \phi'(w)$ as ${m,w}$ blocks $\phi'$
-				\item $ \phi'(w) \succsim_w \phi(w)$ by construction
-				\item thus $ m \succ_w \phi(w)$ 
-			\end{itemize}
-			\item $ \phi(m) \succ_m w \succ_m \phi'(m)$
-			\begin{itemize}
-				\item $\phi(m) \succ_m w$  by combing   conclusion \ref{proof_w_pref_m_to_phi} with the fact that ${m,w}$ does not block $\phi$ 
-				\item $w \succ_m \phi'(m)$
-			\end{itemize}
-		This is a contradiction, since $\phi'(m)$ is $m$'s NPAW in matching $\phi$
-		\end{enumerate}	
-		\item Now, we show by contradiction that the algorithm terminates on the woman-optimal stable matching
-		\begin{itemize}
-			\item Suppose the algorithm stops at stable matching $ \phi ' \neq \phi ^w$, and call $M_c$ the set of agents for whom $ \phi '(m) \neq \phi ^w(m)$ or $\phi'(w) \neq \phi^w(w)$
-			\item Since the algorithm has terminated, there is some man $m \in M_c$ whose NPAW is not in  $M_c$ (otherwise there would be a cycle).  
-			\item now consider $w = \phi^w(m)$: Since $\phi^w$ is woman optimal and man pessimal, $ \phi'(m)\succ_m w$ and $m \succ_w \phi'(w)$
-			\item since $w$ is in $M_c$, she is not $m$'s NPAW, so he must have some other NPAW $w^*$ for whom:
-			\begin{itemize}
-				\item $m \succ_{w^*} \phi'(w^*)$
-				\item $\phi'(m) \succ_m w^* \succ_m w$
-				\item $\phi'(w^*) = \phi^w(w^*)$
-			\end{itemize} 
-			\item Thus $\{m,w^*\}$ blocks $\phi^w$, a contradiction
-		\end{itemize}
-	\end{enumerate}
-\end{proof}
-
-\subsection{Putting it together}
-\begin{itemize}
-
-	\item First consider man proposing DA with $\epsilon = 0$. Each man $m_i$'s NPAW is $m_{i+1}$, so there are no cycles, and there is exactly one stable matching
-
-	\item Now consider if man $m_i$ has had an upwards perturbation, and $w_{i-1}$ has a downward perturbation. The relevant preference lists are given below, with the man-optimal stable matchings underlined:
-	\begin{itemize}
-		\item $m_i$: $\{...,w_{i-2}, \underline{w_i}, w_{i-1},...\}$
-		\item $w_{i-1}$: $\{...,\underline{m_i}, m_{i-1}, m_{i+1}, ...\}$
-		\item $m_{i-1}$: $\{...,\underline{w_{i-1}}, w_i, ...\}$
-		\item $w_i$: $\{...,m_{i-1}, \underline{m_i},...\}$
-	\end{itemize} 
-	We see that $m_i$ and $m_{i-1}$ are each matched to their NPAW, inducing a cycle and thus multiple stable matches.
-	\item Next consider if man $m_i$ has had a downward perturbation and woman $w_{i+1}$  experiences an upwards perturbation. The relevant   preference lists are given below, with the man-optimal stable matchings underlined:
-	\begin{itemize}
-		\item $m_i$: $\{...,w_{i-1}, \underline{w_{i+1}}, w_{i},...\}$
-		\item $w_{i}$: $\{...,m_i,\underline{m_{i+1}}, ...\}$
-		\item $w_{i+1}$: $\{...,m_{i-1}, m_{i+1}, \underline{m_i},...\}$
-		\item $m_{i+1}$: $\{...,\underline{w_{i}}, w_{i+1}, ...\}$
-
-	\end{itemize} 
-		We see that $m_i$ and $m_{i+1}$ are each matched to their NPAW, inducing a cycle and thus multiple stable matches.
 	
-	\item  For small $\epsilon$ values,  each man expects to be involved in one of these cycles with probability $2 \epsilon^2$, regardless of the size of the market.
-	
-	\item Finally, since perturbations are rare, agents are nearly guaranteed to match within a very small range around the match they would have if $\epsilon = 0$, so  a short rank list is equivalent to listing complete preferences. 
-\end{itemize}
+\section{Analysis}
+
+To analyze this market we first need two separate mathematical results, one to partition the market into smaller segments that we can analyze separately, and one to help us identify cases with several stable matches.
 
 
+\subsection{An Algorithm to Partition the Market} \label{subsect:partition}
 
+To begin, call $U_0 = M \cup W$, define $p_1(m)$ is man $m$'s first choice among $U_0$, and likewise for women.
 
-\section{An Algorithm to Partition the Market} \label{sect:partition}
-This is a related approach: I conjecture that it will be conceptually valuable to partition the market into ``segments'' that are functionally separate .  To do this, 
-
-
-Call the universe of unmatched participants $U$, the first choice of man $m$ among the unmatched women $p_1(m)$, and likewise for women.
-
-
-To to find the first partition, initialize each $m_i$ with the attribute $m_i.R = \emptyset$. Then choose arbitrary $m$, then select $w = p_1(m)$, $m' = p_1(w)$, and so on, until a cycle is found. Call the members of that cycle $C^*$. Initialize counter $i = 1$  The algorithm proceeds as follows: 
+Next choose $m$, the man in $U_0$ with the lowest index number, and select $w = p_1(m)$, $m' = p_1(w)$, and so on, until a cycle is found. Call the members of that cycle $C^*$.  The algorithm proceeds as follows: 
 
 
 \begin{enumerate}
-	\item for each man $m$ in $C^*$, add $p_1(m)$ to $m.R$ (likewise for women)
-	\item  \label{seg_alg:comp} for each man $m$ in $U$, add to $m.R$ as needed so that for any $m$ and $w$, if $m \in w.R$, then $w \in m.R$  (likewise for women)
-	\item  \label{seg_alg:ext} for each man $m$ in $U$ such that $m.R \neq \emptyset$, call  $w_p$ his least preferred woman in $m.R$, and add to $m.R$ such that if $w \succ_{m} w_p$, then $w \in m.R$ (likewise for women)
-	\item if any additions are made to any $m.R$ or $w.R$ in step \ref*{seg_alg:ext}, return to step \ref*{seg_alg:comp}, otherwise proceed
-	\item call $C_0$ the set of all agents for whom $m.R$ or $w.R$ is nonempty
-	\item  call $\phi_{m0}$ the man optimal stable matching on $C_0$
+	\item define the correspondence $R$ from $U_0$ to $\mathcal{P}(U_0)$ such that $\forall a \in U_0, R(a) = \emptyset$
+	\item for each $a \in C^*$, alter $R$ by replacing $R(a)$ with  $R(a) \cup \{p_1(m)\}$
+	\item  \label{seg_alg:comp} for each $a \in U_0$, and $b \in U_0$, if $ b \in R(a)$ replace $R(b) = \{a\} \cup R(b)$
+	\item  \label{seg_alg:ext} for each $a \in U_0$ such that $R(a) \neq \emptyset$, call  $c$ their least preferred member of $R(a)$. Now, for each $d \in U_0 | d \succ_a c$, replace $R(a) = R(a) \cup d$ 
+	\item if $R$ has been altered in step \ref*{seg_alg:comp} or \ref*{seg_alg:ext}, return to step \ref*{seg_alg:comp}, otherwise proceed
+	\item call $C_0$ the set of all agents for whom $R(a) \neq \emptyset$
+	\item Perform man-proposing deferred acceptance on $C_0$, and call the result $\phi_{m0}$
 \end{enumerate}
 
-To find the next partition, remove all men and women matched in $\phi_{m0}$ from $U$, and repeat the entire process to find $C_1$ and $\phi_{m1}$
+To find the next partition, call $U_1 = U_0 \setminus \{\phi_{m0}\}$, and repeat the entire process to find $C_1$ and $\phi_{m1}$
 
 \begin{lemma}
-	$\phi_{mi}$ is a re-arrangement of the matched agents in $\phi_{wi}$
+	$\{\phi_{mi}\}=\{\phi_{wi}\}$
 \end{lemma}
 \begin{proof}
-	This is an application of the rural hospitals theorem
+	This is an application of the rural hospitals theorem, which says that the set of unmatched agents is the same in all stable matchings \cite{Roth1986}.
 \end{proof}
 
-\begin{prop}
+\begin{prop} \label{prop:equiv}
 	$\phi_m = \{\phi_{m0}, \phi_{m1}, ...\}$ is identical to the man proposing deferred acceptance matching $\Phi_m $
 \end{prop}
 \begin{proof}
 	First we prove this for $\phi_{m0}$, proceeding by contradiction.  Call $w = \phi_{m0}(m) \neq \Phi_m(m)$
 	
+	Call $m' = \Phi_m(w)$
+	
 	Either $m'\succ_w m$ or $m \succ_w m'$. We will handle each case separately.
 	
 	First suppose $m'\succ_w m$
 	\begin{itemize}
-		\item $m'$ must never have proposed to $w$, and so must be matched to $w' = \phi_{m0}(m)$ where $w' \succ w$
+		\item Since $w$ is always matched to her favorite man of all who ever propose to her, $m'$ must never have proposed to $w$. Since men propose in descending order of prefernce until all acceptable options are exhausted, $m'$ must be matched to $w' = \phi_{m0}(m')$ where $w' \succ_{m'} w$
 		\item call $m'' = \Phi_m (w')$
-		\item as the pair $\{m', w'\}$ do not block $\Phi_m$, $m'' \succ_{w'} m'$
-		\item we now have a sequence $\{m,w,m',w',m'',...\}$ contained within the finite set $C$, and thus we have a cycle such that each man prefers the woman he is matched with in  $\phi_{m0}$, and each women prefers her match in $\Phi_m$
-		\item this cycle represents a pareto improvement over  $\Phi_m$ for men, and thus there must be an interrupter in $U \setminus C$ such that he forms a blocking pair with one of the women in this cycle. 
-		\item the man should have been added to $C$ at step \ref*{seg_alg:ext}, thus a contradiction
+		\item as the pair $\{m', w'\}$ are not a blocking pair for $\Phi_m$, $m'' \succ_{w'} m'$
+		\item we can continue as above to form the infinate sequence $\{m,w,m',w',m'',...\}$ contained within the finite set $C_0$. Since this is an infinite sequence on a finite set, we have a cycle such that each man prefers the woman he is matched with in  $\phi_{m0}$, and each women prefers her match in $\Phi_m$
+		\item this cycle represents a pareto improvement over  $\Phi_m$ for men, and thus it cannot be a stable matching on $U$.  So there must be a man in $U \setminus C_0$ such that he forms a blocking pair with one of the women in this cycle. 
+		\item the man should have been added to $C_0$ at step \ref*{seg_alg:ext}, thus a contradiction
 	\end{itemize}
 	Now suppose  $m \succ_w m'$
- 	\begin{itemize}
- 		\item call $w^a = \Phi_m(m)$
- 		\item as $\{m,w\}$ do not block $\phi_{m0}$, $w^a \succ_{m} w$
- 		\item call $m^a = \phi_{m0}(w^a)$
- 		\item now as $\{m,w^a\}$ do not block $\Phi_m$, $m^a \succ_{w^a} m $
- 		\item we now have a cycle where $\Phi_m$ is a pareto improvement over $\phi_{m0}$ for men
- 		\item this implies an interrupter in $C \setminus U$, which is an empty set, a contradiction.
- 	\end{itemize}
+	\begin{itemize}
+		\item call $w^a = \Phi_m(m)$
+		\item as $\{m,w\}$ do not block $\phi_{m0}$, $w^a \succ_{m} w$
+		\item call $m^a = \phi_{m0}(w^a)$
+		\item now as $\{m,w^a\}$ do not block $\Phi_m$, $m^a \succ_{w^a} m $
+		\item now call $w^b=\Phi_m(m^a)$ and continue as above to form an infinite sequence on the finite set $C_0$
+		\item we now have a cycle where $\Phi_m$ is a pareto improvement over $\phi_{m0}$ for men
+		\item Since this is a stable match in $U$ but not in $C_0$,  there must be a man in $C_0 \setminus U $ such that he forms a blocking pair with one of the women in this cycle.
+		\item $C_0 \subseteq U$, so $C_0 \setminus U  = \emptyset$, and so we have a contradiction
+		
+	\end{itemize}
 	Thus $\phi_{m0}$ is a subset of $\Phi_m$
 	
-We now note that after removing $\phi_{m0}$ from U, the same logic holds, and the proof continues by induction. 
+	We now note that after removing $\phi_{m0}$ from U, the same logic holds, and the proof continues by induction. 
 \end{proof}
+
+
 \begin{prop}
 	If there is a man $m \in \{C_i  \setminus \phi_i\}$ then there is no woman $w \in \{C_i  \setminus \phi_i\}$
 \end{prop}
 \begin{proof}
-	This is obvious as all participants rank all other participants
+	As all participants rank all other participants, if there were an unmatched man and woman, they would wish to match with each other.
 \end{proof}
-	
-\begin{conj}
-	A non-trivial partition of the market has more than one stable allocation if it is balanced
-\end{conj}
-	each man is inclrded because he was prefered to some woman's match in the mpda matching.  thus he has a NPAW.  If each man has an NPAW, then there is a cycle, and thus an alternats stable matching.
-\begin{conj}
-		A partition of the market has only one stable allocation if it is not balanced
-\end{conj}
-	
 
-\section{A Conjecture on short rank lists}
-\begin{conj}
-	 In a setting where players may defect from the allocation provided by the mechanism, imposing short rank lists cannot shrink the equilibrium set without giving some players an incentive to defect from the market allocation.
-\end{conj}
+\begin{prop}
+	$\phi_{mi}$ depends only on the preferences held by the agents in $ \{C_0 \cup C_1 \cup  ...\cup C_i\}$
+\end{prop}
 \begin{proof}
-	The basic idea here is that short rank lists shrink the Equilibrium set by forcing agents to leave unranked (ie declare unacceptable) matches that they would have in their less prefered allocations.  If they have enough information to choose this cutoff optimally, then they wouldnt need to be forced to use a short rank list (they would do so anyway).  If, however, they don't have very good information, then they will sometimes be unmatched, and be able to induce someone to defect from the allocation with them. 
+
+	Given proposition \ref{prop:equiv}, it is sufficient to show that there is no set of preferences that could be held by $U \setminus \{C_0 \cup C_1 \cup  ...\cup C_i\}$ that would change the makeup of $C_i$. 
+	
+	Since no member of $C^*$ holds any member of $U \setminus \{C_0 \cup C_1 \cup  ...\cup C_i\}$  as their first choice, no other preference profile held by members of $U \setminus \{C_0 \cup C_1 \cup  ...\cup C_i\}$ would alter the composition of $C^*$.
+	
+	Since steps \ref{seg_alg:comp} and \ref{seg_alg:ext} of the algorithm in subsection \ref{subsect:partition} only depend on the preferences of individuals for whom $R(a)\neq \emptyset$, no preferences held by any member of the set $U \setminus \{C_0 \cup C_1 \cup  ...\cup C_i\}$ influences the workings of the algorithm.
+	
+	Thus, the  preferences of  $U \setminus \{C_0 \cup C_1 \cup  ...\cup C_i\}$ are irrelevant to $\phi_{mi}$
 \end{proof}
+
+%\begin{conj}
+%	A non-trivial partition of the market has more than one stable allocation if it is balanced
+%\end{conj}
+%each man is inclrded because he was prefered to some woman's match in the mpda matching.  thus he has a NPAW.  If each man has an NPAW, then there is a cycle, and thus an alternats stable matching.
+%\begin{conj}
+%	A partition of the market has only one stable allocation if it is not balanced
+%\end{conj}
+
+%\subsection{Method of identifying multiple stable matches}
+%\begin{deff}
+%	Next Preferred Available Woman (NPAW): each man's NPAW is the man's most preferred woman who is neither currently his match, nor is matched to a man she prefers to him. 
+%\end{deff}
+%
+%\begin{deff}
+%	Immediately preferred: $m_i$ is immediately preferred to $m_{i'}$ by woman $w_j$ if she prefers  $m_{i}$ to $m_{i'}$ and there is no other man $m_{i''}$ such that she prefers $m_{i''}$ to $m_{i'}$, but not $m_{i}$.
+%\end{deff}
+%
+%
+%
+%\begin{lemma}
+%	Consider the stable matching $\phi$ under complete preferences. This algorithm will terminate at  $\phi^w$, the woman optimal stable matching.
+%	\begin{enumerate}
+%		\item Each man points to the current partner of his NPAW
+%		\item Identify any cycles
+%		\item \label{new_match} In each cycle, each man re-matches with his NPAW
+%		\item repeat until no more cycles are identified
+%	\end{enumerate}
+%\end{lemma}
+%\begin{proof}
+%	\begin{enumerate}
+%		\item 	First we show by contradiction that the matching after step \ref{new_match} is stable (call this matching $\phi$):
+%		\begin{enumerate}
+%			\item \label{proof_w_pref_m_to_phi} $ m \succ_w \phi(w)$ 
+%			\begin{itemize}
+%				\item Suppose there exists a blocking pair $\{m,w\}$ to the new match $\phi '$.
+%				\item  $ m \succ_w \phi'(w)$ as ${m,w}$ blocks $\phi'$
+%				\item $ \phi'(w) \succsim_w \phi(w)$ by construction
+%				\item thus $ m \succ_w \phi(w)$ 
+%			\end{itemize}
+%			\item $ \phi(m) \succ_m w \succ_m \phi'(m)$
+%			\begin{itemize}
+%				\item $\phi(m) \succ_m w$  by combing   conclusion \ref{proof_w_pref_m_to_phi} with the fact that ${m,w}$ does not block $\phi$ 
+%				\item $w \succ_m \phi'(m)$
+%			\end{itemize}
+%		This is a contradiction, since $\phi'(m)$ is $m$'s NPAW in matching $\phi$
+%		\end{enumerate}	
+%		\item Now, we show by contradiction that the algorithm terminates on the woman-optimal stable matching
+%		\begin{itemize}
+%			\item Suppose the algorithm stops at stable matching $ \phi ' \neq \phi ^w$, and call $M_c$ the set of agents for whom $ \phi '(m) \neq \phi ^w(m)$ or $\phi'(w) \neq \phi^w(w)$
+%			\item Since the algorithm has terminated, there is some man $m \in M_c$ whose NPAW is not in  $M_c$ (otherwise there would be a cycle).  
+%			\item now consider $w = \phi^w(m)$: Since $\phi^w$ is woman optimal and man pessimal, $ \phi'(m)\succ_m w$ and $m \succ_w \phi'(w)$
+%			\item since $w$ is in $M_c$, she is not $m$'s NPAW, so he must have some other NPAW $w^*$ for whom:
+%			\begin{itemize}
+%				\item $m \succ_{w^*} \phi'(w^*)$
+%				\item $\phi'(m) \succ_m w^* \succ_m w$
+%				\item $\phi'(w^*) = \phi^w(w^*)$
+%			\end{itemize} 
+%			\item Thus $\{m,w^*\}$ blocks $\phi^w$, a contradiction
+%		\end{itemize}
+%	\end{enumerate}
+%\end{proof}
+
+\subsection{Analyzing the model}
+
+We begin by partitioning the market as in subsection \ref{subsect:partition} . 
+
+With probability $p= \epsilon^2(1-\epsilon)^2$, $w_1$ and $m_2$ invert their first and second choices, yielding the following preference lists with the man-optimal stable matching  underlined, and the woman optimal matching denoted with a bar.
+	\begin{itemize}
+		\item $m_{1}$: $\{\underline{w_{1}}, \overline{w_2}, ...\}$
+		\item $m_2$: $\{ \underline{w_2}, \overline{w_{1}},...\}$
+		\item $w_{1}$: $\{\overline{m_2}, \underline{m_{1}},...\}$
+		\item $w_2$: $\{...,\overline{m_{1}}, \underline{m_2},...\}$
+	\end{itemize} 
+$\{m_1, m_{2},w_1, w_{2}\}$ form a set $C$, and within that set the match $\phi_m = \{m_{i-1}:w_{i-1}\},\{m_i:w_i\}$ and the match $\phi_w = \{m_{i-1}:w_{i}\},\{m_i:w_{i-1}\}$ are both stable assignments.   
+
+
+Next consider a similar but different set of preferences (a scenario that also occurs with probability $p= \epsilon^2(1-\epsilon)^2$).  The man-optimal stable matching is underlined, and the woman optimal matching is denoted with a bar.
+
+	\begin{itemize}
+		\item $m_1$: $\{...,\underline{w_{2}}, \overline{w_{1}},...\}$
+		\item $m_{2}$: $\{...,\underline{w_{1}}, \overline{w_{2}}, ...\}$
+		\item $w_{1}$: $\{...,\overline{m_1},\underline{m_{2}}, ...\}$
+		\item $w_{2}$: $\{...,\overline{m_{2}}, \underline{m_1},...\}$
+
+
+	\end{itemize} 
+
+
+
+	 We can see that $m_1$ and $m_2$ expect to be involved in one of these cycles with probability $p= 2\epsilon^2(1-\epsilon)^2$.
+	
+	Next we must show that this possibility is very likely to apply to each man, and so each agent is involved in such a cycle with a probability of approximately $p \approx 4\epsilon^2(1-\epsilon)^2$.
+	
+	
+	 Finally, I need to bound the chances of a ``far away" match to show that nobody would mind submitting a short rank list.
+
+
+
+
+%
+%
+%\section{A Conjecture on short rank lists}
+%\begin{conj}
+%	 In a setting where players may defect from the allocation provided by the mechanism, imposing short rank lists cannot shrink the equilibrium set without giving some players an incentive to defect from the market allocation.
+%\end{conj}
+%\begin{proof}
+%	The basic idea here is that short rank lists shrink the Equilibrium set by forcing agents to leave unranked (ie declare unacceptable) matches that they would have in their less prefered allocations.  If they have enough information to choose this cutoff optimally, then they wouldnt need to be forced to use a short rank list (they would do so anyway).  If, however, they don't have very good information, then they will sometimes be unmatched, and be able to induce someone to defect from the allocation with them. 
+%\end{proof}
 
 \bibliographystyle{aea}
-\bibliography{library}
+\bibliography{../../library}
 
 % The appendix command is issued once, prior to all appendices, if any.
 \appendix
 
 
 
-\section{Mathematical Appendix}
+%\section{Mathematical Appendix}
 
 
 \end{document}
