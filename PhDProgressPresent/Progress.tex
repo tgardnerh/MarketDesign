@@ -1,0 +1,129 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Overleaf (WriteLaTeX) Example: Molecular Chemistry Presentation
+%
+% Source: http://www.overleaf.com
+%
+% In these slides we show how Overleaf can be used with standard 
+% chemistry packages to easily create professional presentations.
+% 
+% Feel free to distribute this example, but please keep the referral
+% to overleaf.com
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% How to use Overleaf: 
+%
+% You edit the source code here on the left, and the preview on the
+% right shows you the result within a few seconds.
+%
+% Bookmark this page and share the URL with your co-authors. They can
+% edit at the same time!
+%
+% You can upload figures, bibliographies, custom classes and
+% styles using the files menu.
+%
+% If you're new to LaTeX, the wikibook is a great place to start:
+% http://en.wikibooks.org/wiki/LaTeX
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{beamer}
+
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}       % or try default, Darmstadt, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{serif}    % or try default, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{chemfig}
+\usepackage[version=3]{mhchem}
+%allows for strikeout:
+\usepackage[normalem]{ulem}
+% On Overleaf, these lines give you sharper preview images.
+% You might want to `comment them out before you export, though.
+\usepackage{pgfpages}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\pgfpagesuselayout{resize to}[%
+  physical paper width=8in, physical paper height=6in]
+
+% Here's where the presentation starts, with the info for the title slide
+\title[Phd Status]{Status Update for PhD Progress}
+\author{Tyler Hoppenfeld}
+\institute{UC Davis}
+\date{\today}
+
+\newtheorem{thm}{Theorm}
+\newtheorem{prop}{Proposition}
+
+\newtheorem{deff}{Definition}
+\usepackage{graphicx}
+\graphicspath{ {../} }
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% These three lines create an automatically generated table of contents.
+\begin{frame}{Outline for Today}
+  \tableofcontents
+\end{frame}
+
+\section{Goals}
+
+\subsection{Seek MD specific feedback}
+
+\begin{frame}
+	EG Kojima, on committee?
+\end{frame}
+
+
+\subsection{Oral in ~2 Months?}
+
+\begin{frame}
+placeholder
+\end{frame}
+
+\subsection{3 \emph{Good} Papers}
+
+\begin{frame}
+	placeholder
+\end{frame}
+
+\section{Research Agenda}
+\subsection{Animating Conjecture}
+\begin{frame}
+	Early contracting will  result from a matching process where there is lots of scope for strategy 
+\end{frame}
+
+\subsection{Pieces of this}
+\subsubsection{Characterize early contracting}
+\begin{frame}
+	This is my ``Unraveling'' line of work
+\end{frame}
+
+\subsubsection{Characterize when matching games have `large' cores}
+\begin{frame}
+	This is my  most current work
+\end{frame}
+
+\subsubsection{Formally combine these ideas}
+\begin{frame}
+	This is ambitious--I'd like to say something in general about matching markets where the choice to participate is a strategic option.  
+\end{frame}
+
+
+\end{document}
