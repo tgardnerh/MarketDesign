@@ -56,6 +56,9 @@
     filecolor=magenta,      
     urlcolor=cyan,
 }
+\usepackage{ amssymb }
+\usepackage[abbr]{harvard}
+
 \pgfpagesuselayout{resize to}[%
   physical paper width=8in, physical paper height=6in]
 
@@ -84,23 +87,37 @@
 
 \section{Goals}
 
+\subsection{Oral in ~6 Months?}
+
+\begin{frame}{Oral in ~6 Months?}
+	\begin{itemize}
+		\item Discuss timing for oral exam
+	\end{itemize}
+\end{frame}
+
 \subsection{Seek MD specific feedback}
 
-\begin{frame}
-	EG Kojima, on committee?
+\begin{frame}{Seek MD specific feedback}
+	\begin{itemize}
+		\item Fujito Kojima seems like a good place to start once i have something short and polished
+		\item Should I seek out a market design specialist to have on my committee?
+	\end{itemize}
 \end{frame}
 
 
-\subsection{Oral in ~2 Months?}
 
-\begin{frame}
-placeholder
-\end{frame}
+
 
 \subsection{3 \emph{Good} Papers}
 
-\begin{frame}
-	placeholder
+\begin{frame}{3 \emph{Good} Papers}
+	\begin{itemize}
+		\item I want to finish up reasonably soon, but definitely don't want to skimp on paper quality
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Outline for Today}
+	\tableofcontents
 \end{frame}
 
 \section{Research Agenda}
@@ -111,19 +128,256 @@ placeholder
 
 \subsection{Pieces of this}
 \subsubsection{Characterize early contracting}
-\begin{frame}
-	This is my ``Unraveling'' line of work
+\begin{frame}{Characterize early contracting}
+	\begin{itemize}
+		\item This is my ``Unraveling'' line of work
+		\item In this line of work I have a model where there is a self-fulfilling process of early contracting that is welfare destroying (the state where all participate in the organized market is pareto preferred to equilibrium) 
+	\end{itemize}
 \end{frame}
 
 \subsubsection{Characterize when matching games have `large' cores}
-\begin{frame}
-	This is my  most current work
+\begin{frame}{Characterize when matching games have `large' cores}
+	This is my  most current work, which I will reprise in detail below
+\end{frame}
+
+
+\subsubsection{Characterize the strategic interactions within the matching game}
+\begin{frame}{Characterize the strategic interactions within the matching game}
+	I believe this to be an intractable problem in the general case but I think I can solve it in my simpler model of preferences that we have been looking at more recently
 \end{frame}
 
 \subsubsection{Formally combine these ideas}
-\begin{frame}
-	This is ambitious--I'd like to say something in general about matching markets where the choice to participate is a strategic option.  
+\begin{frame}{Formally combine these ideas}
+	\begin{itemize}
+		\item This is ambitious--I'd like to say something in general about matching markets where the choice to participate is a strategic option.  
+		\item I believe this is also the biggest gap in market design. MD mechanisms are embedded in a larger dame that the designers do not control, and thats not well enough covered in the literature yet
+	\end{itemize}
+	 
 \end{frame}
+
+\begin{frame}{Outline for Today}
+	\tableofcontents
+\end{frame}
+
+\section{Technical Summary of `Large Core' Work}
+\begin{frame}{Technical Summary of `Large Core' Work}
+	the following is a technical summary of my work on the size of the set of stable matches
+\end{frame}
+
+\begin{frame}{Model Definitions}
+	\begin{itemize}
+		\item  $M$ men and $W$ women: $U = W \cup M$.  
+		\item Men have preferences $\succ_{m}$ over $W \cup \{m\}$ and women likewise
+		\item A matching $\phi$ is a mapping from $U$ onto itself such that 
+		\begin{itemize}
+			\item for every $m$, $|\phi(m)| = 1$, $\phi(m) \in W \cup \{m\} $ and for every  $w$, $|\phi(w)| = 1$, $\phi(w) \in M \cup \{w\}$
+			\item $\phi(m) = w$ iff $\phi(w) = m$
+		\end{itemize}
+	\item $\phi$ is blocked by a pair $\{m,w\}$ if $w \succ_m \phi(m)$ and $m \succ_w \phi(w)$ 
+	\item It is individually rational if $\forall a \in U ,\phi(a) \succeq a$ 
+	\item $\phi$ is stable if it is individually rational and not blocked
+	\end{itemize}
+\end{frame}
+\begin{frame}{Deferred Acceptance}
+	The deferred acceptance mechanism is a mainstay of this paper. In the man-proposing version of this mechanism, the algorithm iteritavely selects a man $m$ who proposes to his most preferred woman who has not yet rejected him, unless he has been rejected by all women who he prefers to being unmatched.  If she prefers him to her current tenative assignment (and prefers him to being unmatched), she holds his proposal and rejects her current assignment (if one exists). Otherwise, she rejects $m$.  This process repeats until all men are either tentatively matched or have run out of proposals to make, and arrives at a stable matching that is weakly preferred by all men to any other stable matching.  We call this the man-optimal stable match, because it is weakly preferred by all men to any other stable match.  A parallel result exists for the woman-proposing algorithm.
+
+\end{frame}
+
+\begin{frame}{Market Participants}
+	
+\begin{itemize}
+	\item $n$ men and $n$ women
+	\item indexed $\{ m_1, m_2, ... ,m_n\}$ and $\{ w_1, w_2, ... ,w_n\}$
+	\item Preference formation
+	\begin{itemize}
+		\item $m_1$ first ranks all women according to their index number, so $w_1$ is his favorite, $w_n$ his least favorite, and so on.  
+		\item With probability $\epsilon$ he transposes the rankings of his first and second favorite woman, then with probability $\epsilon$ he transposes the rankings of his second and third favorite women, and so on through his list.
+		\item each man and woman also forms their preferences the same way
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+ \begin{frame}{An Algorithm to Partition the Market}
+ 	Setup: 
+ 	\begin{itemize}
+ 		\item 	$U_0 = M \cup W$, define $p_1(m)$ is man $m$'s first choice among $U_0$, and likewise for women.
+ 		\item  $m$, the man in $U_0$ with the lowest index number, and select $w = p_1(m)$, $m' = p_1(w)$, and so on, until a cycle is found. Call the members of that cycle $C^*$.  
+ 	\end{itemize}
+ 
+  \end{frame}
+
+ \begin{frame}{An Algorithm to Partition the Market}
+	Process:
+	\begin{enumerate}
+		\item define the correspondence $R$ from $U_0$ to $\mathcal{P}(U_0)$ such that $\forall a \in U_0, R(a) = \emptyset$
+		\item for each $a \in C^*$, alter $R$ by replacing $R(a)$ with  $R(a) \cup \{p_1(m)\}$
+		\item  \label{seg_alg:comp} for each $a \in U_0$, and $b \in U_0$, if $ b \in R(a)$ replace $R(b) = \{a\} \cup R(b)$
+		\item  \label{seg_alg:ext} for each $a \in U_0$ such that $R(a) \neq \emptyset$, call  $c$ their least preferred member of $R(a)$. Now, for each $d \in U_0 | d \succ_a c$, replace $R(a) = R(a) \cup d$ 
+		\item if $R$ has been altered in step \ref*{seg_alg:comp} or \ref*{seg_alg:ext}, return to step \ref*{seg_alg:comp}, otherwise proceed
+		\item call $C_0$ the set of all agents for whom $R(a) \neq \emptyset$
+		\item Perform man-proposing deferred acceptance on $C_0$, and call the result $\phi_{m0}$
+	\end{enumerate}
+	
+	To find the next partition, call $U_1 = U_0 \setminus \{\phi_{m0}\}$, and repeat the entire process to find $C_1$ and $\phi_{m1}$
+	
+\end{frame}
+
+ \begin{frame}{An Algorithm to Partition the Market}
+	Iterate:
+	
+	To find the next partition, call $U_1 = U_0 \setminus \{\phi_{m0}\}$, and repeat the entire process to find $C_1$ and $\phi_{m1}$
+	
+
+\end{frame}
+
+ \begin{frame}{An Algorithm to Partition the Market}
+	\begin{lemma}
+		$\{\phi_{mi}\}=\{\phi_{wi}\}$
+	\end{lemma}
+	\begin{proof}
+		This is an application of the rural hospitals theorem, which says that the set of unmatched agents is the same in all stable matchings \cite{Roth1986}.
+	\end{proof}
+\end{frame}
+
+\begin{frame}{An Algorithm to Partition the Market}
+\begin{prop} \label{prop:equiv}
+	$\phi_m = \{\phi_{m0}, \phi_{m1}, ...\}$ is identical to the man proposing deferred acceptance matching $\Phi_m $
+\end{prop}
+\end{frame}
+\begin{frame}{An Algorithm to Partition the Market}
+\begin{proof}
+\only<1>{	First we prove this for $\phi_{m0}$, proceeding by contradiction.  Call $w = \phi_{m0}(m) \neq \Phi_m(m)$
+	
+	Call $m' = \Phi_m(w)$
+	
+	Either $m'\succ_w m$ or $m \succ_w m'$. We will handle each case separately.
+}
+\only<2>{	First suppose $m'\succ_w m$
+	\begin{itemize}
+		\item Since $w$ is always matched to her favorite man of all who ever propose to her, $m'$ must never have proposed to $w$. Since men propose in descending order of prefernce until all acceptable options are exhausted, $m'$ must be matched to $w' = \phi_{m0}(m')$ where $w' \succ_{m'} w$
+		\item call $m'' = \Phi_m (w')$
+		\item as the pair $\{m', w'\}$ are not a blocking pair for $\Phi_m$, $m'' \succ_{w'} m'$
+		\item we can continue as above to form the infinate sequence $\{m,w,m',w',m'',...\}$ contained within the finite set $C_0$. Since this is an infinite sequence on a finite set, we have a cycle such that each man prefers the woman he is matched with in  $\phi_{m0}$, and each women prefers her match in $\Phi_m$
+	
+	\end{itemize}
+}
+\only<3>{	First suppose $m'\succ_w m$ (Continuing:)
+	\begin{itemize}
+
+		\item this cycle represents a pareto improvement over  $\Phi_m$ for men, and thus it cannot be a stable matching on $U$.  So there must be a man in $U \setminus C_0$ such that he forms a blocking pair with one of the women in this cycle. 
+		\item the man should have been added to $C_0$ at step \ref*{seg_alg:ext}, thus a contradiction
+	\end{itemize}
+}
+\only<4>{
+	Now suppose  $m \succ_w m'$
+	\begin{itemize}
+		\item call $w^a = \Phi_m(m)$
+		\item as $\{m,w\}$ do not block $\phi_{m0}$, $w^a \succ_{m} w$
+		\item call $m^a = \phi_{m0}(w^a)$
+		\item now as $\{m,w^a\}$ do not block $\Phi_m$, $m^a \succ_{w^a} m $
+		\item now call $w^b=\Phi_m(m^a)$ and continue as above to form an infinite sequence on the finite set $C_0$
+		\item we now have a cycle where $\Phi_m$ is a pareto improvement over $\phi_{m0}$ for men
+	
+		
+	\end{itemize}
+	}
+\only<5>{
+	Now suppose  $m \succ_w m'$ (Continuing:)
+	\begin{itemize}
+
+		\item Since this is a stable match in $U$ but not in $C_0$,  there must be a man in $C_0 \setminus U $ such that he forms a blocking pair with one of the women in this cycle.
+		\item $C_0 \subseteq U$, so $C_0 \setminus U  = \emptyset$, and so we have a contradiction
+		
+	\end{itemize}
+}
+	\only<6>{
+	Thus $\phi_{m0}$ is a subset of $\Phi_m$
+	
+	We now note that after removing $\phi_{m0}$ from U, the same logic holds, and the proof continues by induction. }
+	\alt<6>{\qedhere}{\phantom\qedhere}
+\end{proof}
+\end{frame}
+
+
+
+\begin{frame}{An Algorithm to Partition the Market}
+\begin{prop}
+	If there is a man $m \in \{C_i  \setminus \phi_i\}$ then there is no woman $w \in \{C_i  \setminus \phi_i\}$
+\end{prop}
+\begin{proof}
+	As all participants rank all other participants, if there were an unmatched man and woman, they would wish to match with each other.
+\end{proof}
+\end{frame}
+
+\begin{frame}{An Algorithm to Partition the Market}
+
+
+\begin{prop}
+	$\phi_{mi}$ depends only on the preferences held by the agents in $ \{C_0 \cup C_1 \cup  ...\cup C_i\}$
+\end{prop}
+\begin{proof}
+	
+	Given proposition \ref{prop:equiv}, it is sufficient to show that there is no set of preferences that could be held by $U \setminus \{C_0 \cup C_1 \cup  ...\cup C_i\}$ that would change the makeup of $C_i$. 
+	
+	Since no member of $C^*$ holds any member of $U \setminus \{C_0 \cup C_1 \cup  ...\cup C_i\}$  as their first choice, no other preference profile held by members of $U \setminus \{C_0 \cup C_1 \cup  ...\cup C_i\}$ would alter the composition of $C^*$.
+	
+	Since steps \ref{seg_alg:comp} and \ref{seg_alg:ext} of the algorithm in subsection \ref{subsect:partition} only depend on the preferences of individuals for whom $R(a)\neq \emptyset$, no preferences held by any member of the set $U \setminus \{C_0 \cup C_1 \cup  ...\cup C_i\}$ influences the workings of the algorithm.
+	
+	Thus, the  preferences of  $U \setminus \{C_0 \cup C_1 \cup  ...\cup C_i\}$ are irrelevant to $\phi_{mi}$
+\end{proof}
+
+\end{frame}
+
+
+\begin{frame}{Analyzing the model}
+
+We begin by partitioning the market as above. 
+
+With probability $p= \epsilon^2(1-\epsilon)^2$, $w_1$ and $m_2$ invert their first and second choices, yielding the following preference lists with the man-optimal stable matching  underlined, and the woman optimal matching denoted with a bar.
+\begin{itemize}
+	\item $m_{1}$: $\{\underline{w_{1}}, \overline{w_2}, ...\}$
+	\item $m_2$: $\{ \underline{w_2}, \overline{w_{1}},...\}$
+	\item $w_{1}$: $\{\overline{m_2}, \underline{m_{1}},...\}$
+	\item $w_2$: $\{...,\overline{m_{1}}, \underline{m_2},...\}$
+\end{itemize} 
+$\{m_1, m_{2},w_1, w_{2}\}$ form a set $C$, and within that set the match $\phi_m = \{m_{i-1}:w_{i-1}\},\{m_i:w_i\}$ and the match $\phi_w = \{m_{i-1}:w_{i}\},\{m_i:w_{i-1}\}$ are both stable assignments.   
+
+
+\end{frame}
+\begin{frame}{Analyzing the model}
+	
+
+Next consider a similar but different set of preferences (a scenario that also occurs with probability $p= \epsilon^2(1-\epsilon)^2$).  The man-optimal stable matching is underlined, and the woman optimal matching is denoted with a bar.
+
+\begin{itemize}
+	\item $m_1$: $\{...,\underline{w_{2}}, \overline{w_{1}},...\}$
+	\item $m_{2}$: $\{...,\underline{w_{1}}, \overline{w_{2}}, ...\}$
+	\item $w_{1}$: $\{...,\overline{m_1},\underline{m_{2}}, ...\}$
+	\item $w_{2}$: $\{...,\overline{m_{2}}, \underline{m_1},...\}$
+	
+	
+\end{itemize} 
+
+
+
+We can see that $m_1$ and $m_2$ expect to be involved in one of these cycles with probability $p= 2\epsilon^2(1-\epsilon)^2$.
+\end{frame}
+\begin{frame}{Analyzing the model}
+	
+	
+	
+Next we must show that this possibility is very likely to apply to each man, and so each agent is involved in such a cycle with a probability of approximately $p \approx 4\epsilon^2(1-\epsilon)^2$.
+
+
+Finally, I need to bound the chances of a ``far away" match to show that nobody would mind submitting a short rank list.
+
+\end{frame}
+
+\begin{frame}{Bibliography}
+\bibliography{../../library}
+\bibliographystyle{aea}
+\end{frame}
+
 
 
 \end{document}

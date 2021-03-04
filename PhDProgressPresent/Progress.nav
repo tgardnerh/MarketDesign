@@ -6,37 +6,79 @@
 \headcommand {\beamer@subsectionpages {1}{2}}
 \headcommand {\sectionentry {1}{Goals}{3}{Goals}{0}}
 \headcommand {\beamer@subsectionpages {3}{2}}
-\headcommand {\beamer@subsectionentry {0}{1}{1}{3}{Seek MD specific feedback}}
-\headcommand {\slideentry {1}{1}{1}{3/3}{Seek MD specific feedback}{0}}
+\headcommand {\beamer@subsectionentry {0}{1}{1}{3}{Oral in ~6 Months?}}
+\headcommand {\slideentry {1}{1}{1}{3/3}{Oral in ~6 Months?}{0}}
 \headcommand {\beamer@framepages {3}{3}}
 \headcommand {\beamer@subsectionpages {3}{3}}
-\headcommand {\beamer@subsectionentry {0}{1}{2}{4}{Oral in ~2 Months?}}
-\headcommand {\slideentry {1}{2}{1}{4/4}{Oral in ~2 Months?}{0}}
+\headcommand {\beamer@subsectionentry {0}{1}{2}{4}{Seek MD specific feedback}}
+\headcommand {\slideentry {1}{2}{1}{4/4}{Seek MD specific feedback}{0}}
 \headcommand {\beamer@framepages {4}{4}}
 \headcommand {\beamer@subsectionpages {4}{4}}
 \headcommand {\beamer@subsectionentry {0}{1}{3}{5}{3 \emph {Good} Papers}}
 \headcommand {\slideentry {1}{3}{1}{5/5}{3 \emph {Good} Papers}{0}}
 \headcommand {\beamer@framepages {5}{5}}
-\headcommand {\beamer@sectionpages {3}{5}}
-\headcommand {\beamer@subsectionpages {5}{5}}
-\headcommand {\sectionentry {2}{Research Agenda}{6}{Research Agenda}{0}}
-\headcommand {\beamer@subsectionpages {6}{5}}
-\headcommand {\beamer@subsectionentry {0}{2}{1}{6}{Animating Conjecture}}
-\headcommand {\slideentry {2}{1}{1}{6/6}{Animating Conjecture}{0}}
+\headcommand {\slideentry {1}{3}{2}{6/6}{3 \emph {Good} Papers}{0}}
 \headcommand {\beamer@framepages {6}{6}}
-\headcommand {\beamer@subsectionpages {6}{6}}
-\headcommand {\beamer@subsectionentry {0}{2}{2}{7}{Pieces of this}}
-\headcommand {\beamer@subsubsectionentry {0}{2}{2}{1}{7}{Characterize early contracting}}
-\headcommand {\slideentry {2}{2}{1}{7/7}{Pieces of this}{0}}
+\headcommand {\beamer@sectionpages {3}{6}}
+\headcommand {\beamer@subsectionpages {5}{6}}
+\headcommand {\sectionentry {2}{Research Agenda}{7}{Research Agenda}{0}}
+\headcommand {\beamer@subsectionpages {7}{6}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{7}{Animating Conjecture}}
+\headcommand {\slideentry {2}{1}{1}{7/7}{Animating Conjecture}{0}}
 \headcommand {\beamer@framepages {7}{7}}
-\headcommand {\beamer@subsubsectionentry {0}{2}{2}{2}{8}{Characterize when matching games have `large' cores}}
-\headcommand {\slideentry {2}{2}{2}{8/8}{Pieces of this}{0}}
+\headcommand {\beamer@subsectionpages {7}{7}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{8}{Pieces of this}}
+\headcommand {\beamer@subsubsectionentry {0}{2}{2}{1}{8}{Characterize early contracting}}
+\headcommand {\slideentry {2}{2}{1}{8/8}{Pieces of this}{0}}
 \headcommand {\beamer@framepages {8}{8}}
-\headcommand {\beamer@partpages {1}{9}}
-\headcommand {\beamer@subsectionpages {7}{9}}
-\headcommand {\beamer@sectionpages {6}{9}}
-\headcommand {\beamer@documentpages {9}}
-\headcommand {\gdef \inserttotalframenumber {9}}
-\headcommand {\beamer@subsubsectionentry {0}{2}{2}{3}{9}{Formally combine these ideas}}
-\headcommand {\slideentry {2}{2}{3}{9/9}{Pieces of this}{0}}
+\headcommand {\beamer@subsubsectionentry {0}{2}{2}{2}{9}{Characterize when matching games have `large' cores}}
+\headcommand {\slideentry {2}{2}{2}{9/9}{Pieces of this}{0}}
 \headcommand {\beamer@framepages {9}{9}}
+\headcommand {\beamer@subsubsectionentry {0}{2}{2}{3}{10}{Characterize the strategic interactions within the matching game}}
+\headcommand {\slideentry {2}{2}{3}{10/10}{Pieces of this}{0}}
+\headcommand {\beamer@framepages {10}{10}}
+\headcommand {\beamer@subsubsectionentry {0}{2}{2}{4}{11}{Formally combine these ideas}}
+\headcommand {\slideentry {2}{2}{4}{11/11}{Pieces of this}{0}}
+\headcommand {\beamer@framepages {11}{11}}
+\headcommand {\slideentry {2}{2}{5}{12/12}{Pieces of this}{0}}
+\headcommand {\beamer@framepages {12}{12}}
+\headcommand {\beamer@sectionpages {7}{12}}
+\headcommand {\beamer@subsectionpages {8}{12}}
+\headcommand {\sectionentry {3}{Technical Summary of `Large Core' Work}{13}{Technical Summary of `Large Core' Work}{0}}
+\headcommand {\slideentry {3}{0}{1}{13/13}{}{0}}
+\headcommand {\beamer@framepages {13}{13}}
+\headcommand {\slideentry {3}{0}{2}{14/14}{}{0}}
+\headcommand {\beamer@framepages {14}{14}}
+\headcommand {\slideentry {3}{0}{3}{15/15}{}{0}}
+\headcommand {\beamer@framepages {15}{15}}
+\headcommand {\slideentry {3}{0}{4}{16/16}{}{0}}
+\headcommand {\beamer@framepages {16}{16}}
+\headcommand {\slideentry {3}{0}{5}{17/17}{}{0}}
+\headcommand {\beamer@framepages {17}{17}}
+\headcommand {\slideentry {3}{0}{6}{18/18}{}{0}}
+\headcommand {\beamer@framepages {18}{18}}
+\headcommand {\slideentry {3}{0}{7}{19/19}{}{0}}
+\headcommand {\beamer@framepages {19}{19}}
+\headcommand {\slideentry {3}{0}{8}{20/20}{}{0}}
+\headcommand {\beamer@framepages {20}{20}}
+\headcommand {\slideentry {3}{0}{9}{21/21}{}{0}}
+\headcommand {\beamer@framepages {21}{21}}
+\headcommand {\slideentry {3}{0}{10}{22/27}{}{0}}
+\headcommand {\beamer@framepages {22}{27}}
+\headcommand {\slideentry {3}{0}{11}{28/28}{}{0}}
+\headcommand {\beamer@framepages {28}{28}}
+\headcommand {\slideentry {3}{0}{12}{29/29}{}{0}}
+\headcommand {\beamer@framepages {29}{29}}
+\headcommand {\slideentry {3}{0}{13}{30/30}{}{0}}
+\headcommand {\beamer@framepages {30}{30}}
+\headcommand {\slideentry {3}{0}{14}{31/31}{}{0}}
+\headcommand {\beamer@framepages {31}{31}}
+\headcommand {\slideentry {3}{0}{15}{32/32}{}{0}}
+\headcommand {\beamer@framepages {32}{32}}
+\headcommand {\beamer@partpages {1}{33}}
+\headcommand {\beamer@subsectionpages {13}{33}}
+\headcommand {\beamer@sectionpages {13}{33}}
+\headcommand {\beamer@documentpages {33}}
+\headcommand {\gdef \inserttotalframenumber {28}}
+\headcommand {\slideentry {3}{0}{16}{33/33}{}{0}}
+\headcommand {\beamer@framepages {33}{33}}

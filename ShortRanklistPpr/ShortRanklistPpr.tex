@@ -21,6 +21,12 @@
 
 \usepackage{ amssymb }
 
+\usepackage{amsmath}
+
+%for \resizebox
+\usepackage{graphicx}
+
+
 
 % This command determines the leading (vertical space between lines) in draft mode
 % with 1.5 corresponding to "double" spacing.
@@ -89,7 +95,7 @@ The deferred acceptance mechanism is a mainstay of this paper. In the man-propos
 The market consists of $n$ men and $n$ women,  indexed $\{ m_1, m_2, ... ,m_n\}$ and women indexed $\{ w_1, w_2, ... ,w_n\}$
 	
 Each man's preference list by first ranking all women according to their index number, so $w_1$ is his favorite, $w_n$ his least favorite, and so on.  
-With probability $\epsilon$ he transposes the rankings of his first and second favorite woman, then with probability $\epsilon$ he transposes the rankings of his second and third favorite women, and so on through his list.
+With probability $\epsilon$ man $m_i$ transposes the rankings of $w_{i-1}$ and $w_i$, with probability $\epsilon$ he transposes the rankings of $w_{i-1}$ and $w_i$, and with probability $1-2\epsilon$ his rank list is unchanged.
 %He then simultaneously exposes all entries on his list to a Poisson process with an expected success rate of $\epsilon$, for one unit of time. If the entry for woman $w_i$ experiences a Poisson success, he promotes her by one position on his rank list. 
 The women form their preferences in the same way.
 
@@ -252,39 +258,81 @@ To find the next partition, call $U_1 = U_0 \setminus \{\phi_{m0}\}$, and repeat
 
 We begin by partitioning the market as in subsection \ref{subsect:partition} . 
 
-With probability $p= \epsilon^2(1-\epsilon)^2$, $w_1$ and $m_2$ invert their first and second choices, yielding the following preference lists with the man-optimal stable matching  underlined, and the woman optimal matching denoted with a bar.
-	\begin{itemize}
-		\item $m_{1}$: $\{\underline{w_{1}}, \overline{w_2}, ...\}$
-		\item $m_2$: $\{ \underline{w_2}, \overline{w_{1}},...\}$
-		\item $w_{1}$: $\{\overline{m_2}, \underline{m_{1}},...\}$
-		\item $w_2$: $\{...,\overline{m_{1}}, \underline{m_2},...\}$
-	\end{itemize} 
-$\{m_1, m_{2},w_1, w_{2}\}$ form a set $C$, and within that set the match $\phi_m = \{m_{i-1}:w_{i-1}\},\{m_i:w_i\}$ and the match $\phi_w = \{m_{i-1}:w_{i}\},\{m_i:w_{i-1}\}$ are both stable assignments.   
+There are 16 possible preference relation sets for the participants $\{m_1,m_2,w_1,w_2\}$.  I have enumerated them in the appendix. For the simplest case, (Type A) in which no preference transpositions have occurred, $C_0 =\{m_1,w_1\}, \{\phi_0\}=\{m_1,w_1\}$, and the preference transpositions for  $\{m_2,m_3,w_2,w_3\}$ are drawn from the same distribution as $\{m_1,m_2,w_1,w_2\}$.  For eleven cases (Type B)  $ \{\phi_0\} \cup \{\phi_1\}=\{m_1,m_2,w_1,w_2\} $, and $\{m_3,m_4,w_3,w_4\}$ are drawn from the same distribution as $\{m_1,m_2,w_1,w_2\}$. For two cases (Type C)  $\{\phi_1\}=\{m_1,m_2,w_1,w_2\}$, $\{m_3,m_4,w_3,w_4\}$ are drawn from the same distribution as $\{m_1,m_2,w_1,w_2\}$, and notably in these two cases  multiple stable matchings are possible.
+
+Finally, there are two cases (Type D) where $\{\phi_0\}=\{m_1,w_1\}$, but where the preference transpositions for  $\{m_2,m_3,w_2,w_3\}$ are drawn from a restricted 
+
+As the partition algorithm progresses through the rank lists it transitions through these cases as a Markov chain with the transition matrix:
+
+% In the transition matrix below, I use the notation $P_k=\epsilon^k(1-\epsilon)^{4-k} $:
+% \begin{equation*}
+% 	\Pi = 
+% 	\begin{pmatrix}
+% 		P_0 & 2P_1+ 4P_2 + 4P_3+P_4   & 2P_2 & 2P_1\\
+% 		P_0 & 2P_1+ 4P_2 + 4P_3+P_4   & 2P_2 & 2P_1\\
+% 		P_0 & 2P_1+ 4P_2 + 4P_3+P_4   & 2P_2 & 2P_1\\
+% 		\frac{P_0}{P_0+3P_1+3P_2+p_3} & \frac{	3P_1}{P_0+3P_1+3P_2+p_3} & \frac{	P_2}{P_0+3P_1+3P_2+p_3} & \frac{	2P_1}{P_0+3P_1+3P_2+p_3} 
+% 	\end{pmatrix} 
+% \end{equation*}
+
+ \begin{equation*}
+ 	\resizebox{\textwidth}{!}{
+$	\Pi = 
+	\left[
+		\begin{matrix}
+			\left(1 - \epsilon\right)^{4} & \epsilon^{4} + 4 \epsilon^{2} \left(1 - \epsilon\right)^{2} + 6 \epsilon \left(1 - \epsilon\right)^{3} & 2 \epsilon^{2} \left(1 - \epsilon\right)^{2} & 2 \epsilon \left(1 - \epsilon\right)^{3}\\\left(1 - \epsilon\right)^{4} & \epsilon^{4} + 4 \epsilon^{2} \left(1 - \epsilon\right)^{2} + 6 \epsilon \left(1 - \epsilon\right)^{3} & 2 \epsilon^{2} \left(1 - \epsilon\right)^{2} & 2 \epsilon \left(1 - \epsilon\right)^{3}\\\left(1 - \epsilon\right)^{4} & \epsilon^{4} + 4 \epsilon^{2} \left(1 - \epsilon\right)^{2} + 6 \epsilon \left(1 - \epsilon\right)^{3} & 2 \epsilon^{2} \left(1 - \epsilon\right)^{2} & 2 \epsilon \left(1 - \epsilon\right)^{3}\\\frac{\left(1 - \epsilon\right)^{4}}{3 \epsilon^{2} \left(1 - \epsilon\right)^{2} + 4 \epsilon \left(1 - \epsilon\right)^{3} + \left(1 - \epsilon\right)^{4}} & \frac{2 \epsilon^{2} \left(1 - \epsilon\right)^{2} + 2 \epsilon \left(1 - \epsilon\right)^{3}}{3 \epsilon^{2} \left(1 - \epsilon\right)^{2} + 4 \epsilon \left(1 - \epsilon\right)^{3} + \left(1 - \epsilon\right)^{4}} & \frac{\epsilon^{2} \left(1 - \epsilon\right)^{2}}{3 \epsilon^{2} \left(1 - \epsilon\right)^{2} + 4 \epsilon \left(1 - \epsilon\right)^{3} + \left(1 - \epsilon\right)^{4}} & \frac{2 \epsilon \left(1 - \epsilon\right)^{3}}{3 \epsilon^{2} \left(1 - \epsilon\right)^{2} + 4 \epsilon \left(1 - \epsilon\right)^{3} + \left(1 - \epsilon\right)^{4}}
+		\end{matrix}
+	\right] 
+	$
+}
+\end{equation*}
+
+and the stationary distribution:
+ \begin{equation*}
+	\resizebox{\textwidth}{!}{
+		$	
+		\left[\begin{matrix}\frac{14 \epsilon^{5} - 17 \epsilon^{4} + 8 \epsilon^{3} - 10 \epsilon^{2} + 6 \epsilon - 1}{4 \epsilon^{5} - 10 \epsilon^{4} + 6 \epsilon^{3} - 2 \epsilon - 1} & \frac{2 \epsilon^{6} - 16 \epsilon^{5} + 17 \epsilon^{4} - 10 \epsilon^{3} + 10 \epsilon^{2} - 6 \epsilon}{4 \epsilon^{5} - 10 \epsilon^{4} + 6 \epsilon^{3} - 2 \epsilon - 1} & \frac{- 2 \epsilon^{6} + 2 \epsilon^{5} + 2 \epsilon^{3} - 2 \epsilon^{2}}{4 \epsilon^{5} - 10 \epsilon^{4} + 6 \epsilon^{3} - 2 \epsilon - 1} & \frac{4 \epsilon^{5} - 10 \epsilon^{4} + 6 \epsilon^{3} + 2 \epsilon^{2} - 2 \epsilon}{4 \epsilon^{5} - 10 \epsilon^{4} + 6 \epsilon^{3} - 2 \epsilon - 1}\end{matrix}\right] 
+		$
+	}
+\end{equation*}
 
 
-Next consider a similar but different set of preferences (a scenario that also occurs with probability $p= \epsilon^2(1-\epsilon)^2$).  The man-optimal stable matching is underlined, and the woman optimal matching is denoted with a bar.
-
-	\begin{itemize}
-		\item $m_1$: $\{...,\underline{w_{2}}, \overline{w_{1}},...\}$
-		\item $m_{2}$: $\{...,\underline{w_{1}}, \overline{w_{2}}, ...\}$
-		\item $w_{1}$: $\{...,\overline{m_1},\underline{m_{2}}, ...\}$
-		\item $w_{2}$: $\{...,\overline{m_{2}}, \underline{m_1},...\}$
 
 
-	\end{itemize} 
+Now I turn my attention to type C. Consider the sub-case in which $w_2\succ_{m_1} w_1$ and $m_2\succ_{w_2} m_2$.  With probability $p=\epsilon$ $w_3\succ_{m_2} w_2$, in which case $C_0 =\{m_1,w_1,m_2,w_2, w_3\}$, and $\phi_0=\{(m_1:w_2),(m_2:w_1)\}$ is the only stable matching.  With probability $p=1-\epsilon$ $w_2\succ_{m_2} w_3$, in which case $C_0 =\{m_1,w_1,m_2,w_2\}$, and $\phi_{m0}=\{(m_1:w_2),(m_2:w_1)\}$ and $\phi_{w0}=\{(m_1:w_1),(m_2:w_2)\}$ are both stable matchings.  Likewise, in the subcase where  $w_2\succ_{m_2} w_1$ and $m_2\succ_{w_1} m_2$, $m_3\succ_{w_2} m_2$ with  probability $p=1- \epsilon$, in which case  $C_0 =\{m_1,w_1,m_2,w_2\}$, and $\phi_{m0}=\{(m_1:w_2),(m_2:w_1)\}$ and $\phi_{w0}=\{(m_1:w_1),(m_2:w_2)\}$ are both stable matchings.
 
+Now we calculate the fraction of agents with more than one stable matching.  
 
+First, note that, on average, each Markov chain step advances through the preference lists by the distance:
 
-	 We can see that $m_1$ and $m_2$ expect to be involved in one of these cycles with probability $p= 2\epsilon^2(1-\epsilon)^2$.
-	
-	Next we must show that this possibility is very likely to apply to each man, and so each agent is involved in such a cycle with a probability of approximately $p \approx 4\epsilon^2(1-\epsilon)^2$.
-	
-	
-	 Finally, I need to bound the chances of a ``far away" match to show that nobody would mind submitting a short rank list.
+\begin{equation*}
+		\resizebox{\textwidth}{!}{
+		$	
+			\frac{2 \left(- 2 \epsilon^{6} + 2 \epsilon^{5} + 2 \epsilon^{3} - 2 \epsilon^{2}\right)}{4 \epsilon^{5} - 10 \epsilon^{4} + 6 \epsilon^{3} - 2 \epsilon - 1} + \frac{4 \epsilon^{5} - 10 \epsilon^{4} + 6 \epsilon^{3} + 2 \epsilon^{2} - 2 \epsilon}{4 \epsilon^{5} - 10 \epsilon^{4} + 6 \epsilon^{3} - 2 \epsilon - 1} + \frac{14 \epsilon^{5} - 17 \epsilon^{4} + 8 \epsilon^{3} - 10 \epsilon^{2} + 6 \epsilon - 1}{4 \epsilon^{5} - 10 \epsilon^{4} + 6 \epsilon^{3} - 2 \epsilon - 1} + \frac{2 \left(2 \epsilon^{6} - 16 \epsilon^{5} + 17 \epsilon^{4} - 10 \epsilon^{3} + 10 \epsilon^{2} - 6 \epsilon\right)}{4 \epsilon^{5} - 10 \epsilon^{4} + 6 \epsilon^{3} - 2 \epsilon - 1}
+		$
+	}
+\end{equation*}
 
+and so the fraction of agents who have multiple stable equilibria:
 
+\begin{equation*}
+	\resizebox{\textwidth}{!}{
+	$
+			\frac{2 \left(1 - \epsilon\right) \left(- 2 \epsilon^{6} + 2 \epsilon^{5} + 2 \epsilon^{3} - 2 \epsilon^{2}\right)}{\left(\frac{2 \left(- 2 \epsilon^{6} + 2 \epsilon^{5} + 2 \epsilon^{3} - 2 \epsilon^{2}\right)}{4 \epsilon^{5} - 10 \epsilon^{4} + 6 \epsilon^{3} - 2 \epsilon - 1} + \frac{4 \epsilon^{5} - 10 \epsilon^{4} + 6 \epsilon^{3} + 2 \epsilon^{2} - 2 \epsilon}{4 \epsilon^{5} - 10 \epsilon^{4} + 6 \epsilon^{3} - 2 \epsilon - 1} + \frac{14 \epsilon^{5} - 17 \epsilon^{4} + 8 \epsilon^{3} - 10 \epsilon^{2} + 6 \epsilon - 1}{4 \epsilon^{5} - 10 \epsilon^{4} + 6 \epsilon^{3} - 2 \epsilon - 1} + \frac{2 \left(2 \epsilon^{6} - 16 \epsilon^{5} + 17 \epsilon^{4} - 10 \epsilon^{3} + 10 \epsilon^{2} - 6 \epsilon\right)}{4 \epsilon^{5} - 10 \epsilon^{4} + 6 \epsilon^{3} - 2 \epsilon - 1}\right) \left(4 \epsilon^{5} - 10 \epsilon^{4} + 6 \epsilon^{3} - 2 \epsilon - 1\right)}
+	$
+}
+\end{equation*}
 
+As a sanity check, I plot the relationship between the fraction of agents with multiple stable matchings, see figure \ref{fig:multi_match}
 
+\begin{figure}[p]{Fraction of Agents With Multiple Stable Matchings}\label{fig:multi_match}
+	\resizebox{\textwidth}{!}{
+		\includegraphics{mult_frac_ep}	
+	}
+\end{figure}
+
+\section{Next steps}
+It seems that after consolidating the progress here I should move on in two fronts: relaxing the constraints on preference formation and analyzing the strategic behavior of market participants.
 %
 %
 %\section{A Conjecture on short rank lists}
@@ -303,7 +351,69 @@ Next consider a similar but different set of preferences (a scenario that also o
 
 
 
-%\section{Mathematical Appendix}
+\section{Mathematical Appendix}
+
+\subsection{Permutations of preferences for $\{m_1,m_2,w_1,w_2\}$}
+I denote preferences with a four-bit binary number, in which a zero in the first position indicates that $w_1\succ_{m_1} w_2$ while a one in the first position indicates that $w_1\prec_{m_1} w_2$. Likewise the second through fourth positions indicate the preferences of $m_2, ,w_1$,and $w_2$.
+\\
+Type A
+
+$(0,0,0,0)$: $C_0 =\{m_1,w_1\}, \{\phi_0\}=\{m_1,w_1\}$.  Preferences for $\{m_2,m_3,w_2,w_3\}$ are unrestricted.
+\\
+
+Type B
+
+$(0,0,1,0)$: $C_0 =\{m_2,w_1\}, \{\phi_0\}=\{m_2,w_1\}, C_1 =\{m_1,w_2\}, \{\phi_1\}=\{m_1,w_2\}$.  Preferences for $\{m_3,m_4,w_3,w_4\}$ are unrestricted.
+
+
+$(0,0,1,1)$: $C_0 =\{m_2,w_1\}, \{\phi_0\}=\{m_2,w_1\}, C_1 =\{m_1,w_2\}, \{\phi_1\}=\{m_1,w_2\}$.  Preferences for $\{m_3,m_4,w_3,w_4\}$ are unrestricted.
+
+
+$(0,1,0,1)$: $C_0 =\{m_1,w_1\}, \{\phi_0\}=\{m_1,w_1\}, C_1 =\{m_2,w_2\}, \{\phi_1\}=\{m_2,w_2\}$.  Preferences for $\{m_3,m_4,w_3,w_4\}$ are unrestricted.
+
+
+$(0,1,1,1)$: $C_0 =\{m_2,w_2\}, \{\phi_0\}=\{m_2,w_2\}, C_1 =\{m_1,w_1\}, \{\phi_1\}=\{m_1,w_1\}$.  Preferences for $\{m_3,m_4,w_3,w_4\}$ are unrestricted.
+
+
+$(1,0,0,0)$: $C_0 =\{m_1,w_2\}, \{\phi_0\}=\{m_1,w_2\}, C_1 =\{m_2,w_1\}, \{\phi_1\}=\{m_2,w_1\}$.  Preferences for $\{m_3,m_4,w_3,w_4\}$ are unrestricted.
+
+
+$(1,0,1,0)$: $C_0 =\{m_1,w_2\}, \{\phi_0\}=\{m_1,w_2\}, C_1 =\{m_2,w_1\}, \{\phi_1\}=\{m_2,w_1\}$.  Preferences for $\{m_3,m_4,w_3,w_4\}$ are unrestricted.
+
+
+$(1,0,1,1)$: $C_0 =\{m_2,w_1\}, \{\phi_0\}=\{m_2,w_1\}, C_1 =\{m_1,w_2\}, \{\phi_1\}=\{m_1,w_2\}$.  Preferences for $\{m_3,m_4,w_3,w_4\}$ are unrestricted.
+
+
+
+$(1,1,0,0)$:  $C_0 =\{m_1,w_2\}, \{\phi_0\}=\{m_1,w_2\}, C_1 =\{m_2,w_1\}, \{\phi_1\}=\{m_2,w_1\}$.  Preferences for $\{m_3,m_4,w_3,w_4\}$ are unrestricted.
+
+
+$(1,1,0,1)$:  $C_0 =\{m_2,w_2\}, \{\phi_0\}=\{m_2,w_2\}, C_1 =\{m_1,w_1\}, \{\phi_1\}=\{m_1,w_1\}$.  Preferences for $\{m_3,m_4,w_3,w_4\}$ are unrestricted.
+
+
+
+$(1,1,1,0)$:  $C_0 =\{m_1,w_2\}, \{\phi_0\}=\{m_1,w_2\}, C_1 =\{m_2,w_1\}, \{\phi_1\}=\{m_2,w_1\}$.  Preferences for $\{m_3,m_4,w_3,w_4\}$ are unrestricted.
+
+
+
+$(1,1,1,1)$:  $C_0 =\{m_2,w_2\}, \{\phi_0\}=\{m_2,w_2\}, C_1 =\{m_1,w_1\}, \{\phi_1\}=\{m_1,w_1\}$.  Preferences for $\{m_3,m_4,w_3,w_4\}$ are unrestricted.
+\\
+
+Type C
+
+$(1,0,0,1)$:  $C_0 =\{m_1,w_1,m_2,w_2\}$ or $C_0 =\{m_1,w_1,m_2,w_2, w_3\}$ if $w_3\succ_{m_2} w_2$, $\{\phi_0\}=\{m_1,w_1,m_2,w_2\}$.  Preferences for $\{m_3,m_4,w_3,w_4\}$ are unrestricted. 
+
+$(0,1,1,0)$:  $C_0 =\{m_1,w_1,m_2,w_2\}$ or $C_0 =\{m_1,w_1,m_2,w_2, m_3\}$ if $m_3\succ_{w_2} m_2$, $\{\phi_0\}=\{m_1,w_1,m_2,w_2\}$.  Preferences for $\{m_3,m_4,w_3,w_4\}$ are unrestricted. 
+\\
+
+
+Type D
+
+$(0,0,0,1)$:  $C_0 =\{m_1,w_1\}, \{\phi_0\}=\{m_1,w_1\}$.  Preferences for $\{m_2,m_3,w_2,w_3\}$ fit the pattern $(\cdot,\cdot,0,\cdot)$.
+
+
+$(0,1,0,0)$:  $C_0 =\{m_1,w_1\}, \{\phi_0\}=\{m_1,w_1\}$.  Preferences for $\{m_2,m_3,w_2,w_3\}$ fit the pattern $(0,\cdot,\cdot,\cdot)$.
+
 
 
 \end{document}
