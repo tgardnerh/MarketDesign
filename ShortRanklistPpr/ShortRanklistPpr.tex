@@ -127,6 +127,16 @@ Next choose $m$, the man in $U_0$ with the lowest index number, and select $w = 
 
 To find the next partition, call $U_1 = U_0 \setminus \{\phi_{m0}\}$, and repeat the entire process to find $C_1$ and $\phi_{m1}$
 
+The algorithm ends when $\{\phi_{mi}\} = \emptyset$ or $C_i= \emptyset$.
+
+\begin{lemma}
+	$ U \setminus \{\phi_{m}\} \subseteq M$ or $ U \setminus \{\phi_{m}\} \subseteq W$ 
+\end{lemma}
+
+\begin{proof}
+	First note that If $\{\phi_{mi}\} = \emptyset$, $C_i \subseteq W$ or $C_i \subseteq M$ because all men are acceptable to all women, and vice-versa. This also implies that if $C_i \subseteq W$ or $C_i \subseteq M$, all unmatched acents are of the same gender.  Thus the process ends only when all agents are matched, or when the only unmatched agents are of the same gender.
+\end{proof}
+
 \begin{lemma}
 	$\{\phi_{mi}\}=\{\phi_{wi}\}$
 \end{lemma}
@@ -142,16 +152,23 @@ To find the next partition, call $U_1 = U_0 \setminus \{\phi_{m0}\}$, and repeat
 	
 	Call $m' = \Phi_m(w)$
 	
-	Either $m'\succ_w m$ or $m \succ_w m'$. We will handle each case separately.
+	Because preferences are strict, either $m'\succ_w m$ or $m \succ_w m'$. We will handle each case separately.
 	
 	First suppose $m'\succ_w m$
 	\begin{itemize}
-		\item Since $w$ is always matched to her favorite man of all who ever propose to her, $m'$ must never have proposed to $w$. Since men propose in descending order of prefernce until all acceptable options are exhausted, $m'$ must be matched to $w' = \phi_{m0}(m')$ where $w' \succ_{m'} w$
+		\item $m' \in C_0$ because of step \ref{seg_alg:comp} in the algorithm
+		\item Since $w$ is always matched to her favorite man of all who have proposed to her, $m'$ must never have proposed to $w$. Since men propose in descending order of their preference, $m'$ must be matched to some $w' = \phi_{m0}(m')$ where $w' \succ_{m'} w$
 		\item call $m'' = \Phi_m (w')$
-		\item as the pair $\{m', w'\}$ are not a blocking pair for $\Phi_m$, $m'' \succ_{w'} m'$
-		\item we can continue as above to form the infinate sequence $\{m,w,m',w',m'',...\}$ contained within the finite set $C_0$. Since this is an infinite sequence on a finite set, we have a cycle such that each man prefers the woman he is matched with in  $\phi_{m0}$, and each women prefers her match in $\Phi_m$
-		\item this cycle represents a pareto improvement over  $\Phi_m$ for men, and thus it cannot be a stable matching on $U$.  So there must be a man in $U \setminus C_0$ such that he forms a blocking pair with one of the women in this cycle. 
-		\item the man should have been added to $C_0$ at step \ref*{seg_alg:ext}, thus a contradiction
+		\item Consider the pair $\{m', w'\}$. Recall that $\Phi_m(m')=w$, $w' \succ_{m'} w$, and $\Phi_m(w')=m''$. Therefore $m'' \succ_{w'} m'$, because otherwise both $m'$ and $w'$ would prefer each other to their matches in $\Phi_m$ and form a blocking pair.
+		\item $m'' \in C_0$ just as $m' \in C_0$
+		\item Continue as above to form the infinite sequence $\{m,w,m',w',m'',...\}$ contained within the finite set $C_0$. Since this is an infinite sequence on a finite set, we have a cycle $\Pi$ such that each man prefers the woman he is matched with in  $\phi_{m0}$, and each women prefers her match in $\Phi_m$.
+		\item consider the matching $\Phi_m'$, created by taking  $\Phi_m$ and then, for each man $m \in \Pi$, altering the match such that $\Phi_m'(m) = \phi_m(m)$.  Note that  $\Phi_m'$ is still a matching because $\forall m \in \Pi$, $\phi_m \in \Pi$.
+		\item $\Phi_m'$ is a pareto improvement over  $\Phi_m$ for men. Since $\Phi_m$ is the man-optimal stable matching, $\Phi_m'$ cannot be a stable matching on $U$. 
+		\item There must exist a pair $\{m_b,w_b\}$ that blocks $\Phi_m'$.  
+		\item  $m_b \in C_0$ iff $w_b \in U\setminus C_0$, otherwise the pair would also block $\Phi_m$ or $\phi_m$.
+		\item $m_b \notin C_0$ because if $m_b \in C_0$, then $w_b \succ_{m_b} \Phi_m'(m_b) \succ_{m_b} \Phi_m(m_b)$, and $m_b \succ_{w_b} \Phi_m'(w_b) = \Phi_m(w_b)$, and so $\{m_b,w_b\}$ would block $ \Phi_m$. 
+		\item Therefor $m_b \in U \setminus C_0$ and $w_b \in C_0$.
+		\item $m_b$ should have been added to $C_0$ at step \ref*{seg_alg:ext}, thus we have a contradiction
 	\end{itemize}
 	Now suppose  $m \succ_w m'$
 	\begin{itemize}
@@ -160,6 +177,8 @@ To find the next partition, call $U_1 = U_0 \setminus \{\phi_{m0}\}$, and repeat
 		\item call $m^a = \phi_{m0}(w^a)$
 		\item now as $\{m,w^a\}$ do not block $\Phi_m$, $m^a \succ_{w^a} m $
 		\item now call $w^b=\Phi_m(m^a)$ and continue as above to form an infinite sequence on the finite set $C_0$
+		\item  Since this is an infinite sequence on a finite set, we have a cycle $\pi$ such that each man prefers the woman he is matched with in  $\Phi_m$, and each women prefers her match in $\phi_{m0}$.
+		\item consider the matching $\phi_{m0}'$, created by taking  $\phi_{m0}$ and then, for each man $m \in \pi$, altering the match such that  $\phi_{m0}'(m) = \Phi_m(m)$.  Note that  $\Phi_m'$ is still a matching because $\forall m \in \Pi$, $\phi_m \in \Pi$.
 		\item we now have a cycle where $\Phi_m$ is a pareto improvement over $\phi_{m0}$ for men
 		\item Since this is a stable match in $U$ but not in $C_0$,  there must be a man in $C_0 \setminus U $ such that he forms a blocking pair with one of the women in this cycle.
 		\item $C_0 \subseteq U$, so $C_0 \setminus U  = \emptyset$, and so we have a contradiction
