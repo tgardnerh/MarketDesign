@@ -80,7 +80,8 @@ This paper extends these theoretical results to examine short rank lists in a se
 \section{Model}
 \subsection{Preliminary Definitions}
 
-Let there be $M$ men and $W$ women, who together form the universe of participants $U = W \cup M$.  Each man has a strict preference relation over the set of women he could be matched with and being unmatched, which we denote as being matched with himself. Therefore we say that he has preferences $\succ_{m}$ over the set $W \cup \{m\}$. Women have likewise have preferences $\succ_w$ over $M \cup \{w\}$. A market is tuple $\Gamma \ (M,W, \succ_{M}, \succ_W)$ where $\succ_{M} = (\succ_{m})_{m \in M}$ and $\succ_W = (\succ_w)_{w \in W}$.
+Let there be $M$ men and $W$ women, who together form the universe of participants $U = W \cup M$.  Each man has a strict preference relation over the set of women he could be matched with and being unmatched, which we denote as being matched with himself. Therefore we say that he has preferences $\succ_{m}$ over the set $W \cup \{m\}$. Women have likewise have preferences $\succ_w$ over $M \cup \{w\}$. 
+%A market is tuple $\Gamma \ (M,W, \succ_{M}, \succ_W)$ where $\succ_{M} = (\succ_{m})_{m \in M}$ and $\succ_W = (\succ_w)_{w \in W}$.
 
 A matching $\phi$ is a mapping from $U$ onto itself such that (i) for every $m$, $|\phi(m)| = 1$, $\phi(m) \in W \cup \{m\} $ and for every  $w$, $|\phi(w)| = 1$, $\phi(w) \in M \cup \{w\}$, (ii) $\phi(m) = w$ iff $\phi(w) = m$.  That is, a matching is simply a one-to-one assignment of men to women. We also denote the set of all people matched in $\phi$ as $\{\phi\}$.
 
@@ -94,8 +95,7 @@ The deferred acceptance mechanism is a mainstay of this paper. In the man-propos
 The market consists of $n$ men and $n$ women,  indexed $\{ m_1, m_2, ... ,m_n\}$ and women indexed $\{ w_1, w_2, ... ,w_n\}$
 	
 Each man's preference list by first ranking all women according to their index number, so $w_1$ is his favorite, $w_n$ his least favorite, and so on.  
-With probability $\epsilon$ man $m_i$ transposes the rankings of $w_{i-1}$ and $w_i$, with probability $\epsilon$ he transposes the rankings of $w_{i-1}$ and $w_i$, and with probability $1-2\epsilon$ his rank list is unchanged.
-%He then simultaneously exposes all entries on his list to a Poisson process with an expected success rate of $\epsilon$, for one unit of time. If the entry for woman $w_i$ experiences a Poisson success, he promotes her by one position on his rank list. 
+With probability $\varepsilon$ man $m_1$ transposes the rankings of $w_{1}$ and $w_2$ and with probability $1-\varepsilon$ his rank list is unchanged.  For each $i > 1$, with probability $\varepsilon$ man $m_i$ transposes the rankings of $w_{i-1}$ and $w_i$, with probability $\varepsilon$ he transposes the rankings of $w_{i-1}$ and $w_i$, and with probability $1-2\varepsilon$ his rank list is unchanged.
 The women form their preferences in the same way.
 
 In this way, we arrive at a preference structure where agents all broadly agree on which matches are desirable, but have idiosyncratic preference variation.
@@ -105,7 +105,7 @@ In this way, we arrive at a preference structure where agents all broadly agree 
 	
 \section{Analysis}
 
-To analyze this market we first need two separate mathematical results, one to partition the market into smaller segments that we can analyze separately, and one to help us identify cases with several stable matches.
+To analyze this market I develop a method to partition the market into smaller segments that can be analyzed independently.
 
 
 \subsection{An Algorithm to Partition the Market} \label{subsect:partition}
@@ -116,8 +116,8 @@ Next choose $m$, the man in $U_0$ with the lowest index number, and select $w = 
 
 
 \begin{enumerate}
-	\item define the correspondence $R$ from $U_0$ to $\mathcal{P}(U_0)$ such that $\forall a \in U_0, R(a) = \emptyset$
-	\item for each $a \in C^*$, alter $R$ by replacing $R(a)$ with  $R(a) \cup \{p_1(m)\}$
+	\item define the correspondence $R$ from $U_0$ to the power set $\mathcal{P}(U_0)$ such that $\forall a \in U_0, R(a) = \emptyset$
+	\item for each $a \in C^*$, replace $R(a)$ =  $R(a) \cup \{p_1(a)\}$
 	\item  \label{seg_alg:comp} for each $a \in U_0$, and $b \in U_0$, if $ b \in R(a)$ replace $R(b) = \{a\} \cup R(b)$
 	\item  \label{seg_alg:ext} for each $a \in U_0$ such that $R(a) \neq \emptyset$, call  $c$ their least preferred member of $R(a)$. Now, for each $d \in U_0 | d \succ_a c$, replace $R(a) = R(a) \cup d$ 
 	\item if $R$ has been altered in step \ref*{seg_alg:comp} or \ref*{seg_alg:ext}, return to step \ref*{seg_alg:comp}, otherwise proceed
