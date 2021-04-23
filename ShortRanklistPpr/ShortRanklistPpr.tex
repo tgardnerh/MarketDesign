@@ -148,45 +148,24 @@ The algorithm ends when $\{\phi_{mi}\} = \emptyset$ or $C_i= \emptyset$.
 	$\phi_m = \{\phi_{m0}, \phi_{m1}, ...\}$ is identical to the man proposing deferred acceptance matching $\Phi_m $
 \end{prop}
 \begin{proof}
-	First we prove this for $\phi_{m0}$, proceeding by contradiction.  Call $w = \phi_{m0}(m) \neq \Phi_m(m)$
 	
-	Call $m' = \Phi_m(w)$
-	
-	Because preferences are strict, either $m'\succ_w m$ or $m \succ_w m'$. We will handle each case separately.
-	
-	First suppose $m'\succ_w m$
-	\begin{itemize}
-		\item $m' \in C_0$ because of step \ref{seg_alg:comp} in the algorithm
-		\item Since $w$ is always matched to her favorite man of all who have proposed to her, $m'$ must never have proposed to $w$. Since men propose in descending order of their preference, $m'$ must be matched to some $w' = \phi_{m0}(m')$ where $w' \succ_{m'} w$
-		\item call $m'' = \Phi_m (w')$
-		\item Consider the pair $\{m', w'\}$. Recall that $\Phi_m(m')=w$, $w' \succ_{m'} w$, and $\Phi_m(w')=m''$. Therefore $m'' \succ_{w'} m'$, because otherwise both $m'$ and $w'$ would prefer each other to their matches in $\Phi_m$ and form a blocking pair.
-		\item $m'' \in C_0$ just as $m' \in C_0$
-		\item Continue as above to form the infinite sequence $\{m,w,m',w',m'',...\}$ contained within the finite set $C_0$. Since this is an infinite sequence on a finite set, we have a cycle $\Pi$ such that each man prefers the woman he is matched with in  $\phi_{m0}$, and each women prefers her match in $\Phi_m$.
-		\item consider the matching $\Phi_m'$, created by taking  $\Phi_m$ and then, for each man $m \in \Pi$, altering the match such that $\Phi_m'(m) = \phi_m(m)$.  Note that  $\Phi_m'$ is still a matching because $\forall m \in \Pi$, $\phi_m \in \Pi$.
-		\item $\Phi_m'$ is a pareto improvement over  $\Phi_m$ for men. Since $\Phi_m$ is the man-optimal stable matching, $\Phi_m'$ cannot be a stable matching on $U$. 
-		\item There must exist a pair $\{m_b,w_b\}$ that blocks $\Phi_m'$.  
-		\item  $m_b \in C_0$ iff $w_b \in U\setminus C_0$, otherwise the pair would also block $\Phi_m$ or $\phi_m$.
-		\item $m_b \notin C_0$ because if $m_b \in C_0$, then $w_b \succ_{m_b} \Phi_m'(m_b) \succ_{m_b} \Phi_m(m_b)$, and $m_b \succ_{w_b} \Phi_m'(w_b) = \Phi_m(w_b)$, and so $\{m_b,w_b\}$ would block $ \Phi_m$. 
-		\item Therefor $m_b \in U \setminus C_0$ and $w_b \in C_0$.
-		\item $m_b$ should have been added to $C_0$ at step \ref*{seg_alg:ext}, thus we have a contradiction
-	\end{itemize}
-	Now suppose  $m \succ_w m'$
-	\begin{itemize}
-		\item call $w^a = \Phi_m(m)$
-		\item as $\{m,w\}$ do not block $\phi_{m0}$, $w^a \succ_{m} w$
-		\item call $m^a = \phi_{m0}(w^a)$
-		\item now as $\{m,w^a\}$ do not block $\Phi_m$, $m^a \succ_{w^a} m $
-		\item now call $w^b=\Phi_m(m^a)$ and continue as above to form an infinite sequence on the finite set $C_0$
-		\item  Since this is an infinite sequence on a finite set, we have a cycle $\pi$ such that each man prefers the woman he is matched with in  $\Phi_m$, and each women prefers her match in $\phi_{m0}$.
-		\item consider the matching $\phi_{m0}'$, created by taking  $\phi_{m0}$ and then, for each man $m \in \pi$, altering the match such that  $\phi_{m0}'(m) = \Phi_m(m)$.  Note that  $\Phi_m'$ is still a matching because $\forall m \in \Pi$, $\phi_m \in \Pi$.
-		\item we now have a cycle where $\Phi_m$ is a pareto improvement over $\phi_{m0}$ for men
-		\item Since this is a stable match in $U$ but not in $C_0$,  there must be a man in $C_0 \setminus U $ such that he forms a blocking pair with one of the women in this cycle.
-		\item $C_0 \subseteq U$, so $C_0 \setminus U  = \emptyset$, and so we have a contradiction
-		
-	\end{itemize}
-	Thus $\phi_{m0}$ is a subset of $\Phi_m$
-	
-	We now note that after removing $\phi_{m0}$ from U, the same logic holds, and the proof continues by induction. 
+ To show this, we will run deferred acceptance in a particular order to find $\Phi_m$ with a useful intermediate stage
+ \begin{itemize}
+ 	\item Call $M_0=M\cap C_0$, $W_0 = W \cap C_0$,$M_1 = M \cap C_1$, etc
+ 	\item Call $p(m)$ $m$'s favorite woman in $W$ who has not yet rejected him, or himself if he has been rejected by all acceptable women
+ 	\item \label{step:restricted_prop} Next, each $m \in M_0$ proposes to $p(m)$ only if $p(p) \in C_0$
+ 	\item \label{step:reject} Women hold and reject offers as in standard deferred acceptance
+ 	\item repeat steps \ref{step:restricted_prop} and \ref{step:reject} until no more proposals are made
+ 	\item Call this intermediate matching $\Phi_{m0}$, and note that $\Phi_{m0} = \phi_{m0}$
+ 	\item \ref{step:restricted_prop_ext} Next each unmatched man $m \in M_1$ proposes to $p(m)$ if $p(m) \in \{\Phi_{m0}\} \cup C_1$
+ 	\item \label{step:reject_ext} Women hold and reject offers as in standard deferred acceptance 	
+ 	\item repeat steps \ref{step:restricted_prop_ext} and \ref{step:reject_ext} until no more proposals are made. 
+ 	\item note that no woman in $\{\Phi_{m0}\}$ will reject her current match in favor of a man $m\notin C_0$, so no man in $\{\Phi_{m0}\}$ will be rejected, and so no match in $\{\Phi_{m0}\}$  will be disrupted
+ 	\item Call the current match  $\Phi_{m\{0,1\}}= \phi_{m0} \cup \phi_{m1}$
+ 	\item return to step \ref{step:restricted_prop_ext} for the sets $M_2, M_3, ...$ for each partition.
+ 	\item If there are any remaining unmatched men, allow them to propose to each woman who has not yet rejected them. They will be rejected by all women without ever being held, even temporarily.  
+ 	\item Thus we have reached the end of deferred acceptance, and shown that $\Phi_{m\{0,1,2,...\}}= \phi_{m} =\Phi_{m}$
+  \end{itemize}
 \end{proof}
 
 
