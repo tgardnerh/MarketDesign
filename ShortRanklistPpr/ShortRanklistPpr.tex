@@ -77,9 +77,6 @@ A matching $\phi$ is a mapping from $U$ onto itself such that (i) for every $m$,
 
 We say a matching $\phi$ is blocked by a pair $\{m,w\}$ if $w \succ_m \phi(m)$ and $m \succ_w \phi(w)$. It is individually rational if $\forall a \in U ,\phi(a) \succeq a$. A matching is stable if it is individually rational and not blocked.
 
-\subsection{Deferred Acceptance}
-The deferred acceptance mechanism is a mainstay of this paper. In the man-proposing version of this mechanism, the algorithm iteritavely selects a man $m$ who proposes to his most preferred woman who has not yet rejected him, unless he has been rejected by all women who he prefers to being unmatched.  If she prefers him to her current tenative assignment (and prefers him to being unmatched), she holds his proposal and rejects her current assignment (if one exists). Otherwise, she rejects $m$.  This process repeats until all men are either tentatively matched or have run out of proposals to make, and arrives at a stable matching that is weakly preferred by all men to any other stable matching.  We call this the man-optimal stable match, because it is weakly preferred by all men to any other stable match.  A parallel result exists for the woman-proposing algorithm.
-
 \subsection{Market Participants}
 
 The market consists of $n$ men and $n$ women,  indexed $\{ m_1, m_2, ... ,m_n\}$ and women indexed $\{ w_1, w_2, ... ,w_n\}$
@@ -271,7 +268,11 @@ As a sanity check, I plot the relationship between the fraction of agents with m
 
 
 
-\section{Mathematical Appendix}
+\section{ Appendix}
+
+\subsection{Deferred Acceptance}
+The deferred acceptance mechanism is a mainstay of this paper. In the man-proposing version of this mechanism, the algorithm iteritavely selects a man $m$ who proposes to his most preferred woman who has not yet rejected him, unless he has been rejected by all women who he prefers to being unmatched.  If she prefers him to her current tenative assignment (and prefers him to being unmatched), she holds his proposal and rejects her current assignment (if one exists). Otherwise, she rejects $m$.  This process repeats until all men are either tentatively matched or have run out of proposals to make, and arrives at a stable matching that is weakly preferred by all men to any other stable matching.  We call this the man-optimal stable match, because it is weakly preferred by all men to any other stable match.  A parallel result exists for the woman-proposing algorithm.
+
 
 \subsection{Permutations of preferences for $\{m_1,m_2,w_1,w_2\}$}
 I denote preferences with a four-bit binary number, in which a zero in the first position indicates that $w_1\succ_{m_1} w_2$ while a one in the first position indicates that $w_1\prec_{m_1} w_2$. Likewise the second through fourth positions indicate the preferences of $m_2, ,w_1$,and $w_2$.
