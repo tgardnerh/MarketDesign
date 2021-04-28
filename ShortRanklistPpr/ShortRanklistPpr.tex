@@ -14,10 +14,10 @@
 % variety of citation commands than latex supports natively. See below.
 
 % Uncomment the next line to use the natbib package with bibtex 
-%\usepackage{natbib}
+\usepackage{natbib}
 \usepackage{hyperref}
 % Uncomment the next line to use the harvard package with bibtex
-\usepackage[abbr]{harvard}
+%\usepackage[abbr]{harvard}
 
 \usepackage{ amssymb }
 
@@ -58,14 +58,14 @@
 
 \section{Introduction}
 
-Centralized matching markets themselves encompass only a small fraction of the labor market, however the study of centralized matching markets plausibly sheds light on the broader matching of employees to jobs. Furthermore, there are a variety of markets, including nearly every academic job market and most entry-level job markets for new college graduates, where there is no obvious reason why a centralized once-a-year clearing house could not work, and yet do not have this structure. A better understanding of the strengths and limits of centralized markets could help us understand what inefficiencies exist in these markets, whether more efficient solutions are possible, and possibly allow for the design of more efficient markets. 
+Centralized matching markets  encompass only a small fraction of the labor market, however the study of centralized matching markets  sheds light on the broader matching of employees to jobs. There are also a variety of markets, including academic job markets and some entry-level job markets for new college graduates, that are decentralized and sometimes chaotic despite having synchronized start dates for a large number of applicants to very similar jobs. A better understanding of the strengths and limits of centralized markets could help us understand what inefficiencies exist in these markets, whether more efficient solutions are possible, and possibly allow for the design of more efficient markets. 
 
-Theory tells us that there is no matching mechanism that reliably produces a stable outcome wherein both sides have the incentive to report their preferences accurately \cite{Roth1985}, however in practice many matching markets persist with both sides (apparently) reporting their preferences honestly  \cite{Roth1991}. This result can be explained by the fact that in many of these markets the set of stable matchings is actually quite small, and under some realistic assumptions only agents with multiple potential stable matches have an incentive to lie about their preferences.  For example, in the National Resident Matching Program (NRMP) matching of recently graduated physicians to resident positions, all but approximately 10 of 20,000 participants have a unique partner in the set of all stable matchings \cite{Roth1999a}, and so in all but a very small number of cases any misrepresentation of preferences would lead to a less-prefered outcome. 
+Theory tells us that there is no matching mechanism that reliably produces a stable outcome wherein both sides have the incentive to report their preferences accurately \citep{Roth1985}, however in practice many matching markets persist with both sides (apparently) reporting their preferences honestly  \citep{Roth1991}. This result can be explained by the fact that in many of these markets the set of stable matchings is actually quite small, and under some realistic assumptions only agents with multiple potential stable matches have an incentive to lie about their preferences.  For example, in the National Resident Matching Program (NRMP) matching of recently graduated physicians to resident positions, all but approximately 10 of 20,000 participants have a unique partner in the set of all stable matchings \citep{Roth1999a}, and so in all but a very small number of cases any misrepresentation of preferences would lead to an identical or less-preferred outcome. 
 
 
-Roth and Peranson posit that the small set of stable matchings (SSM) of these markets is likely driven by the correlated nature of preferences, and by the fact that for highly correlated preferences, the SSM is very small.  In a parallel argument, they note that finite preference lists, as is the case with the NRMP, lead to a very small SSM as well.  They use simulation to demonstrate these results, and (\cite{Immorlica2005} and then \cite{Kojima2009} build on this with the theoretical result that as the number of market participants grows, the SSM becomes arbitrarily small as a fraction of market size. This theoretical work takes short preference lists as a feature of preferences, and uses a highly restrictive preference structure. One issue with their preference structure is that in the large-market limit the fraction of participants who are acceptable to a positive fraction of participants cannot be positive. [Check wording--by positive i mean non-infinitesimal].
+Roth and Peranson posit that the small set of stable matchings (SSM) of these markets is driven by the correlated nature of preferences, and by the fact that for highly correlated preferences, the SSM is very small.  In a parallel argument, they note that finite preference lists, as is the case with the NRMP, lead to a very small SSM as well.  They use simulation to demonstrate these results, and (\cite{Immorlica2005} and then \cite{Kojima2009} build on this with the theoretical result that as the number of market participants grows, the SSM becomes arbitrarily small as a fraction of market size. This theoretical work takes short preference lists as a feature of preferences, and uses a highly restrictive preference structure. One issue with their preference structure is that in the large-market limit only an infinitesimal fraction of agents can be acceptable to more than an infinitesimal fraction of other agents.
 
-This paper extends these theoretical results to examine short rank lists in a setting that allows for more realistic preference formation and short rank lists. In this setting I show that short rank lists are not sufficient to ensure a small SSM. Further, I characterize a partition over the universe of agents, and explore how that partition can be used to understand the size of the SSM and the magnitude of the difference in utility between the best and worst stable matchings an agent can receive.
+This paper extends these theoretical results to examine short rank lists in a setting that allows for more realistic preference formation and short rank lists. In this setting I show that short rank lists are not sufficient to ensure a small SSM. 
 
 
 \section{Model}
@@ -81,8 +81,8 @@ We say a matching $\phi$ is blocked by a pair $\{m,w\}$ if $w \succ_m \phi(m)$ a
 
 The market consists of $n$ men and $n$ women,  indexed $\{ m_1, m_2, ... ,m_n\}$ and women indexed $\{ w_1, w_2, ... ,w_n\}$
 	
-Each man's preference list by first ranking all women according to their index number, so $w_1$ is his favorite, $w_n$ his least favorite, and so on.  
-With probability $\varepsilon$ man $m_1$ transposes the rankings of $w_{1}$ and $w_2$ and with probability $1-\varepsilon$ his rank list is unchanged.  For each $i > 1$, with probability $\varepsilon$ man $m_i$ transposes the rankings of $w_{i-1}$ and $w_i$, with probability $\varepsilon$ he transposes the rankings of $w_{i-1}$ and $w_i$, and with probability $1-2\varepsilon$ his rank list is unchanged.
+Each man's preference list by first ranking all women according to their index number, so $w_1$ is his favorite and $w_n$ his least favorite (his least favorite option is to be matched to himself).  
+With probability $\varepsilon$ man $m_1$ transposes the rankings of $w_{1}$ and $w_2$ and with probability $1-\varepsilon$ his rank list is unchanged.  For each $i  \in [1, n-1]$, with probability $\varepsilon$ man $m_i$ transposes the rankings of $w_{i-1}$ and $w_i$, with probability $\varepsilon$ he transposes the rankings of $w_{i+1}$ and $w_i$, and with probability $1-2\varepsilon$ his rank list is unchanged. With probability $\varepsilon$ man $m_n$ transposes the rankings of $w_{n-1}$ and $w_n$ and with probability $1-\varepsilon$ his rank list is unchanged.
 The women form their preferences in the same way.
 
 In this way, we arrive at a preference structure where agents all broadly agree on which matches are desirable, but have idiosyncratic preference variation.
@@ -114,7 +114,7 @@ Next choose $m$, the man in $U_0$ with the lowest index number, and select $w = 
 
 To find the next partition, call $U_1 = U_0 \setminus \{\phi_{m0}\}$, and repeat the entire process to find $C_1$ and $\phi_{m1}$
 
-The algorithm ends when $\{\phi_{mi}\} = \emptyset$ or $C_i= \emptyset$.
+The algorithm ends when $\{\phi_{mi}\} = \emptyset$ or $C_i= \emptyset$.  We call $\phi_m = \{\phi_{m0}, \phi_{m1}, ...\}$.
 
 \begin{lemma}
 	$ U \setminus \{\phi_{m}\} \subseteq M$ or $ U \setminus \{\phi_{m}\} \subseteq W$ 
@@ -132,19 +132,19 @@ The algorithm ends when $\{\phi_{mi}\} = \emptyset$ or $C_i= \emptyset$.
 \end{proof}
 
 \begin{prop} \label{prop:equiv}
-	$\phi_m = \{\phi_{m0}, \phi_{m1}, ...\}$ is identical to the man proposing deferred acceptance matching $\Phi_m $
+	$\phi_m $ is identical to the man proposing deferred acceptance matching $\Phi_m $
 \end{prop}
 \begin{proof}
 	
  To show this, we will run deferred acceptance in a particular order to find $\Phi_m$ with a useful intermediate stage
- \begin{itemize}
+ \begin{enumerate}
  	\item Call $M_0=M\cap C_0$, $W_0 = W \cap C_0$,$M_1 = M \cap C_1$, etc
  	\item Call $p(m)$ $m$'s favorite woman in $W$ who has not yet rejected him, or himself if he has been rejected by all acceptable women
  	\item \label{step:restricted_prop} Next, each $m \in M_0$ proposes to $p(m)$ only if $p(p) \in C_0$
  	\item \label{step:reject} Women hold and reject offers as in standard deferred acceptance
  	\item repeat steps \ref{step:restricted_prop} and \ref{step:reject} until no more proposals are made
  	\item Call this intermediate matching $\Phi_{m0}$, and note that $\Phi_{m0} = \phi_{m0}$
- 	\item \ref{step:restricted_prop_ext} Next each unmatched man $m \in M_1$ proposes to $p(m)$ if $p(m) \in \{\Phi_{m0}\} \cup C_1$
+ 	\item \label{step:restricted_prop_ext} Next each unmatched man $m \in M_1$ proposes to $p(m)$ if $p(m) \in \{\Phi_{m0}\} \cup C_1$
  	\item \label{step:reject_ext} Women hold and reject offers as in standard deferred acceptance 	
  	\item repeat steps \ref{step:restricted_prop_ext} and \ref{step:reject_ext} until no more proposals are made. 
  	\item note that no woman in $\{\Phi_{m0}\}$ will reject her current match in favor of a man $m\notin C_0$, so no man in $\{\Phi_{m0}\}$ will be rejected, and so no match in $\{\Phi_{m0}\}$  will be disrupted
@@ -152,7 +152,7 @@ The algorithm ends when $\{\phi_{mi}\} = \emptyset$ or $C_i= \emptyset$.
  	\item return to step \ref{step:restricted_prop_ext} for the sets $M_2, M_3, ...$ for each partition.
  	\item If there are any remaining unmatched men, allow them to propose to each woman who has not yet rejected them. They will be rejected by all women without ever being held, even temporarily.  
  	\item Thus we have reached the end of deferred acceptance, and shown that $\Phi_{m\{0,1,2,...\}}= \phi_{m} =\Phi_{m}$
-  \end{itemize}
+  \end{enumerate}
 \end{proof}
 
 
@@ -178,13 +178,19 @@ The algorithm ends when $\{\phi_{mi}\} = \emptyset$ or $C_i= \emptyset$.
 \end{proof}
 
 
-
-
-\subsection{Analyzing the model}
+\subsection{Analyzing the model} \label{subsect:partition}
 
 We begin by partitioning the market as in subsection \ref{subsect:partition} . 
 
-There are 16 possible preference relation sets for the participants $\{m_1,m_2,w_1,w_2\}$.  I have enumerated them in the appendix. For the simplest case, (Type A) in which no preference transpositions have occurred, $C_0 =\{m_1,w_1\}, \{\phi_0\}=\{m_1,w_1\}$, and the preference transpositions for  $\{m_2,m_3,w_2,w_3\}$ are drawn from the same distribution as $\{m_1,m_2,w_1,w_2\}$.  For eleven cases (Type B)  $ \{\phi_0\} \cup \{\phi_1\}=\{m_1,m_2,w_1,w_2\} $, and $\{m_3,m_4,w_3,w_4\}$ are drawn from the same distribution as $\{m_1,m_2,w_1,w_2\}$. For two cases (Type C)  $\{\phi_1\}=\{m_1,m_2,w_1,w_2\}$, $\{m_3,m_4,w_3,w_4\}$ are drawn from the same distribution as $\{m_1,m_2,w_1,w_2\}$, and notably in these two cases  multiple stable matchings are possible.
+There are 16 possible preference relation sets for the participants $\{m_1,m_2,w_1,w_2\}$, enumerated in the appendix. These relation sets can be grouped into four groups, A-D.
+
+Type A: This is the simplest case, in which $m_1$ and $m_2$ both prefer $w_1$ to $w_2$, and both $w_1$ and $w_2$ prefer $m_1$ to $m_2$.  In this case $C_0 =\{m_1,w_1\}$ and $\{\phi_0\}=\{m_1,w_1\}$. 
+Conditional on $\{m_1,m_2,w_1,w_2\}$ having Type A preferences, $\{m_2,m_3,w_2,w_3\}$ are drawn from the same distribution as $\{m_1,m_2,w_1,w_2\}$.  
+
+Type B: In eleven cases preferences are such that $ \{\phi_0\} \cup \{\phi_1\}=\{m_1,m_2,w_1,w_2\} $.
+Conditional on $\{m_1,m_2,w_1,w_2\}$ having Type B preferences, $\{m_3,m_4,w_3,w_4\}$ are drawn from the same distribution as $\{m_1,m_2,w_1,w_2\}$.  
+
+ For two cases (Type C)  $\{\phi_1\}=\{m_1,m_2,w_1,w_2\}$, $\{m_3,m_4,w_3,w_4\}$ are drawn from the same distribution as $\{m_1,m_2,w_1,w_2\}$, and notably in these two cases  multiple stable matchings are possible.
 
 Finally, there are two cases (Type D) where $\{\phi_0\}=\{m_1,w_1\}$, but where the preference transpositions for  $\{m_2,m_3,w_2,w_3\}$ are drawn from a restricted 
 
@@ -251,11 +257,24 @@ and so the fraction of agents who have multiple stable equilibria:
 
 As a sanity check, I plot the relationship between the fraction of agents with multiple stable matchings, see figure \ref{fig:multi_match}
 
-\begin{figure}[p]{Fraction of Agents With Multiple Stable Matchings}\label{fig:multi_match}
+\begin{figure}[p]{Fraction of Agents With Multiple Stable Matchings}
 	\resizebox{\textwidth}{!}{
 		\includegraphics{mult_frac_ep}	
 	}
+	\caption{The fraction of agents with more than one stable match as a function of $\epsilon$}
+	\label{fig:multi_match}
 \end{figure}
+
+\subsection{Rank List Length}
+
+\begin{prop}
+	Agents are indiferent between submitting a three-entry rank list and their complete preferences.
+\end{prop}
+
+\begin{proof}
+	As we partition the market as in subsection \ref{subsect:partition}, there is never a case where two people in the same partition have numbers that differ by more than one. Therefore, the partitions and resultant matching are the same if each person submits a 3-member rank list consisting of only agents they might share a partition with.
+\end{proof}
+
 
 
 
