@@ -26,7 +26,7 @@
 %for \resizebox
 \usepackage{graphicx}
 
-
+\usepackage{calrsfs}
 
 % This command determines the leading (vertical space between lines) in draft mode
 % with 1.5 corresponding to "double" spacing.
@@ -58,14 +58,14 @@
 
 \section{Introduction}
 
-Centralized matching markets  encompass only a small fraction of the labor market, however the study of centralized matching markets  sheds light on the broader matching of employees to jobs. There are also a variety of markets, including academic job markets and some entry-level job markets for new college graduates, that are decentralized and sometimes chaotic despite having synchronized start dates for a large number of applicants to very similar jobs. A better understanding of the strengths and limits of centralized markets could help us understand what inefficiencies exist in these markets, whether more efficient solutions are possible, and possibly allow for the design of more efficient markets. 
+Centralized matching markets encompass only a small fraction of the labor market, however the study of centralized matching markets  sheds light on the broader matching of employees to jobs. There are also a variety of markets, including academic job markets and some entry-level job markets for new college graduates, that are decentralized and sometimes chaotic despite having synchronized start dates for a large number of applicants to very similar jobs. A better understanding of the strengths and limits of centralized markets could help us understand what inefficiencies exist in these markets, whether more efficient solutions are possible, and even allow for the design of more efficient markets. 
 
-Theory tells us that there is no matching mechanism that reliably produces a stable outcome wherein both sides have the incentive to report their preferences accurately \citep{Roth1985}, however in practice many matching markets persist with both sides (apparently) reporting their preferences honestly  \citep{Roth1991}. This result can be explained by the fact that in many of these markets the set of stable matchings is actually quite small, and under some realistic assumptions only agents with multiple potential stable matches have an incentive to lie about their preferences.  For example, in the National Resident Matching Program (NRMP) matching of recently graduated physicians to resident positions, all but approximately 10 of 20,000 participants have a unique partner in the set of all stable matchings \citep{Roth1999a}, and so in all but a very small number of cases any misrepresentation of preferences would lead to an identical or less-preferred outcome for the agent misrepresenting their preferences. 
+Theory tells us that there is no matching mechanism that reliably produces a stable outcome wherein both sides have the incentive to accrurately report their preferences \citep{Roth1985}, however in practice many matching markets persist with both sides (apparently) reporting their preferences honestly  \citep{Roth1991}. This result can be explained by the fact that in many of these markets the set of stable matchings is quite small, and under some realistic assumptions only agents with multiple potential stable matches have an incentive to lie about their preferences.  For example, in the National Resident Matching Program (NRMP) matching of recently graduated physicians to resident positions, all but approximately 10 of 20,000 participants have a unique partner in the set of all stable matchings \citep{Roth1999a}, and so in all but a very small number of cases any misrepresentation of preferences would lead to an identical or less-preferred outcome for the agent misrepresenting their preferences. 
 
 
 Roth and Peranson posit that the small set of stable matchings (SSM) of these markets is driven by the correlated nature of preferences, and by the fact that for highly correlated preferences, the SSM is very small.  In a parallel argument, they note that finite preference lists, as is the case with the NRMP, lead to a very small SSM as well.  They use simulation to demonstrate these results, and (\cite{Immorlica2005} and then \cite{Kojima2009} build on this with the theoretical result that as the number of market participants grows, the SSM becomes arbitrarily small as a fraction of market size. This theoretical work takes short preference lists to be a feature of preferences rather than a feature of the market mechanism, and uses a highly restrictive preference structure to accomplish that. 
-The primary restriction on preferences that this paper relaxes is on the existence of broadly acceptable `elite' institutions. In prior literature with $n$ residency programs and preference lists of length $k$,  at least $n-k$ institutions are unacceptable to nearly all applicants as $n$ grows without bound.  
 
+The primary restriction on preferences that this paper relaxes is on the existence of broadly acceptable `elite' applicants. In prior literature where hospitals form $k$ length preference lists over $n$ doctors and preference lists of length $k$,  for any $\epsilon_a$, no more than $k/\epsilon_a$ doctors can be acceptable to $n\epsilon_a$ hospitals. That is to say that as the market grows, nearly all doctors are unacceptable to nearly all hospitals. (See appendix \ref{appendix:immorlica_pref} for more).  
 In this paper I examine short rank lists in a setting that allows for more realistic preference formation. I construct preferences where all participants on each side in a matching market broadly share preferences over their potential matches, requiring short rank-lists does not introduce strategic behavior, and the fraction of agents with multiple stable matches has a positive limit as the market becomes infinitely large.
 
 Additionally, I introduce an algorithm to partition the market into subsets that have limited interdependence, and prove several useful properties of these partitions.
@@ -331,7 +331,32 @@ $(0,0,0,1)$:  $C_0 =\{d_1,h_1\}, \{\phi_0\}=\{d_1,h_1\}$.  Preferences for $\{d_
 
 $(0,1,0,0)$:  $C_0 =\{d_1,h_1\}, \{\phi_0\}=\{d_1,h_1\}$.  Preferences for $\{d_2,d_3,h_2,h_3\}$ fit the pattern $(0,\cdot,\cdot,\cdot)$.
 
+\subsection{Review of Preferences From \cite{Immorlica2005}} \label{appendix:immorlica_pref}
 
+\cite{Immorlica2005} construct preferences as follows (subtituting men and women for doctors and hospitals):
+\begin{quote}
+	Let $\mathcal{D}$ be an \emph{arbitrary} fixed distribution over the set of women such that the probability of each woman in 
+	$\mathcal{D}$ is nonzero. Intuitively, having a high probability in $\mathcal{D}$ indicates that a woman is popular. 
+	The preference lists are constructed by picking each entry of the list according to $\mathcal{D}$, and removing the repetitions. More precisely, we construct a random list $(l_1, ..., l_k)$
+	of $k$ women as follows. At step $i$, repeatedly select women $w$ independently according to $\mathcal{D}$ until $w \notin (l_1, ..., l_{i-1})$ and then set $l_i = w$.
+\end{quote}
+
+\begin{lemma}
+	For any $\varepsilon_a$, no more than $k/\varepsilon_a$ women can be acceptable $\varepsilon_a$ fraction of men.
+\end{lemma}
+\begin{proof}
+	Proceeding by contradiction, suppose the set of women who are acceptable to $\varepsilon_a$ fraction of men is $J = \{j_1,..., j_p\}$, with $p > k/\varepsilon_a$. 
+
+	Each woman's probability in $\mathcal{D}$ is at least $\varepsilon_a/k$
+
+	The on any draw thee liklihood of choosing some $j\in J$ from $\mathcal{D}$ is at least $$p \frac{\varepsilon_a}{k} > \frac{k}{\varepsilon_a}\frac{\varepsilon_a}{k} = 1$$
+
+	This is a contradiction.
+
+	$\square$
+
+
+\end{proof}
 
 \end{document}
 
