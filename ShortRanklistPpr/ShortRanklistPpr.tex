@@ -70,6 +70,55 @@ In this paper I examine short rank lists in a setting that allows for more reali
 
 Additionally, I introduce an algorithm to partition the market into subsets that have limited interdependence, and prove several useful properties of these partitions.
 
+\section{Model--Block Preferences}
+\subsection{Market Participants}
+
+The market consists of $n$ doctors  indexed $\{ d_1, d_2, ... ,d_n\}$ and  $n$ hospitals  indexed $\{ h_1, h_2, ... ,h_n\}$ The degree of preference variation among doctors is indexed by the variable $k_d$, while the degree of preference variation among hospitals is indexed by $k_h$.
+	
+Each doctor forms their preference list by first ranking all hospitals according to their index number, so $h_1$ is the doctor's favorite and $h_n$ their least favorite (the doctor's least favorite option is to be unmatched).  
+Doctor each doctor $d_a$ randomizes their preferences over hospitals $\{h_{a-k_d},...,h_{a+k_d}\}$, leaving their other preferences unchanged.  Doctors $d_a$, $a \in [1,k_d+1]$ randomize preferences over hospitals  $\{h_{1},...,h_{a+k_d}\}$, and doctors $d_a$, $a \in [n-k_d,n]$ randomize preferences over hospitals  $\{h_{a-k_d},...,h_{n}\}$.  
+The hospitals form their preferences in the same way, using $k_h$ in place of $k_d$.
+
+In this way, we arrive at a preference structure where agents all broadly agree on which matches are desirable, but have idiosyncratic preference variation.
+
+\subsection{rank list lengths}
+\begin{lemma}
+	For any stable matching $(d_a,h_b)$, $|a-b| < max(k_d,k_h)+2$
+\end{lemma}
+\begin{proof}
+	Call $k = max(k_d,k_h)$
+	First consider the match $(d_1,h_a), a > k+1$.  $(d_1,h_{k+1})$ form a blocking pair, because $h_{k+1} \succ_{d_1} h_{k+2} \succ_{d_1} h_{k+3} \succ_{d_1} h_{k+4}...$, and $d_1$ is the first choice of $h_{k+1}$.  Thus $(d_1,h_a), a > k+1$ are not matched in a stable matching.
+	
+	Likewise, $(d_a,h_1), a > k+1$ are not matched in a stable matching.
+
+	Now consider $(d_2,h_a), a > k+2$.  $(d_2,h_{k+2})$ form a blocking pair, because $h_{k+2} \succ_{d_2} h_{k+3} \succ_{d_2} h_{k+4} \succ_{d_2} h_{k+5}...$, and since $h_{k+2}$ is not matched to $d_1$,  $h_{k+2}$ prefers $d_2$ to their current match.  Thus $(d_2,h_a), a > k+2$ are not matched in a stable matching.
+
+	Likewise, $(d_a,h_2), a > k+2$ are not matched in a stable matching.
+
+	continuing by induction, we see that no pair $(d_a,h_b)$, $|a-b| > k+1$ is included in a stable matching.
+
+	
+
+\end{proof}
+
+
+\begin{lemma}
+	Consider the shortened preference lists formed by each agent only reporting the randomized section of their list plus\dots
+	Any matching that is stable under the shortened preferences is stable under complete preferences, and vice-versa.
+\end{lemma}
+
+\begin{proof}
+	
+	This proof consists of two sections: the first proves that a stable match under long preferences is also stable under short preferences.  The second shows that a stable match under the shortened preferences is also stable under full preferences.
+	\begin{enumerate}
+		
+		\item Consider a stable matching based on the complete preference lists. By construction it is individually rational under the abbreviated preference lists.  Further, since any blocking pair based on the short preference lists also would block the matching on long lists, the matching must also be stable on the short lists.
+		
+		\item Consider matching $\mu$ that is stable under the short preferences. Each agent is matched in a pairing such that  $(d_a,h_b)$, $|a-b| < max(k_d,k_h)+2$. We will see by contradiction that completing the preference lists cannot introduce a blocking pair.
+		Suppose otherwise, that there exists a blocking pair $(d_{d},h_{h})$ such that  $|d-h| > k+1$. WLOG suppose $d > h$. By construction of the preference lists, $\mu(d_{d}) \succ_{d_{d}} h_{h}$, a contradiction.
+	\end{enumerate} 
+
+\end{proof}
 \section{Model}
 \subsection{Preliminary Definitions}
 
