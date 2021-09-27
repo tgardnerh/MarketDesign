@@ -40,7 +40,7 @@
 
 \begin{document}
 
-\title{A Theory Paper on Rank List Length}
+\title{Determinants of core size in matching markets: going beyond short rank lists}
 \shortTitle{List Length}
 \author{Tyler Hoppenfeld}
 \date{\today}
@@ -51,8 +51,9 @@
 \JEL{}
 \Keywords{}
 
-%\begin{abstract}
-
+\begin{abstract}
+I examine two-sided matching in large markets with a novel preference structure that allows me to understand the effects of asymmetry in preference formation.  I demonstrate conditions in which the core of a matching market remains large when the market has a large number of participants, and show a sharp effect of market asymmetry on core size and the relative rank with which participants are matched.
+\end{abstract}
 \maketitle
 
 
@@ -60,20 +61,22 @@
 
 Centralized matching markets encompass only a small fraction of the labor market, however the study of centralized matching markets  sheds light on the broader matching of employees to jobs. There are also a variety of markets, including academic job markets and some entry-level job markets for new college graduates, that are decentralized and sometimes chaotic despite having synchronized start dates for a large number of applicants to very similar jobs. A better understanding of the strengths and limits of centralized markets could help us understand what inefficiencies exist in these markets, whether more efficient solutions are possible, and even allow for the design of more efficient markets. 
 
-Theory tells us that there is no matching mechanism that reliably produces a stable outcome wherein both sides have the incentive to accrurately report their preferences \citep{Roth1985}, however in practice many matching markets persist with both sides (apparently) reporting their preferences honestly  \citep{Roth1991}. This result can be explained by the fact that in many of these markets the set of stable matchings is quite small, and under some realistic assumptions only agents with multiple potential stable matches have an incentive to lie about their preferences.  For example, in the National Resident Matching Program (NRMP) matching of recently graduated physicians to resident positions, all but approximately 10 of 20,000 participants have a unique partner in the set of all stable matchings \citep{Roth1999a}, and so in all but a very small number of cases any misrepresentation of preferences would lead to an identical or less-preferred outcome for the agent misrepresenting their preferences. 
+Theory tells us that there is no matching mechanism that reliably produces a stable outcome wherein both sides have the incentive to accurately report their preferences \citep{Roth1985}, however in practice many matching markets persist with both sides (apparently) reporting their preferences honestly  \citep{Roth1991}. This result can be explained by the fact that in many of these markets the set of stable matchings is quite small, and under reasonable assumptions only agents with multiple potential stable matches have an incentive to lie about their preferences.  For example, in the National Resident Matching Program (NRMP) matching of recently graduated physicians to resident positions, all but approximately 10 of 20,000 participants have a unique partner in the set of stable matchings \citep{Roth1999a}, and so in all but a very small number of cases any misrepresentation of preferences would lead to an identical or less-preferred outcome for the agent misrepresenting their preferences. 
+
+ 
+Roth and Peranson posit that the small set of stable matchings (SSM) of these markets is driven by the correlated nature of preferences, and by the fact that for highly correlated preferences, the SSM is very small.  In a parallel argument, they note that finite preference lists, as is the case with the NRMP, lead to a very small SSM as well.  They use simulation to illustrate their claims with randomly drawn short preference lists, and (\cite{Immorlica2005} and then \cite{Kojima2009} build on this with the theoretical result that as the number of market participants grows, the SSM becomes arbitrarily small as a fraction of market size. This theoretical work takes short preference lists to be a feature of preferences rather than a feature of the market mechanism, and uses a highly restrictive preference structure to accomplish that. 
+
+In a related strain of work \cite{Ashlagi2017} look at matching outcomes in small unbalanced two-sided matching markets with uniform random preferences.  They find that the market outcome sharply depends on the imbalance, and the core is large only if the market is balanced, with the same number of participants on each side. 
 
 
-Roth and Peranson posit that the small set of stable matchings (SSM) of these markets is driven by the correlated nature of preferences, and by the fact that for highly correlated preferences, the SSM is very small.  In a parallel argument, they note that finite preference lists, as is the case with the NRMP, lead to a very small SSM as well.  They use simulation to demonstrate these results, and (\cite{Immorlica2005} and then \cite{Kojima2009} build on this with the theoretical result that as the number of market participants grows, the SSM becomes arbitrarily small as a fraction of market size. This theoretical work takes short preference lists to be a feature of preferences rather than a feature of the market mechanism, and uses a highly restrictive preference structure to accomplish that. 
-
-The primary restriction on preferences that this paper relaxes is on the existence of broadly acceptable `elite' applicants. In prior literature where hospitals form $k$ length preference lists over $n$ doctors and preference lists of length $k$,  for any $\epsilon_a$, no more than $k/\epsilon_a$ doctors can be acceptable to $n\epsilon_a$ hospitals. That is to say that as the market grows, nearly all doctors are unacceptable to nearly all hospitals. (See appendix \ref{appendix:immorlica_pref} for more).  
+This paper builds a bridge between these two strains of work, in that it relaxes the restrictive preferences found in \cite{Immorlica2005} and  \cite{Kojima2009}, and finds that, like in \cite{Ashlagi2017}, a large core depends on a symmetrical two-sided market. In prior literature where hospitals form $k$ length preference lists over $n$ doctors and preference lists of length $k$,  for any $\epsilon_a$, no more than $k/\epsilon_a$ doctors can be acceptable to $n\epsilon_a$ hospitals. That is to say that as the market grows, nearly all doctors are unacceptable to nearly all hospitals. (See appendix \ref{appendix:immorlica_pref} for more).  
 In this paper I examine short rank lists in a setting that allows for more realistic preference formation. I construct preferences where all participants on each side in a matching market broadly share preferences over their potential matches, requiring short rank-lists does not introduce strategic behavior, and the fraction of agents with multiple stable matches has a positive limit as the market becomes infinitely large.
 
-Additionally, I introduce an algorithm to partition the market into subsets that have limited interdependence, and prove several useful properties of these partitions.
 
 \section{Model}
 \subsection{Preliminary Definitions}
 
-Let there be $D$ doctors and $H$ hospitals, each of which might hire at most one doctor. Doctors and hospitals together form the universe of participants $U = D \cup H$.  Each doctor $d$ has a strict preference relation over the set of hospitals he could be matched with and being unmatched, which we denote as being matched with oneself. Therefore we say that the doctor has preferences $\succ_{d}$ over the set $H \cup \{d\}$. Each hospital $h$ likewise has preferences $\succ_h$ over $D \cup \{h\}$. 
+A two sided matching market consists of a set of doctors $D$ and  hospitals $H$, each of which might hire at most one doctor. Doctors and hospitals together form the universe of participants $U = D \cup H$.  Each doctor $d$ has a strict preference relation over the set of hospitals he could be matched with and being unmatched, which we denote as being matched with oneself. Therefore we say that the doctor has preferences $\succ_{d}$ over the set $H \cup \{d\}$. Each hospital $h$ likewise has preferences $\succ_h$ over $D \cup \{h\}$. 
 
 A matching $\phi$ is a mapping from $U$ onto itself such that 
 \begin{itemize}
@@ -82,9 +85,19 @@ A matching $\phi$ is a mapping from $U$ onto itself such that
 \end{itemize}
 We say a matching $\phi$ is blocked by a pair $\{d,h\}$ if $h \succ_d \phi(h)$ and $d \succ_h \phi(h)$. It is individually rational if $\forall a \in U ,\phi(a) \succ_a a \vert \phi(a) = a$. A matching is stable if it is individually rational and not blocked.
 
+
+\begin{thm}
+	In a 1:1 matching, the core and set of stable matchings are equivalent. 	
+\end{thm}
+\begin{proof}
+	An unstable matching contains at least one couple who can defect to their mutual benefit, or an individual who can defect to become unmatched, and so is not part of the core.
+
+	The defecting coalition of a non-core assignment consists of individuals for whom the matching is not individually rational and blocking pairs, so any non-core outcome contains is not stable.
+\end{proof}
+
 \subsection{Market Participants}
 
-The market consists of $n$ doctors  indexed $\{ d_1, d_2, ... ,d_n\}$ and  $n$ hospitals  indexed $\{ h_1, h_2, ... ,h_n\}$ The degree of preference variation among doctors is indexed by the variable $k_d$, while the degree of preference variation among hospitals is indexed by $k_h$.
+There are $n$ doctors  indexed $\{ d_1, d_2, ... ,d_n\}$ and  $n$ hospitals  indexed $\{ h_1, h_2, ... ,h_n\}$ The degree of preference variation among doctors is indexed by the variable $k_d$, while the degree of preference variation among hospitals is indexed by $k_h$.
 	
 Each doctor forms their preference list by first ranking all hospitals according to their index number, so $h_1$ is the doctor's favorite and $h_n$ their least favorite (the doctor's least favorite option is to be unmatched).  
 Doctor each doctor $d_a$ randomizes their preferences over hospitals $\{h_{a-k_d},...,h_{a+k_d}\}$, leaving their other preferences unchanged.  Doctors $d_a$, $a \in [1,k_d+1]$ randomize preferences over hospitals  $\{h_{1},...,h_{a+k_d}\}$, and doctors $d_a$, $a \in [n-k_d,n]$ randomize preferences over hospitals  $\{h_{a-k_d},...,h_{n}\}$.  
@@ -94,9 +107,9 @@ In this way, we arrive at a preference structure where agents all broadly agree 
 
 \section{Analysis}
 
-\subsection{rank list lengths}
+\subsection{Rank List Lengths}
 \begin{lemma}
-	For any stable matching $(d_a,h_b)$, $|a-b| < max(k_d,k_h)+2$
+	For any pair in a stable matching $(d_a,h_b)$, $|a-b| < max(k_d,k_h)+2$
 \end{lemma}
 \begin{proof}
 	Call $k = max(k_d,k_h)$
@@ -110,10 +123,39 @@ In this way, we arrive at a preference structure where agents all broadly agree 
 
 	continuing by induction, we see that no pair $(d_a,h_b)$, $|a-b| > k+1$ is included in a stable matching.
 
-
 \end{proof}
 
-	
+\section{Computational Experiments}
+This section presents simulation results that complenent my theoretical results and provide evidence for a key theoretical conjecture.
+in a variety of market sizes size markets demonstrating:
+
+\subsection{Numerical Results for Block Preferences}
+My first computational experiment illustrates the sharp effect that imbalances in block size have on the size of the core, and the minor impact that market size has on the size of the core. I consider markets with between 100 and 10,000 participants (evenly divided between doctors and hospitals) where the doctors randomize their preferences over a block of 21 hospitals, and hospitals randomize their preferences over a block of a varying number of doctors ranging between 1 and 21.  For each market configuration I simulate 200 realizations by drawing uniformly from the possible preferences.  For each realization I compute the Doctor-optimal and Hospital-optimal stable matchings.  
+
+I present three major findings in two graphs.  The first finding, that market outcome depends sharply on  is presented in figure 
+\ref{fig:rank_k_Variable} 
+which shows the average relative rank of doctors' in the hospital and doctor optimal matchings over a range of market imbalances.  This graph shows that even a small imbalance in market conditions leads to a large improvement in the match outcome for the favored side.  Most importantly, this effect also dramatically shrinks the difference between the optimal and pessimal matches for each side.  In a balanced market there is approximately a 5-rank difference in the expected outcome between the optimal and pessimal match, but with with even a single increment of imbalance in their favor, the difference in expected match quality between optimal and pessimal matches is much smaller. 
+
+The final finding is that the size of the core does not depend on the size of the market.  Figure 
+\ref{fig:size_N_Variable_offset} 
+shows that as the market grows in size, the fraction of agents with multiple stable matches is insensitive to market size, remaining above 40\% as the market grows to 5,000 Doctors and 5,000 Hospitals.  
+
+
+
+
+\begin{figure}[h]
+	\includegraphics[width = \textwidth]{../matchQ_vs_k.png}
+	\caption{Match Quality as a function of Block Imbalance: This chart shows the average match quality doctors experience. Bars indicate doctors' match quality in the Doctor-Optimal and Doctor-Pessimal match. A relative match quality of 0 indicates that doctor $d_i$ matched with their $i'th$ choice hospital, and a relative match quality of 20 indicates that $d_i$ matched with their $(i-20)$th choice hospital. Block size imbalance is the difference between the size of the indicates the difference between the size of the doctors' randomized block and the hospitals'. In all cases the larger randomized block is 41 entries long, and there are 500 hospitals and 500 doctors.  }
+	\label{fig:rank_k_Variable}
+\end{figure}
+
+
+\begin{figure}[h]
+	\includegraphics[width = \textwidth]{../block_size_vs_n.png}
+	\caption{Size of Core as a Function of Market Size and Imbalance: This chart shows the fraction of market participants who have more than one stable outcome as a function of market size for a variety of market balance conditions.In all cases the larger randomized block is 41 entries long.}
+	\label{fig:size_N_Variable_offset}
+\end{figure}
+
 
 
 
@@ -129,7 +171,7 @@ In this way, we arrive at a preference structure where agents all broadly agree 
 \section{ Appendix}
 
 \subsection{Deferred Acceptance}
-The deferred acceptance mechanism is a mainstay of this paper. In the doctor-proposing version of this mechanism, the algorithm iteritavely selects a doctor $d$ who proposes to their most preferred hospital that has not yet rejected them, unless the doctor has been rejected by all hospitals who they prefer to being unmatched.  If the hospital prefers the proposing doctor to the current tenative assignment, the hospital holds the doctor's proposal and rejects their current assignment (if one exists). Otherwise, the hospital rejects $d$.  This process repeats until all doctors are either tentatively matched or have run out of proposals to make, and arrives at a stable matching that is weakly preferred by all doctors to any other stable matching.  We call this the doctor-optimal stable match, because it is weakly preferred by all doctors to any other stable match.  A parallel result exists for the hospital-proposing algorithm.
+The deferred acceptance mechanism is a mainstay of this paper. In the doctor-proposing version of this mechanism, the algorithm iteratively selects a doctor $d$ who proposes to their most preferred hospital that has not yet rejected them, unless the doctor has been rejected by all hospitals who they prefer to being unmatched.  If the hospital prefers the proposing doctor to the current tentative assignment, the hospital holds the doctor's proposal and rejects their current assignment (if one exists). Otherwise, the hospital rejects $d$.  This process repeats until all doctors are either tentatively matched or have run out of proposals to make, and arrives at a stable matching that is weakly preferred by all doctors to any other stable matching.  We call this the doctor-optimal stable match, because it is weakly preferred by all doctors to any other stable match.  A parallel result exists for the hospital-proposing algorithm.
 
 
 
@@ -151,7 +193,7 @@ The deferred acceptance mechanism is a mainstay of this paper. In the doctor-pro
 
 	Each woman's probability in $\mathcal{D}$ is at least $\varepsilon_a/k$
 
-	The on any draw thee liklihood of choosing some $j\in J$ from $\mathcal{D}$ is at least $$p \frac{\varepsilon_a}{k} > \frac{k}{\varepsilon_a}\frac{\varepsilon_a}{k} = 1$$
+	The on any draw thee likelihood of choosing some $j\in J$ from $\mathcal{D}$ is at least $$p \frac{\varepsilon_a}{k} > \frac{k}{\varepsilon_a}\frac{\varepsilon_a}{k} = 1$$
 
 	This is a contradiction.
 
